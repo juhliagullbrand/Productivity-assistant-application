@@ -1,10 +1,13 @@
 *{
     margin: 0;
-    background-color: var(--primary-background-color);
     color: var(--primary-font-color);
     font-family: "Poppins", serif;
 }
-
+body{
+    background-image: url(img/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 :root{
     --primary-background-color: #F0EBEB;
     --primary-container-color: #ffffff;
@@ -31,4 +34,57 @@ h2{
 
 h1{
     font-size: var(--big-title-font-size);
+    margin: 3% 0;
+    text-align: center;
+}
+.flex-container-todo{
+    display: flex;
+    justify-content: center;
+}
+div.input-container{
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 1000px;
+    background-color: var(--primary-background-color);
+    border-radius: 20px;
+    padding: 3%;
+}
+#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate{
+    color: var(--primary-font-color);
+    background-color: var(--primary-container-color);
+    border-radius: 20px;
+    border: none;
+    padding: 2%;
+    /* height: 20px; */
+}
+#input-todo-description{
+    width: 720px;
+    margin-left: 2%;
+}
+#category-todo{
+  margin-top: 2%;
+  margin-right: 2%;
+}
+#deadline-todo{
+    height: 30px;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+#deadline-todo-label, #time-estimate-label{
+    margin-right: 1%;
+}
+#time-estimate{
+    width: 25px;
+    margin-right: 1%;
+}
+.btn-todo{
+    height: 60px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--button-background-color);
+    font-weight: 600;
+    margin-left: 7%;
 }

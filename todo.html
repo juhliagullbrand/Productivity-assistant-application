@@ -11,6 +11,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1 class="h1-todo">Att göra & aktiviteter</h1>
+    <div class="flex-container-todo">
+        <div class="input-container">
+            <input type="text" name="" id="input-todo-title" placeholder="Titel">
+            <input type="text" name="" id="input-todo-description" placeholder="Beskrivning">
+
+            <select name="category" id="category-todo">
+                <option value="" disabled selected>Välj en kategory</option>
+                <option value="helth">Hälsa</option>
+                <option value="household">Hushåll</option>
+                <option value="job">Jobb</option>
+                <option value="pleasure">Nöje</option>
+            </select>
+            <label for="date" id="deadline-todo-label">Datum för deadline</label>
+            <input type="date" name="deadline" id="deadline-todo">
+
+            <label for="time-estimate" id="time-estimate-label">Tidsestimat (i timmar)</label>
+            <input type="number" id="time-estimate" name="time-estimate" min="1">
+
+            <button class="btn-todo">+ Addera</button>
+
+
+        </div>
+        <div class="input-container-time-date">
+            
+        </div>
+
+    </div>
 </body>
 </html>
