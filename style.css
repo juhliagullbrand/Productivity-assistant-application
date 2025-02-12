@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    background-color: var(--primary-background-color);
+    color: var(--primary-font-color);
+    font-family: "Poppins", serif;
+}
+
+:root{
+    --primary-background-color: #F0EBEB;
+    --primary-container-color: #ffffff;
+    --button-background-color: #FFD4A9;
+    --button-font-color: #000000;
+    --primary-font-color: #000000;
+    --purple-background-color: #E4C9E5;
+    --pink-background-color: #FAC9CC;
+    --orange-background-color: #FFD4A9;
+    --green-background-color: #DAE9D5;
+    --blue-background-color: #D1EAED;
+    --big-title-font-size: 42px;
+    --small-title-font-size: 32px;
+    --p-font-size: 20px;
+}
+
+p{
+    font-size: var(--p-font-size);
+}
+
+h2{
+    font-size: var(--small-title-font-size);
+}
+
+h1{
+    font-size: var(--big-title-font-size);
+}
