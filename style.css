@@ -6,12 +6,16 @@
 }
 
 :root{
-    --primary-background-color: #ffff;
-    --button-font-color: #ffff;
-    --primary-font-color: #1F1D19;
-    --habits-background-color: #FFE9EA;
-    --todos-background-color: #D8F5E0;
-    --event-background-color: #C7EBFA;
+    --primary-background-color: #F0EBEB;
+    --primary-container-color: #ffffff;
+    --button-background-color: #FFD4A9;
+    --button-font-color: #000000;
+    --primary-font-color: #000000;
+    --purple-background-color: #E4C9E5;
+    --pink-background-color: #FAC9CC;
+    --orange-background-color: #FFD4A9;
+    --green-background-color: #DAE9D5;
+    --blue-background-color: #D1EAED;
     --big-title-font-size: 42px;
     --small-title-font-size: 32px;
     --p-font-size: 20px;
