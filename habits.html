@@ -8,9 +8,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="habits.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Rutiner</title>
 </head>
 <body>
-    
+    <h1>Rutiner</h1>
+    <div class="flex-container-todo">
+        <div class="input-container">
+            <input type="text" id="input-habits-title" placeholder="Rutin">
+            <select name="prio" id="prio">
+                <option value="" disabled selected>Prioritet</option>
+                <option value="high">Hög</option>
+                <option value="middle">Mellan</option>
+                <option value="low">Låg</option>
+            </select>
+            <select name="repetition" id="repetition">
+                <option value="" disabled selected>Repetition</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button class="btn-todo" id="habitsBtn">+ Lägg till</button>
+            <div id="habit-container">
+                <div id="HabitsortAndFilterContainer">
+                    <select name="Sortera" id="habitSort">
+                        <option value="" disabled selected>Sortera</option>
+                        <option value="Least repetitions">Minst repetioner</option>
+                        <option value="Most repetitions">Flest repetioner</option>
+                        <option value="Lowest prio">Lägsta prioritet</option>
+                        <option value="Highest prio">Högsta prioritet</option>
+                    </select>
+                    <select name="Filtrera" id="habitFilter">
+                        <option value="" disabled selected>Filtrera</option>
+                        <option value="high">Hög</option>
+                        <option value="middle">Mellan</option>
+                        <option value="low">Låg</option>
+                    </select>
+                </div>
+                <div id="habits-box">
+                    <div id="routineLeftBox">
+                        <div id="routineName">Rutinens namn</div>
+                        <div id="routineRepetation">2/5</div>
+                    </div>
+                    <div id="routineRightBox">
+                        <div id="prioBoxHigh">hög</div>
+                        <div id="minusPlusRepeatBox">- +</div>
+                        <div id="deleteBox">Ö</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>
