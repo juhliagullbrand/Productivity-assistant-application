@@ -38,31 +38,76 @@ h1{
     text-align: center;
 }
 .flex-container-todo{
-    background-color: var(--primary-background-color);
     display: flex;
-    border-radius: 20px;
-    width: 80%;
-    flex-direction: column;
     justify-content: center;
-    padding: 3%;
-    
 }
 div.input-container{
     display: flex;
-    
+    justify-content: start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    width: 1000px;
+    background-color: var(--primary-background-color);
+    border-radius: 20px;
+    padding: 3%;
 }
-#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate, .input-container-result-todo{
+
+#habit-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 4%;
+}
+
+#HabitsortAndFilterContainer{
+    display: flex;
+    margin-bottom: 2%;
+}
+
+#habits-box{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-container-color);
+    border-radius: 20px;
+    color: var(--primary-font-color);
+    padding: 2%;
+    height: 40px;
+    width: 100%;
+}
+
+#prioBoxHigh{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--pink-background-color);
+    border-radius: 20px;
+    height: 30px;
+    width: 50px;
+}
+#routineRightBox{
+    display: flex;
+    width: 30%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#routineLeftBox{
+    display: flex;
+    flex-direction: column;
+}
+
+#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate, #input-habits-title, #prio, #repetition, #habitSort, #habitFilter{
     color: var(--primary-font-color);
     background-color: var(--primary-container-color);
     border-radius: 20px;
     border: none;
     padding: 2%;
+    /* height: 20px; */
 }
 #input-todo-description{
     width: 720px;
     margin-left: 2%;
 }
-#category-todo{
+#category-todo, #habitSort, #habitFilter, #prio, #repetition, #input-habits-title{
   margin-top: 2%;
   margin-right: 2%;
 }
@@ -86,10 +131,4 @@ div.input-container{
     background-color: var(--button-background-color);
     font-weight: 600;
     margin-left: 7%;
-}
-.input-container-result-todo{
-    margin-bottom: 1%;
-}
-.select-container{
-    margin-bottom: 10%;
 }
