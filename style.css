@@ -38,26 +38,25 @@ h1{
     text-align: center;
 }
 .flex-container-todo{
+    background-color: var(--primary-background-color);
     display: flex;
+    border-radius: 20px;
+    width: 80%;
+    flex-direction: column;
     justify-content: center;
+    padding: 3%;
+    
 }
 div.input-container{
     display: flex;
-    justify-content: start;
-    align-items: baseline;
-    flex-wrap: wrap;
-    width: 1000px;
-    background-color: var(--primary-background-color);
-    border-radius: 20px;
-    padding: 3%;
+    
 }
-#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate{
+#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate, .input-container-result-todo{
     color: var(--primary-font-color);
     background-color: var(--primary-container-color);
     border-radius: 20px;
     border: none;
     padding: 2%;
-    /* height: 20px; */
 }
 #input-todo-description{
     width: 720px;
@@ -87,4 +86,10 @@ div.input-container{
     background-color: var(--button-background-color);
     font-weight: 600;
     margin-left: 7%;
+}
+.input-container-result-todo{
+    margin-bottom: 1%;
+}
+.select-container{
+    margin-bottom: 10%;
 }
