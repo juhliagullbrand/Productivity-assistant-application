@@ -1,134 +1,161 @@
-*{
-    margin: 0;
-    color: var(--primary-font-color);
-    font-family: "Poppins", serif;
+* {
+  margin: 0;
+  color: var(--primary-font-color);
+  font-family: "Poppins", serif;
 }
-body{
-    background-image: url(img/background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+  background-image: url(img/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-:root{
-    --primary-background-color: #F0EBEB;
-    --primary-container-color: #ffffff;
-    --button-background-color: #FFD4A9;
-    --button-font-color: #000000;
-    --primary-font-color: #000000;
-    --purple-background-color: #E4C9E5;
-    --pink-background-color: #FAC9CC;
-    --orange-background-color: #FFD4A9;
-    --green-background-color: #DAE9D5;
-    --blue-background-color: #D1EAED;
-    --big-title-font-size: 42px;
-    --small-title-font-size: 32px;
-    --p-font-size: 20px;
-}
-
-p{
-    font-size: var(--p-font-size);
+:root {
+  --primary-background-color: #f0ebeb;
+  --primary-container-color: #ffffff;
+  --button-background-color: #ffd4a9;
+  --button-font-color: #000000;
+  --primary-font-color: #000000;
+  --purple-background-color: #e4c9e5;
+  --pink-background-color: #fac9cc;
+  --orange-background-color: #ffd4a9;
+  --green-background-color: #dae9d5;
+  --blue-background-color: #d1eaed;
+  --big-title-font-size: 42px;
+  --small-title-font-size: 32px;
+  --p-font-size: 20px;
 }
 
-h2{
-    font-size: var(--small-title-font-size);
+p {
+  font-size: var(--p-font-size);
 }
 
-h1{
-    font-size: var(--big-title-font-size);
-    margin: 3% 0;
-    text-align: center;
-}
-.flex-container-todo{
-    display: flex;
-    justify-content: center;
-}
-div.input-container{
-    display: flex;
-    justify-content: start;
-    align-items: baseline;
-    flex-wrap: wrap;
-    width: 1000px;
-    background-color: var(--primary-background-color);
-    border-radius: 20px;
-    padding: 3%;
+h2 {
+  font-size: var(--small-title-font-size);
 }
 
-#habit-container{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin-top: 4%;
+h1 {
+  font-size: var(--big-title-font-size);
+  margin: 3% 0;
+  text-align: center;
+}
+.flex-container-todo {
+  display: flex;
+  justify-content: center;
+}
+div.input-container {
+  display: flex;
+  justify-content: start;
+  align-items: baseline;
+  flex-wrap: wrap;
+  width: 1000px;
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+  padding: 3%;
 }
 
-#HabitsortAndFilterContainer{
-    display: flex;
-    margin-bottom: 2%;
+#habit-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 4%;
 }
 
-#habits-box{
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    color: var(--primary-font-color);
-    padding: 2%;
-    height: 40px;
-    width: 100%;
+#HabitsortAndFilterContainer {
+  display: flex;
+  margin-bottom: 2%;
 }
 
-#prioBoxHigh{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--pink-background-color);
-    border-radius: 20px;
-    height: 30px;
-    width: 50px;
-}
-#routineRightBox{
-    display: flex;
-    width: 30%;
-    justify-content: space-evenly;
-    align-items: center;
-}
-#routineLeftBox{
-    display: flex;
-    flex-direction: column;
+#habits-box {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary-container-color);
+  border-radius: 20px;
+  color: var(--primary-font-color);
+  padding: 2%;
+  height: 40px;
+  width: 100%;
 }
 
-#input-todo-title, #input-todo-description, #category-todo, #deadline-todo, #time-estimate, #input-habits-title, #prio, #repetition, #habitSort, #habitFilter{
-    color: var(--primary-font-color);
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    border: none;
-    padding: 2%;
-    /* height: 20px; */
+#prioBoxHigh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pink-background-color);
+  border-radius: 20px;
+  height: 30px;
+  width: 50px;
 }
-#input-todo-description{
-    width: 720px;
-    margin-left: 2%;
+#routineRightBox {
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+  align-items: center;
 }
-#category-todo, #habitSort, #habitFilter, #prio, #repetition, #input-habits-title{
+#routineLeftBox {
+  display: flex;
+  flex-direction: column;
+}
+
+#input-todo-title,
+#input-todo-description,
+#category-todo,
+#deadline-todo,
+#time-estimate,
+#input-habits-title,
+#prio,
+#repetition,
+#habitSort,
+#habitFilter {
+  color: var(--primary-font-color);
+  background-color: var(--primary-container-color);
+  border-radius: 20px;
+  border: none;
+  padding: 2%;
+  /* height: 20px; */
+}
+#input-todo-description {
+  width: 720px;
+  margin-left: 2%;
+}
+#category-todo,
+#habitSort,
+#habitFilter,
+#prio,
+#repetition,
+#input-habits-title {
   margin-top: 2%;
   margin-right: 2%;
 }
-#deadline-todo{
-    height: 30px;
-    margin-top: 2%;
-    margin-right: 2%;
+#deadline-todo {
+  height: 30px;
+  margin-top: 2%;
+  margin-right: 2%;
 }
-#deadline-todo-label, #time-estimate-label{
-    margin-right: 1%;
+#deadline-todo-label,
+#time-estimate-label {
+  margin-right: 1%;
 }
-#time-estimate{
-    width: 25px;
-    margin-right: 1%;
+#time-estimate {
+  width: 25px;
+  margin-right: 1%;
 }
-.btn-todo{
-    height: 60px;
-    width: 100px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--button-background-color);
-    font-weight: 600;
-    margin-left: 7%;
+.btn-todo {
+  height: 60px;
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  font-weight: 600;
+  margin-left: 7%;
+}
+
+.titleEvent {
+  width: 25rem;
+  margin-right: 2%;
+}
+
+#eventBtn {
+  display: grid;
+  place-items: center;
+  margin: 2% auto;
+  width: 25rem;
 }
