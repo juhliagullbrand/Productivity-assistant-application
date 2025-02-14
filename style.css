@@ -71,7 +71,7 @@ div.flex-container{
 
 /* STYLE TODO */
 
-div.box-todo{
+div.box-todo, .input-container{
   background-color: var(--primary-background-color);
   width: 1000px;
   border-radius: 20px;
