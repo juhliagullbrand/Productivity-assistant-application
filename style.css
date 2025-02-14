@@ -107,6 +107,14 @@ div.input-container-todo{
 .select-container-todo{
     margin-bottom: 10%;
 }
+.resultDivFlex-todo{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-container-color);
+    border-radius: 20px;
+    margin-bottom: 2%;
+    padding: 2%;
+}
 .resultContainer-todo{
     display: flex;
     justify-content: space-between;
@@ -116,11 +124,17 @@ div.input-container-todo{
     margin-bottom: 2%;
     padding: 2%;
 }
+div.selectResultContainer-todo{
+    display: flex;
+    justify-content: space-evenly;
+}
 .delete-btn-todo, .edit-btn-todo{
     background: transparent;
     border: none;
     cursor: pointer;
 }
+
+
 /* STYLE HABIT */
 
 #habit-container{

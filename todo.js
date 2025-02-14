@@ -10,8 +10,12 @@ let resultTextDiv;
 let resultIconDiv;
 let resultContainer;
 let selectResultContainer;
+let resultDivFlex;
 
 btn.addEventListener("click", () => {
+  resultDivFlex = document.createElement("div");
+  resultDivFlex.classList.add("resultDivFlex-todo");
+
   resultContainer = document.createElement("div");
   resultContainer.classList.add("resultContainer-todo");
 
@@ -19,18 +23,24 @@ btn.addEventListener("click", () => {
   resultTextDiv.classList.add("resultTextDiv-todo");
   resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong><br>${inputDescription.value}`;
 
-  selectResultContainer = document.createElement("div");
-  selectResultContainer.classList.add("selectResultContainer-todo");
-  selectResultContainer.innerHTML = `${categoryDropdown.value} ${inputDeadline.value} ${inputTimeEstimate.value}`
-
   resultIconDiv = document.createElement("div");
   resultIconDiv.classList.add("resultIconDiv-todo");
 
+  selectResultContainer = document.createElement("div");
+  selectResultContainer.classList.add("selectResultContainer-todo");
+  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`
+
+  container.append(resultDivFlex);
+  resultDivFlex.append(resultContainer, selectResultContainer); 
   resultContainer.append(resultTextDiv, resultIconDiv);
-  container.append(resultContainer, selectResultContainer); 
+  
 
   inputTitle.value = "";
   inputDescription.value = "";
+  categoryDropdown.value = "";
+  inputDeadline.value = "";
+  inputTimeEstimate.value = "";
+
 
   createEditButton();
   createDeleteButton();
