@@ -107,17 +107,17 @@ div.input-container-todo{
 
 /* STYLE HABIT */
 
-#habit-container{
+.habit-container{
   display: flex;
   flex-direction: column;
   width: 90%;
   margin-top: 4%;
 }
-#HabitsortAndFilterContainer{
+.habitSortAndFilterContainer{
   display: flex;
   margin-bottom: 2%;
 }
-#habits-box{
+.habits-box{
   display: flex;
   justify-content: space-between;
   background-color: var(--primary-container-color);
@@ -127,7 +127,7 @@ div.input-container-todo{
   height: 40px;
   width: 100%;
 }
-#prioBoxHigh{
+.prioBoxHigh{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,13 +136,13 @@ div.input-container-todo{
   height: 30px;
   width: 50px;
 }
-#routineRightBox{
+.routineRightBox{
   display: flex;
   width: 30%;
   justify-content: space-evenly;
   align-items: center;
 }
-#routineLeftBox{
+.routineLeftBox{
   display: flex;
   flex-direction: column;
 }
