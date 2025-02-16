@@ -5,6 +5,8 @@ const inputDeadline = document.querySelector("#deadline-todo");
 const inputTimeEstimate = document.querySelector("#time-estimate-todo");
 const btn = document.querySelector(".btn-todo");
 const container = document.querySelector(".box-todo");
+const filterBtn = document.querySelector("#filter-btn-todo");
+const filterContainer= document.querySelector(".filter-container-todo");
 
 let resultTextDiv;
 let resultIconDiv;
@@ -13,6 +15,9 @@ let selectResultContainer;
 let resultDivFlex;
 
 btn.addEventListener("click", () => {
+
+  filterContainer.classList.remove("hide");
+
   resultDivFlex = document.createElement("div");
   resultDivFlex.classList.add("resultDivFlex-todo");
 
@@ -58,8 +63,29 @@ const createEditButton = () => {
   resultIconDiv.append(editBtn);
 
   editBtn.addEventListener("click", () => {
-    resultContainer.edit();
-  })
+    editInput(resultTextDiv);
+  });
+};
+
+const editInput = (taskDiv) => {
+  let currentTitle = taskDiv.querySelector("strong").innerText;
+  let currentDescription = taskDiv.innerHTML.split("<br>")[1];
+
+  let inputField = document.createElement("input");
+  inputField.type = "text";
+  inputField.classList.add("new-input-field-todo")
+  inputField.value = currentDescription;
+
+  let saveBtn = document.createElement("button");
+  saveBtn.innerText = "Spara";
+  saveBtn.classList.add("save-btn-todo")
+
+  taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>`;
+  taskDiv.append(inputField, saveBtn);
+
+  saveBtn.addEventListener("click", () => {
+    taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>${inputField.value}`;
+  });
 };
 
 const createDeleteButton = () => {
@@ -74,9 +100,6 @@ const createDeleteButton = () => {
   resultIconDiv.append(deleteBtn);
 
   deleteBtn.addEventListener("click", () => {
-    resultContainer.remove();
+    resultDivFlex.remove();
   });
 };
-
-
-

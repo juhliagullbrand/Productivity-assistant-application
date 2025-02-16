@@ -29,14 +29,41 @@
                     <option value="Jobb">Jobb</option>
                     <option value="Nöje">Nöje</option>
                 </select>
-                <label for="date" id="deadline-label-todo">Datum för deadline</label>
+                <label for="deadline-todo" id="deadline-label-todo">Datum för deadline</label>
                 <input type="date" name="deadline" id="deadline-todo">
 
-                <label for="time-estimate" id="time-estimate-label-todo">Tidsestimat (i timmar)</label>
+                <label for="time-estimate-todo" id="time-estimate-label-todo">Tidsestimat (i timmar)</label>
                 <input type="number" id="time-estimate-todo" name="time-estimate" min="1" />
 
                 <button class="btn-todo">Lägg till</button>
             </div>
+            <div class="filter-container-todo hide">
+              <fieldset class="fieldset-todo">
+                <legend>Filtrera</legend>
+                  <label for="filter-status-done"> Slutförda</label>
+                  <input type="checkbox" id="filter-status-done" name="filter-status" value="done">
+                  <label for="filter-status"> Ej slutförda</label>
+                  <input type="checkbox" id="filter-status" name="filter-status" value="not-done">
+
+                  <label for="helth">Hälsa</label>
+                  <input type="checkbox" id="helth" name="filter-category-checkbox-todo" value="helth">
+                  <label for="household">Hushåll</label>
+                  <input type="checkbox" id="household" name="filter-category-checkbox-todo" value="household">
+                  <label for="job">Jobb</label>
+                  <input type="checkbox" id="job" name="filter-category-checkbox-todo" value="job">
+                  <label for="pleasure">Nöje</label>
+                  <input type="checkbox" id="pleasure" name="filter-category-checkbox-todo" value="pleasure">
+              </fieldset>
+              <div class="sort-container-todo">
+              <select name="category" id="sort-dropdown-todo">
+                <option value="" disabled selected>Sortera</option>
+                <option value="deadline">Deadline</option>
+                <option value="time-estimate">Tidsestimat</option>
+                <option value="finished">Slutförd</option>
+                <option value="non-finished">Ej utförd</option>
+              </select>
+            </div>
+          </div>
         </div>
     </div>
   </body>

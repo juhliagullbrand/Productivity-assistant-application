@@ -91,13 +91,17 @@ div.input-container-todo{
     width: 25px;
     margin-right: 1%;
 }
-.btn-todo{
+.btn-todo, .save-btn-todo{
     height: 60px;
     width: 100px;
     border: none;
     border-radius: 20px;
     background-color: var(--button-background-color);
     font-weight: 600;
+}
+.save-btn-todo{
+  height: 40px;
+  border-radius: 10px;
 }
 #deadline-todo{
     height: 30px;
@@ -118,7 +122,7 @@ div.input-container-todo{
 .resultContainer-todo{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
     background-color: var(--primary-container-color);
     border-radius: 20px;
     margin-bottom: 2%;
@@ -133,6 +137,34 @@ div.selectResultContainer-todo{
     border: none;
     cursor: pointer;
 }
+.new-input-field-todo{
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  border: 1px solid lightgrey;
+}
+#sort-dropdown-todo{
+  height: 30px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.fieldset-todo{
+  display: flex;
+  gap: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+.hide{
+  visibility: hidden;
+}
+.filter-container-todo{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1%;
+}
+
 
 
 /* STYLE HABIT */
