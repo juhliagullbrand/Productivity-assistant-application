@@ -14,8 +14,8 @@
     <h1>Rutiner</h1>
     <div class="flex-container">
         <div class="input-container">
-            <input type="text" id="input-habits-title" placeholder="Rutin">
-            <select name="prio" id="prio">
+            <input type="text" id="input-routine-title" placeholder="Rutin">
+            <select name="priority" id="priority">
                 <option value="" disabled selected>Prioritet</option>
                 <option value="high">Hög</option>
                 <option value="middle">Mellan</option>
@@ -34,34 +34,24 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button class="btn-todo" id="habitsBtn">+ Lägg till</button>
-            <div class="habit-container">
-                <div class="habitSortAndFilterContainer">
-                    <select name="sortera" id="habitSort">
+            <button class="btn-todo" id="routineBtn">+ Lägg till</button>
+            <div class="routine-container">
+                <div class="routineSortAndFilterContainer">
+                    <select name="sort" id="routineSort">
                         <option value="" disabled selected>Sortera</option>
                         <option value="least-repetitions">Minst repetioner</option>
                         <option value="most-repetitions">Flest repetioner</option>
                         <option value="lowest-prio">Lägsta prioritet</option>
                         <option value="highest-prio">Högsta prioritet</option>
                     </select>
-                    <select name="filtrera" id="habitFilter">
+                    <select name="filter" id="routineFilter">
                         <option value="" disabled selected>Filtrera</option>
                         <option value="high">Hög</option>
                         <option value="middle">Mellan</option>
                         <option value="low">Låg</option>
                     </select>
                 </div>
-                <div class="habits-box">
-                    <div class="routineLeftBox">
-                        <div id="routineName"></div>
-                        <div id="routineRepetation"></div>
-                    </div>
-                    <div class="routineRightBox">
-                        <div class="prioBoxHigh"></div>
-                        <div id="minusPlusRepeatBox"></div>
-                        <div id="deleteBox"></div>
-                    </div>
-                </div>
+                <div class="routineListContainer"></div>
             </div>
         </div>
         

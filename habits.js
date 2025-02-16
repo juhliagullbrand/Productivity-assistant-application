@@ -1,43 +1,75 @@
-let button = document.querySelector("#habitsBtn");
-let outPutNameField = document.querySelector("#routineName");
-let outPutPrioField = document.querySelector(".prioBoxHigh");
-let outPutRepField = document.querySelector("#routineRepetation");
-let habitNameInput = document.querySelector("#input-habits-title");
-let prioInput = document.querySelector("#prio");
-let repInput = document.querySelector("#repetition");
+let button = document.querySelector("#routineBtn");
+let outputNameField = document.querySelector("#routineName");
+let outputPriorityField = document.querySelector(".priorityBoxHigh");
+let outputRepetitionField = document.querySelector("#routineRepetition");
+let routineNameInput = document.querySelector("#input-routine-title");
+let priorityInput = document.querySelector("#priority");
+let repetitionInput = document.querySelector("#repetition");
+let routineContainer = document.querySelector(".routine-container");
+let routineListContainer = document.querySelector(".routineListContainer");
 
-let addHabit = () => {
+let addRoutine = () => {
+
+    let routine = routineNameInput.value;
     
-    let routine = habitNameInput.value;
-    // outPutNameField.append(routine);
 
-    let prioText = prioInput.options[prioInput.selectedIndex].text;
+    let priorityText = priorityInput.options[priorityInput.selectedIndex].text;
     // outPutPrioField.append(prioText);
 
-    let rep = repInput.options[repInput.selectedIndex].text;
+    let repetition = repetitionInput.options[repetitionInput.selectedIndex].text;
     // outPutRepField.append(rep);
 
-    let routineArr = [];
+    let routineArr = JSON.parse(localStorage.getItem("routine"));
 
-    if(routine && prioText && rep){
-    routineArr.push(routine,prioText,rep);
-    }
 
-    localStorage.setItem("Rutin",JSON.stringify(routineArr))
-}
-
-button.addEventListener("click", addHabit);
-
-let createHabitList = () => {
-    let savedHabit = JSON.parse(localStorage.getItem("Rutin"));
-    if(savedHabit !== null){
-        for (let i = 0; i < savedHabit.length; i++){
-            // let data = document.createElement("p");
-            // data.innerText = savedHabit[i];
-            console.log(savedHabit[i]);
-            // habitNameInput.append(data);
+    if(routine && priorityText && repetition){
+        let routineObject = {
+            routine,
+            priorityText,
+            repetition
         }
+
+    routineArr.push(routineObject);
+    localStorage.setItem("routine",JSON.stringify(routineArr));
+    createRoutineList();
     }
 }
 
-createHabitList();
+button.addEventListener("click", addRoutine);
+
+let createRoutineList = () => {
+    document.querySelector(".routineListContainer").innerHTML = "";
+    let savedRoutine = JSON.parse(localStorage.getItem("routine"));
+    if(savedRoutine !== null){
+        savedRoutine.forEach(r => {
+            createRoutineBox(r);
+        });
+    }else{
+        localStorage.setItem("routine",JSON.stringify([]))
+    }
+}
+
+let createRoutineBox = (r) => {
+    let routineBox = document.createElement("div");
+    routineBox.classList = "routine-box";
+    let routineRightBox = document.createElement("div");
+    routineRightBox.classList = "routineRightBox";
+    let routineLeftBox = document.createElement("div");
+    routineLeftBox.classList = "routineLeftBox";
+
+    let routineName = document.createElement("p");
+    routineName.innerText = r.routine;
+    let routineRepetition = document.createElement("p");
+    routineRepetition.innerText = r.repetition;
+
+    let priorityBoxHigh = document.createElement("div");
+    let minusPlusRepeatBox = document.createElement("div");
+    let deleteBox = document.createElement("div");
+
+    routineListContainer.append(routineBox);
+    routineBox.append(routineLeftBox,routineRightBox);
+    routineLeftBox.append(routineName,routineRepetition);
+    routineRightBox.append(priorityBoxHigh,minusPlusRepeatBox,deleteBox);
+}
+
+createRoutineList();
