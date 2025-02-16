@@ -13,7 +13,7 @@ let addRoutine = () => {
     let routine = routineNameInput.value;
     
 
-    let priorityText = priorityInput.options[priorityInput.selectedIndex].text;
+    let priority = priorityInput.options[priorityInput.selectedIndex].text;
     // outPutPrioField.append(prioText);
 
     let repetition = repetitionInput.options[repetitionInput.selectedIndex].text;
@@ -22,10 +22,10 @@ let addRoutine = () => {
     let routineArr = JSON.parse(localStorage.getItem("routine"));
 
 
-    if(routine && priorityText && repetition){
+    if(routine && priority && repetition){
         let routineObject = {
             routine,
-            priorityText,
+            priority,
             repetition
         }
 
@@ -62,14 +62,44 @@ let createRoutineBox = (r) => {
     let routineRepetition = document.createElement("p");
     routineRepetition.innerText = r.repetition;
 
-    let priorityBoxHigh = document.createElement("div");
+    let priorityBox = document.createElement("div");
+    priorityBox.innerHTML = r.priority;
+    if(r.priority === "Hög"){
+        priorityBox.classList = "priorityBox priorityHigh";
+    }else if(r.priority === "Mellan"){
+        priorityBox.classList = "priorityBox priorityMiddle";
+    }else if(r.priority === "Låg"){
+        priorityBox.classList = "priorityBox priorityLow";
+    }
+
     let minusPlusRepeatBox = document.createElement("div");
+    minusPlusRepeatBox.classList = "minusPlusRepeatBox";
+    let img = document.createElement("img");
+    img.src = "icon/minus-solid.svg";
+    img.style.height = "20px";
+    img.style.width = "20px";
+    let img2 = document.createElement("img");
+    img2.src = "icon/plus-solid.svg";
+    img2.style.height = "20px";
+    img2.style.width = "20px";
+    let img3 = document.createElement("img");
+    img3.src = "icon/rotate-right-solid.svg";
+    img3.style.height = "20px";
+    img3.style.width = "20px";
+    
     let deleteBox = document.createElement("div");
+    let img4 = document.createElement("img");
+    img4.src = "icon/trash-can-solid.svg";
+    img4.style.height = "20px";
+    img4.style.width = "20px";
+    
 
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
     routineLeftBox.append(routineName,routineRepetition);
-    routineRightBox.append(priorityBoxHigh,minusPlusRepeatBox,deleteBox);
+    routineRightBox.append(priorityBox,minusPlusRepeatBox,deleteBox);
+    minusPlusRepeatBox.append(img,img2,img3);
+    deleteBox.append(img4);
 }
 
 createRoutineList();

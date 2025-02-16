@@ -128,15 +128,24 @@ div.input-container-todo{
   width: 100%;
   margin-bottom: 2%;
 }
-.priorityBoxHigh{
+.priorityBox{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--pink-background-color);
-  border-radius: 20px;
+  border-radius: 10px;
   height: 30px;
-  width: 50px;
+  width: 70px;
 }
+.priorityHigh{
+  background-color: var(--pink-background-color);
+}
+.priorityLow{
+  background-color: var(--green-background-color);
+}
+.priorityMiddle{
+  background-color: var(--orange-background-color);
+}
+
 .routineRightBox{
   display: flex;
   width: 30%;
