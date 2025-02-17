@@ -48,11 +48,11 @@ div.flex-container{
 #category-todo,
 #deadline-todo,
 #time-estimate-todo,
-#input-habits-title,
-#prio,
+#input-routine-title,
+#priority,
 #repetition,
-#habitSort,
-#habitFilter{
+#routineSort,
+#routineFilter{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -60,11 +60,11 @@ div.flex-container{
   padding: 2%;
 }
 #category-todo,
-#habitSort,
-#habitFilter,
-#prio,
+#routineSort,
+#routineFilter,
+#priority,
 #repetition,
-#input-habits-title {
+#input-routine-title {
   margin-top: 2%;
   margin-right: 2%;
 }
@@ -170,17 +170,17 @@ div.selectResultContainer-todo{
 
 /* STYLE HABIT */
 
-#habit-container{
+.routine-container{
   display: flex;
   flex-direction: column;
   width: 90%;
   margin-top: 4%;
 }
-#HabitsortAndFilterContainer{
+.routineSortAndFilterContainer{
   display: flex;
   margin-bottom: 2%;
 }
-#habits-box{
+.routine-box{
   display: flex;
   justify-content: space-between;
   background-color: var(--primary-container-color);
@@ -189,23 +189,33 @@ div.selectResultContainer-todo{
   padding: 2%;
   height: 40px;
   width: 100%;
+  margin-bottom: 2%;
 }
-#prioBoxHigh{
+.priorityBox{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--pink-background-color);
-  border-radius: 20px;
+  border-radius: 10px;
   height: 30px;
-  width: 50px;
+  width: 70px;
 }
-#routineRightBox{
+.priorityHigh{
+  background-color: var(--pink-background-color);
+}
+.priorityLow{
+  background-color: var(--green-background-color);
+}
+.priorityMiddle{
+  background-color: var(--orange-background-color);
+}
+
+.routineRightBox{
   display: flex;
   width: 30%;
   justify-content: space-evenly;
   align-items: center;
 }
-#routineLeftBox{
+.routineLeftBox{
   display: flex;
   flex-direction: column;
 }
