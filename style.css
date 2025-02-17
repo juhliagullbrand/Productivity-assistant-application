@@ -98,6 +98,7 @@ div.input-container-todo{
     border-radius: 20px;
     background-color: var(--button-background-color);
     font-weight: 600;
+    cursor: pointer;
 }
 .save-btn-todo{
   height: 40px;

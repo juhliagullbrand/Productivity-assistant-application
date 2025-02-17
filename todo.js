@@ -8,37 +8,38 @@ const container = document.querySelector(".box-todo");
 const filterBtn = document.querySelector("#filter-btn-todo");
 const filterContainer= document.querySelector(".filter-container-todo");
 
-let resultTextDiv;
-let resultIconDiv;
-let resultContainer;
-let selectResultContainer;
-let resultDivFlex;
-
 btn.addEventListener("click", () => {
 
   filterContainer.classList.remove("hide");
 
-  resultDivFlex = document.createElement("div");
+  const resultDivFlex = document.createElement("div");
   resultDivFlex.classList.add("resultDivFlex-todo");
 
-  resultContainer = document.createElement("div");
+  const resultContainer = document.createElement("div");
   resultContainer.classList.add("resultContainer-todo");
 
-  resultTextDiv = document.createElement("div");
+  const resultTextDiv = document.createElement("div");
   resultTextDiv.classList.add("resultTextDiv-todo");
   resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong><br>${inputDescription.value}`;
 
-  resultIconDiv = document.createElement("div");
+  const resultIconDiv = document.createElement("div");
   resultIconDiv.classList.add("resultIconDiv-todo");
 
-  selectResultContainer = document.createElement("div");
+  const selectResultContainer = document.createElement("div");
   selectResultContainer.classList.add("selectResultContainer-todo");
   selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`
 
   container.append(resultDivFlex);
   resultDivFlex.append(resultContainer, selectResultContainer); 
   resultContainer.append(resultTextDiv, resultIconDiv);
-  
+
+  clearInputs();
+
+  createEditButton(resultTextDiv, resultIconDiv);
+  createDeleteButton(resultDivFlex, resultIconDiv);
+});
+
+const clearInputs = () => {
 
   inputTitle.value = "";
   inputDescription.value = "";
@@ -46,24 +47,21 @@ btn.addEventListener("click", () => {
   inputDeadline.value = "";
   inputTimeEstimate.value = "";
 
+}
 
-  createEditButton();
-  createDeleteButton();
-});
-
-const createEditButton = () => {
-  let editBtn = document.createElement("button");
+const createEditButton = (taskDiv, iconContainer) => {
+  const editBtn = document.createElement("button");
   editBtn.classList.add("edit-btn-todo");
 
-  let iconEdit = document.createElement("img");
+  const iconEdit = document.createElement("img");
   iconEdit.src = "/icon/edit.png";
   iconEdit.style.width = "30px";
 
   editBtn.append(iconEdit);
-  resultIconDiv.append(editBtn);
+  iconContainer.append(editBtn);
 
   editBtn.addEventListener("click", () => {
-    editInput(resultTextDiv);
+    editInput(taskDiv);
   });
 };
 
@@ -88,7 +86,7 @@ const editInput = (taskDiv) => {
   });
 };
 
-const createDeleteButton = () => {
+const createDeleteButton = (taskContainer, iconContainer) => {
   let deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete-btn-todo");
 
@@ -97,9 +95,9 @@ const createDeleteButton = () => {
   iconDelete.style.width = "30px";
 
   deleteBtn.append(iconDelete);
-  resultIconDiv.append(deleteBtn);
+  iconContainer.append(deleteBtn);
 
   deleteBtn.addEventListener("click", () => {
-    resultDivFlex.remove();
+    taskContainer.remove();
   });
 };
