@@ -52,7 +52,9 @@ div.flex-container{
 #prio,
 #repetition,
 #habitSort,
-#habitFilter{
+#habitFilter,
+.datepicker, 
+#inputTitleEvent{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -149,13 +151,18 @@ div.input-container-todo{
 
 /* STYLE EVENT */
 
-.titleEvent{
+#inputTitleEvent{
   width: 25rem;
   margin-right: 2%;
 }
+
 #eventBtn{
   display: grid;
   place-items: center;
   margin: 2% auto;
   width: 25rem;
+  height: 60px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
 }
