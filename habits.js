@@ -88,12 +88,21 @@ let createRoutineBox = (r) => {
     img3.style.width = "20px";
     
     let deleteBox = document.createElement("div");
+    deleteBox.classList = "deleteBox";
+
+    deleteBox.addEventListener("click", () => {
+        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+        let updatedRoutine = savedRoutine.filter(item => item.routine !== r.routine);
+        localStorage.setItem("routine", JSON.stringify(updatedRoutine));
+
+        routineBox.remove();
+    });
+
     let img4 = document.createElement("img");
     img4.src = "icon/trash-can-solid.svg";
     img4.style.height = "20px";
     img4.style.width = "20px";
     
-
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
     routineLeftBox.append(routineName,routineRepetition);
