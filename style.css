@@ -135,7 +135,7 @@ div.selectResultContainer-todo{
     display: flex;
     justify-content: space-evenly;
 }
-.delete-btn-todo, .edit-btn-todo{
+.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event{
     background: transparent;
     border: none;
     cursor: pointer;
@@ -241,7 +241,7 @@ div.selectResultContainer-todo{
 }
 
 #displayEvent{
-  background-color: var(--primary-container-color);
+  background-color: var(--primary-background-color);
   width: 1000px;
   height: auto;
   border-radius: 20px;
@@ -249,11 +249,31 @@ div.selectResultContainer-todo{
   margin-top: 2rem;
 }
 
-div
 
-.event-title{
-  background-color: var(--primary-background-color);
-  
+.eventTextDiv{
+  background-color: var(--primary-container-color);
   margin: 2rem;
   padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+ 
+}
+
+#eventTitle{
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+ padding: 1rem;
+ margin: 1rem;
+}
+
+#eventStart, #eventStart{
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+ padding: 1rem;
+ margin: 1rem;
+}
+.hidden {
+  display: none;
 }
