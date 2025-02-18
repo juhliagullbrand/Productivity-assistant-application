@@ -37,6 +37,8 @@ btn.addEventListener("click", () => {
 
   createEditButton(resultTextDiv, resultIconDiv);
   createDeleteButton(resultDivFlex, resultIconDiv);
+  createUncheckedBtn(resultTextDiv, resultIconDiv);
+
 });
 
 const clearInputs = () => {
@@ -100,4 +102,39 @@ const createDeleteButton = (taskContainer, iconContainer) => {
   deleteBtn.addEventListener("click", () => {
     taskContainer.remove();
   });
+};
+
+const createUncheckedBtn = (taskDiv, iconContainer) => {
+  let uncheckedBtn = document.createElement("button");
+  uncheckedBtn.classList.add("unchecked-btn-todo");
+
+  let iconUncheked = document.createElement("img");
+  iconUncheked.src = "/icon/unchecked.png"; 
+  iconUncheked.style.width = "30px";
+
+  uncheckedBtn.append(iconUncheked);
+  iconContainer.append(uncheckedBtn);
+
+  uncheckedBtn.addEventListener("click", () => {
+    uncheckedBtn.remove();
+    createCheckedBtn(taskDiv, iconContainer);
+  });
+};
+
+const createCheckedBtn = (taskDiv, iconContainer) => {
+  let checkedBtn = document.createElement("button");
+  checkedBtn.classList.add("checked-btn-todo");
+
+  let iconCheked = document.createElement("img");
+  iconCheked.src = "/icon/checked.png"; 
+  iconCheked.style.width = "30px";
+
+  checkedBtn.append(iconCheked);
+  iconContainer.append(checkedBtn);
+
+  checkedBtn.addEventListener("click", () => {
+    checkedBtn.remove();
+    createUncheckedBtn(taskDiv, iconContainer);
+  });
+
 };
