@@ -52,7 +52,9 @@ div.flex-container{
 #priority,
 #repetition,
 #routineSort,
-#routineFilter{
+#routineFilter,
+.datepicker, 
+#inputTitleEvent{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -64,7 +66,8 @@ div.flex-container{
 #routineFilter,
 #priority,
 #repetition,
-#input-routine-title {
+#input-routine-title, 
+#filterEvents {
   margin-top: 2%;
   margin-right: 2%;
 }
@@ -133,7 +136,7 @@ div.selectResultContainer-todo{
     display: flex;
     justify-content: space-evenly;
 }
-.delete-btn-todo, .edit-btn-todo{
+.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event{
     background: transparent;
     border: none;
     cursor: pointer;
@@ -227,13 +230,71 @@ div.selectResultContainer-todo{
 
 /* STYLE EVENT */
 
-.titleEvent{
+#inputTitleEvent{
   width: 25rem;
   margin-right: 2%;
 }
+
 #eventBtn{
   display: grid;
   place-items: center;
   margin: 2% auto;
   width: 25rem;
+  height: 60px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+}
+
+#displayEvent{
+  background-color: var(--primary-background-color);
+  width: 1000px;
+  height: auto;
+  border-radius: 20px;
+  padding: 2%;
+  margin-top: 2rem;
+}
+
+
+.eventTextDiv{
+  background-color: var(--primary-container-color);
+  margin: 2rem;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+ 
+}
+
+#eventTitle{
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+ padding: 1rem;
+ margin: 1rem;
+}
+
+#eventStart, #eventStart{
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+ padding: 1rem;
+ margin: 1rem;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.filter-events{
+  margin-right: 850px;
+  margin-top: 1.5rem;
+  margin-bottom: -1.5rem;
+}
+
+#filterEvents{
+  color: var(--primary-font-color);
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+  border: none;
+  padding: 2%;
+  cursor: pointer;
 }

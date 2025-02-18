@@ -17,30 +17,26 @@
     <h1>Evenemang planerare</h1>
     <div class="flex-container">
       <div class="input-container">
-        <input
-          type="text"
-          id="input-title-todo"
-          class="titleEvent"
-          placeholder="Titel"
-          required
-        />
-        <label for="date" id="deadline-label-todo"></label>
-        <input
-          type="datetime-local"
-          name="deadline"
-          id="deadline-todo"
-          required
-        />
-        <label for="date" id="deadline-label-todo" class=""></label>
-        <input
-          type="datetime-local"
-          name="deadline"
-          id="deadline-todo"
-          required
-        />
-        <button type="submit" class="btn-todo" id="eventBtn">Lägg till</button>
+          <form id="eventForm">
+              <input type="text" id="inputTitleEvent" placeholder="Titel" required />
+              <label for="startDate-event" id="startDate-label"></label>
+              <input type="datetime-local" name="deadline" id="startDate-event" class="datepicker" />
+              <label for="endDate-event" id="endDate-label"></label>
+              <input type="datetime-local" name="deadline" id="endDate-event" class="datepicker" />
+              <button type="submit" id="eventBtn">Lägg till</button>
+          </form>
       </div>
-      <div id="displayEvent"></div>
-    </div>
+  
+      <div class="filter-events">
+          <select id="filterEvents">
+              <option value="">Sortera</option>
+              <option value="all">Alla Händelser</option>
+              <option value="upcoming">Kommande händelser</option>
+              <option value="pastEvents">Tidigare händelser</option>
+          </select>
+      </div>
+  
+      <div id="displayEvent" class="hidden"></div>
+  </div>
   </body>
 </html>
