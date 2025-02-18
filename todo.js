@@ -5,7 +5,6 @@ const inputDeadline = document.querySelector("#deadline-todo");
 const inputTimeEstimate = document.querySelector("#time-estimate-todo");
 const btn = document.querySelector(".btn-todo");
 const container = document.querySelector(".box-todo");
-const filterBtn = document.querySelector("#filter-btn-todo");
 const filterContainer= document.querySelector(".filter-container-todo");
 
 btn.addEventListener("click", () => {
@@ -138,3 +137,28 @@ const createCheckedBtn = (taskDiv, iconContainer) => {
   });
 
 };
+
+const filterCategory = () => {
+  let chosenCheckboxes = document.querySelectorAll('input[name="filter-category-checkbox-todo"]:checked');
+  let chosenCategories = Array.from(chosenCheckboxes).map(checkbox => checkbox.value);
+
+  let allChosenCategories = document.querySelectorAll(".resultDivFlex-todo");
+
+  let filteredCategories = Array.from(allChosenCategories).filter(todo => {
+    const categoryLabel = todo.querySelector(".selectResultContainer-todo").innerText;
+    return chosenCategories.length === 0 || chosenCategories.some(category => categoryLabel.includes(category));
+  });
+
+  allChosenCategories.forEach(todo => {
+    todo.style.display = "none";
+  });
+
+  filteredCategories.forEach(todo => {
+    todo.style.display = "flex";
+  });
+};
+
+document.querySelectorAll('input[name="filter-category-checkbox-todo"]').forEach(checkbox => {
+  checkbox.addEventListener("change", filterCategory);
+});
+
