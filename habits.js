@@ -139,6 +139,13 @@ let filter = () => {
         filteredHigh.forEach(r => {
             createRoutineBox(r);
         })
+    } else if (routineFilter.value === "all"){
+        document.querySelector(".routineListContainer").innerHTML = "";
+        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+
+        savedRoutine.forEach(r => {
+            createRoutineBox(r);
+        })
     }
 }
 
