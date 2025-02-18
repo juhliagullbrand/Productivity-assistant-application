@@ -66,7 +66,8 @@ div.flex-container{
 #routineFilter,
 #priority,
 #repetition,
-#input-routine-title {
+#input-routine-title, 
+#filterEvents {
   margin-top: 2%;
   margin-right: 2%;
 }
@@ -275,5 +276,20 @@ div.selectResultContainer-todo{
  margin: 1rem;
 }
 .hidden {
-  display: none;
+  visibility: hidden;
+}
+
+.filter-events{
+  margin-right: 850px;
+  margin-top: 1.5rem;
+  margin-bottom: -1.5rem;
+}
+
+#filterEvents{
+  color: var(--primary-font-color);
+  background-color: var(--primary-background-color);
+  border-radius: 20px;
+  border: none;
+  padding: 2%;
+  cursor: pointer;
 }

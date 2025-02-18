@@ -3,7 +3,7 @@ const startDateEvent = document.querySelector("#startDate-event");
 const endDateEvent = document.querySelector("#endDate-event"); 
 const eventForm = document.querySelector("#eventForm"); 
 const displayEvent = document.querySelector("#displayEvent");
-
+const filterEvents = document.querySelector("#filterEvents");
 
 let events = JSON.parse(localStorage.getItem("events")) || [];
 
