@@ -225,6 +225,14 @@ div.selectResultContainer-todo{
   flex-direction: column;
 }
 
+.repetitionsDiv{
+  display: flex;
+}
+
+.minusPlusRepeatBox{
+  display: flex;
+}
+
 /* STYLE EVENT */
 
 .titleEvent{

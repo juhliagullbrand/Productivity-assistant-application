@@ -8,6 +8,10 @@ let repetitionInput = document.querySelector("#repetition");
 let routineContainer = document.querySelector(".routine-container");
 let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
+let imgPlus = document.createElement("img");
+imgPlus.classList = "imgPlus";
+let repetitionsDiv = document.createElement("div");
+repetitionsDiv.classList = "repetitionsDiv";
 
 let addRoutine = () => {
 
@@ -50,6 +54,15 @@ let createRoutineList = () => {
     }
 }
 
+let increaseCounter = 0;
+let repetitionIncrease = document.createElement("p");
+
+let increase = () => {
+    increaseCounter += 1;
+    repetitionIncrease.innerText = increaseCounter + "/";
+    repetitionsDiv.append(repetitionIncrease);
+}
+
 let createRoutineBox = (r) => {
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
@@ -75,18 +88,29 @@ let createRoutineBox = (r) => {
 
     let minusPlusRepeatBox = document.createElement("div");
     minusPlusRepeatBox.classList = "minusPlusRepeatBox";
-    let img = document.createElement("img");
-    img.src = "icon/minus-solid.svg";
-    img.style.height = "20px";
-    img.style.width = "20px";
-    let img2 = document.createElement("img");
-    img2.src = "icon/plus-solid.svg";
-    img2.style.height = "20px";
-    img2.style.width = "20px";
-    let img3 = document.createElement("img");
-    img3.src = "icon/rotate-right-solid.svg";
-    img3.style.height = "20px";
-    img3.style.width = "20px";
+    let imgMinus = document.createElement("img");
+    imgMinus.src = "icon/minus-solid.svg";
+    imgMinus.style.height = "20px";
+    imgMinus.style.width = "20px";
+    imgMinus.style.cursor = "pointer";
+    imgMinus.style.paddingRight = "0.7rem";
+
+
+    // let imgPlus = document.createElement("img");
+    // imgPlus.classList = "imgPlus";
+    imgPlus.src = "icon/plus-solid.svg";
+    imgPlus.style.cursor = "pointer";
+    imgPlus.style.height = "20px";
+    imgPlus.style.width = "20px";
+    imgPlus.style.cursor = "pointer";
+    imgPlus.style.paddingRight = "0.7rem";
+
+    let imgReset = document.createElement("img");
+    imgReset.src = "icon/rotate-right-solid.svg";
+    imgReset.style.height = "20px";
+    imgReset.style.width = "20px";
+    imgReset.style.cursor = "pointer";
+
     
     let deleteBox = document.createElement("div");
     deleteBox.classList = "deleteBox";
@@ -99,19 +123,22 @@ let createRoutineBox = (r) => {
         routineBox.remove();
     });
 
-    let img4 = document.createElement("img");
-    img4.src = "icon/trash-can-solid.svg";
-    img4.style.height = "20px";
-    img4.style.width = "20px";
+    // imgPlus.addEventListener("click",increase(increaseCounter, repetitionsDiv));
+
+    let imgDelete = document.createElement("img");
+    imgDelete.src = "icon/trash-can-solid.svg";
+    imgDelete.style.height = "20px";
+    imgDelete.style.width = "20px";
+    imgDelete.style.cursor = "pointer";
     
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
-    routineLeftBox.append(routineName,routineRepetition);
+    routineLeftBox.append(routineName, repetitionsDiv);
+    repetitionsDiv.append(routineRepetition);
     routineRightBox.append(priorityBox,minusPlusRepeatBox,deleteBox);
-    minusPlusRepeatBox.append(img,img2,img3);
-    deleteBox.append(img4);
+    minusPlusRepeatBox.append(imgMinus,imgPlus,imgReset);
+    deleteBox.append(imgDelete);
 }
-
 
 let filter = () => {
     if(routineFilter.value === "high"){
@@ -148,6 +175,8 @@ let filter = () => {
         })
     }
 }
+
+imgPlus.addEventListener("click",increase);
 
 routineFilter.addEventListener("change",filter);
 
