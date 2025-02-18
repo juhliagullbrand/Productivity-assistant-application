@@ -1,24 +1,14 @@
 let button = document.querySelector("#routineBtn");
-let outputNameField = document.querySelector("#routineName");
-let outputPriorityField = document.querySelector(".priorityBoxHigh");
-let outputRepetitionField = document.querySelector("#routineRepetition");
 let routineNameInput = document.querySelector("#input-routine-title");
 let priorityInput = document.querySelector("#priority");
 let repetitionInput = document.querySelector("#repetition");
 let routineContainer = document.querySelector(".routine-container");
 let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
-let imgPlus = document.createElement("img");
-imgPlus.classList = "imgPlus";
-let imgMinus = document.createElement("img");
-imgMinus.classList = "imgMinus";
-let imgReset = document.createElement("img");
-imgReset.classList = "imgReset";
-let repetitionsDiv = document.createElement("div");
-repetitionsDiv.classList = "repetitionsDiv";
+
+
 
 let addRoutine = () => {
-
     let routine = routineNameInput.value;
     
 
@@ -33,9 +23,11 @@ let addRoutine = () => {
 
     if(routine && priority && repetition){
         let routineObject = {
-            routine,
-            priority,
-            repetition
+            routine: routine,
+            priority: priority,
+            repetition: repetition,
+            currentRepetition: 0
+
         }
 
     routineArr.push(routineObject);
@@ -67,6 +59,11 @@ let createRoutineBox = (r) => {
     routineRightBox.classList = "routineRightBox";
     let routineLeftBox = document.createElement("div");
     routineLeftBox.classList = "routineLeftBox";
+    let repetitionIncrease = document.createElement("p");
+    repetitionIncrease.innerText = r.currentRepetition;
+
+    let repetitionsDiv = document.createElement("div");
+    repetitionsDiv.classList = "repetitionsDiv";
 
     let routineName = document.createElement("p");
     routineName.innerText = r.routine;
@@ -83,6 +80,12 @@ let createRoutineBox = (r) => {
         priorityBox.classList = "priorityBox priorityLow";
     }
 
+
+    let imgMinus = document.createElement("img");
+    imgMinus.classList = "imgMinus";
+    let imgReset = document.createElement("img");
+    imgReset.classList = "imgReset";
+
     let minusPlusRepeatBox = document.createElement("div");
     minusPlusRepeatBox.classList = "minusPlusRepeatBox";
     imgMinus.src = "icon/minus-solid.svg";
@@ -90,22 +93,38 @@ let createRoutineBox = (r) => {
     imgMinus.style.width = "20px";
     imgMinus.style.cursor = "pointer";
     imgMinus.style.paddingRight = "0.7rem";
+    imgMinus.addEventListener("click", () => {
+        decrease(r,repetitionIncrease);
+    });
 
+    let imgPlus = document.createElement("img");
+    imgPlus.classList = "imgPlus";
     imgPlus.src = "icon/plus-solid.svg";
     imgPlus.style.cursor = "pointer";
     imgPlus.style.height = "20px";
     imgPlus.style.width = "20px";
     imgPlus.style.cursor = "pointer";
     imgPlus.style.paddingRight = "0.7rem";
+    imgPlus.addEventListener("click", () => {
+        increase(r,repetitionIncrease);
+    });
 
     imgReset.src = "icon/rotate-right-solid.svg";
     imgReset.style.height = "20px";
     imgReset.style.width = "20px";
     imgReset.style.cursor = "pointer";
+    imgReset.addEventListener("click", () => {
+        reset(r,repetitionIncrease);
+    });
 
-    
     let deleteBox = document.createElement("div");
     deleteBox.classList = "deleteBox";
+
+    let imgDelete = document.createElement("img");
+    imgDelete.src = "icon/trash-can-solid.svg";
+    imgDelete.style.height = "20px";
+    imgDelete.style.width = "20px";
+    imgDelete.style.cursor = "pointer";
 
     deleteBox.addEventListener("click", () => {
         let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
@@ -115,13 +134,6 @@ let createRoutineBox = (r) => {
         routineBox.remove();
     });
 
-    let imgDelete = document.createElement("img");
-    imgDelete.src = "icon/trash-can-solid.svg";
-    imgDelete.style.height = "20px";
-    imgDelete.style.width = "20px";
-    imgDelete.style.cursor = "pointer";
-
-
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
     routineLeftBox.append(routineName, repetitionsDiv);
@@ -130,9 +142,6 @@ let createRoutineBox = (r) => {
     minusPlusRepeatBox.append(imgMinus,imgPlus,imgReset);
     deleteBox.append(imgDelete);
 }
-
-let increaseCounter = 0;
-let repetitionIncrease = document.createElement("p");
 
 let filter = () => {
     if(routineFilter.value === "high"){
@@ -170,26 +179,18 @@ let filter = () => {
     }
 }
 
-let increase = () => {
-    increaseCounter += 1;
-    repetitionIncrease.innerText = increaseCounter;
-    // repetitionsDiv.append(repetitionIncrease);
-
+let increase = (r,repetitionIncrease) => {
+    r.currentRepetition += 1;
+    repetitionIncrease.innerText = r.currentRepetition;
 }
-let decrease = () => {
-    increaseCounter -= 1;
-    repetitionIncrease.innerText = increaseCounter + "/";
-    repetitionsDiv.append(repetitionIncrease);
+let decrease = (r,repetitionIncrease) => {
+    r.currentRepetition -= 1;
+    repetitionIncrease.innerText = r.currentRepetition;
 }
-let reset = () => {
-    increaseCounter = 0;
-    repetitionIncrease.innerText = increaseCounter + "/";
-    repetitionsDiv.append(repetitionIncrease);
+let reset = (r,repetitionIncrease) => {
+    r.currentRepetition = 0;
+    repetitionIncrease.innerText = r.currentRepetition;
 }
-
-imgMinus.addEventListener("click",decrease);
-imgPlus.addEventListener("click",increase);
-imgReset.addEventListener("click",reset);
 
 routineFilter.addEventListener("change",filter);
 
