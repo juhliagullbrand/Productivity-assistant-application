@@ -12,6 +12,8 @@ let imgPlus = document.createElement("img");
 imgPlus.classList = "imgPlus";
 let imgMinus = document.createElement("img");
 imgMinus.classList = "imgMinus";
+let imgReset = document.createElement("img");
+imgReset.classList = "imgReset";
 let repetitionsDiv = document.createElement("div");
 repetitionsDiv.classList = "repetitionsDiv";
 
@@ -71,6 +73,11 @@ let decrease = () => {
     repetitionsDiv.append(repetitionIncrease);
 }
 
+let reset = () => {
+    increaseCounter = 0;
+    repetitionIncrease.innerText = increaseCounter + "/";
+    repetitionsDiv.append(repetitionIncrease);
+}
 
 let createRoutineBox = (r) => {
     let routineBox = document.createElement("div");
@@ -110,7 +117,6 @@ let createRoutineBox = (r) => {
     imgPlus.style.cursor = "pointer";
     imgPlus.style.paddingRight = "0.7rem";
 
-    let imgReset = document.createElement("img");
     imgReset.src = "icon/rotate-right-solid.svg";
     imgReset.style.height = "20px";
     imgReset.style.width = "20px";
@@ -183,6 +189,7 @@ let filter = () => {
 
 imgMinus.addEventListener("click",decrease);
 imgPlus.addEventListener("click",increase);
+imgReset.addEventListener("click",reset);
 
 routineFilter.addEventListener("change",filter);
 
