@@ -58,26 +58,7 @@ let createRoutineList = () => {
     }
 }
 
-let increaseCounter = 0;
-let repetitionIncrease = document.createElement("p");
 
-let increase = () => {
-    increaseCounter += 1;
-    repetitionIncrease.innerText = increaseCounter + "/";
-    repetitionsDiv.append(repetitionIncrease);
-
-}
-let decrease = () => {
-    increaseCounter -= 1;
-    repetitionIncrease.innerText = increaseCounter + "/";
-    repetitionsDiv.append(repetitionIncrease);
-}
-
-let reset = () => {
-    increaseCounter = 0;
-    repetitionIncrease.innerText = increaseCounter + "/";
-    repetitionsDiv.append(repetitionIncrease);
-}
 
 let createRoutineBox = (r) => {
     let routineBox = document.createElement("div");
@@ -134,22 +115,24 @@ let createRoutineBox = (r) => {
         routineBox.remove();
     });
 
-    // imgPlus.addEventListener("click",increase(increaseCounter, repetitionsDiv));
-
     let imgDelete = document.createElement("img");
     imgDelete.src = "icon/trash-can-solid.svg";
     imgDelete.style.height = "20px";
     imgDelete.style.width = "20px";
     imgDelete.style.cursor = "pointer";
-    
+
+
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
     routineLeftBox.append(routineName, repetitionsDiv);
-    repetitionsDiv.append(routineRepetition);
+    repetitionsDiv.append(repetitionIncrease, "/", routineRepetition);
     routineRightBox.append(priorityBox,minusPlusRepeatBox,deleteBox);
     minusPlusRepeatBox.append(imgMinus,imgPlus,imgReset);
     deleteBox.append(imgDelete);
 }
+
+let increaseCounter = 0;
+let repetitionIncrease = document.createElement("p");
 
 let filter = () => {
     if(routineFilter.value === "high"){
@@ -185,6 +168,23 @@ let filter = () => {
             createRoutineBox(r);
         })
     }
+}
+
+let increase = () => {
+    increaseCounter += 1;
+    repetitionIncrease.innerText = increaseCounter;
+    // repetitionsDiv.append(repetitionIncrease);
+
+}
+let decrease = () => {
+    increaseCounter -= 1;
+    repetitionIncrease.innerText = increaseCounter + "/";
+    repetitionsDiv.append(repetitionIncrease);
+}
+let reset = () => {
+    increaseCounter = 0;
+    repetitionIncrease.innerText = increaseCounter + "/";
+    repetitionsDiv.append(repetitionIncrease);
 }
 
 imgMinus.addEventListener("click",decrease);
