@@ -198,19 +198,26 @@ let reset = (r,repetitionIncrease) => {
 }
 
 let sort = () => {
-    if(routineSort.value === "highest-prio"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+    let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+    document.querySelector(".routineListContainer").innerHTML = "";
 
+    if(routineSort.value === "highest-prio"){
         let sortedArr = savedRoutine.sort((a, b) => {
             let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
             return priorityOrder[a.priority] - priorityOrder[b.priority];
         });
-        localStorage.setItem("routine", JSON.stringify(sortedArr));
         sortedArr.forEach(r => {
             createRoutineBox(r);
         })
-}
+    }else if(routineSort.value === "lowest-prio"){
+        let sortedArr = savedRoutine.sort((a, b) => {
+            let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+            return priorityOrder[b.priority] - priorityOrder[a.priority];
+        });
+        sortedArr.forEach(r => {
+            createRoutineBox(r);
+        })
+    }
 }
 routineSort.addEventListener("change",sort);
 routineFilter.addEventListener("change",filter);
