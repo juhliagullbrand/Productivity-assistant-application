@@ -131,32 +131,7 @@ let createRoutineBox = (r, savedRoutine) => {
     deleteBox.append(imgDelete);
 
 }
-let filter = () => {
-    document.querySelector(".routineListContainer").innerHTML = "";
-    let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
 
-    if(routineFilter.value === "high"){
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Hög");
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-
-    }else if(routineFilter.value === "middle"){
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Mellan");
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-    } else if(routineFilter.value === "low"){
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Låg");
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-    } else if (routineFilter.value === "all"){
-        savedRoutine.forEach(r => {
-            createRoutineBox(r);
-        })
-    }
-}
 let increase = (r,repetitionIncrease) => {
     let savedRoutines = JSON.parse(localStorage.getItem("routine"));
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
@@ -187,42 +162,39 @@ let reset = (r,repetitionIncrease) => {
     repetitionIncrease.innerText = updatedRoutine.currentRepetition;
     localStorage.setItem("routine", JSON.stringify(savedRoutines));
 }
-
-let sort = () => {
+let filterSort = () => {
     let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-    document.querySelector(".routineListContainer").innerHTML = "";
 
+    if(routineFilter.value === "high"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Hög");
+    }else if(routineFilter.value === "middle"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Mellan");
+    }else if(routineFilter.value === "low"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
+    } else if (routineFilter.value === "all"){
+        savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+    }
+    
     if(routineSort.value === "highest-prio"){
-        let sortedArr = savedRoutine.sort((a, b) => {
-            let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
-            return priorityOrder[a.priority] - priorityOrder[b.priority];
-        });
-        sortedArr.forEach(r => {
-            createRoutineBox(r);
-        })
+        let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+        savedRoutine.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
     }else if(routineSort.value === "lowest-prio"){
-        let sortedArr = savedRoutine.sort((a, b) => {
-            let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
-            return priorityOrder[b.priority] - priorityOrder[a.priority];
-        });
-        sortedArr.forEach(r => {
-            createRoutineBox(r);
-        })
+        let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+        savedRoutine.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
     }else if(routineSort.value === "most-repetitions"){
         savedRoutine.sort((a, b) => b.repetition - a.repetition);
-    
-        savedRoutine.forEach(r => {
-            createRoutineBox(r);
-        })
     }else if(routineSort.value === "least-repetitions"){
         savedRoutine.sort((a, b) => a.repetition - b.repetition);
-    
-        savedRoutine.forEach(r => {
-            createRoutineBox(r);
-        })
     }
+
+    document.querySelector(".routineListContainer").innerHTML = "";
+    savedRoutine.forEach(r => {
+        createRoutineBox(r);
+    })
 }
-routineSort.addEventListener("change",sort);
-routineFilter.addEventListener("change",filter);
+
+
+routineSort.addEventListener("change",filterSort);
+routineFilter.addEventListener("change",filterSort);
 
 createRoutineList();
