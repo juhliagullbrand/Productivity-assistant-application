@@ -192,7 +192,7 @@ document.querySelectorAll('input[name="filter-category-checkbox-todo"], #filter-
       return 0;
     });
   
-    tasks.forEach(task => container.appendChild(task));
+    tasks.forEach(task => container.append(task));
   };
   
   document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
