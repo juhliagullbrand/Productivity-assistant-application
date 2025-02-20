@@ -1,7 +1,4 @@
 let button = document.querySelector("#routineBtn");
-let outputNameField = document.querySelector("#routineName");
-let outputPriorityField = document.querySelector(".priorityBoxHigh");
-let outputRepetitionField = document.querySelector("#routineRepetition");
 let routineNameInput = document.querySelector("#input-routine-title");
 let priorityInput = document.querySelector("#priority");
 let repetitionInput = document.querySelector("#repetition");
@@ -9,25 +6,22 @@ let routineContainer = document.querySelector(".routine-container");
 let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
 
+
+
 let addRoutine = () => {
-
     let routine = routineNameInput.value;
-    
-
     let priority = priorityInput.options[priorityInput.selectedIndex].text;
-    // outPutPrioField.append(prioText);
-
     let repetition = repetitionInput.options[repetitionInput.selectedIndex].text;
-    // outPutRepField.append(rep);
 
     let routineArr = JSON.parse(localStorage.getItem("routine"));
 
-
     if(routine && priority && repetition){
         let routineObject = {
-            routine,
-            priority,
-            repetition
+            id: routineArr.length ? routineArr.length + 1 : 0,
+            routine: routine,
+            priority: priority,
+            repetition: repetition,
+            currentRepetition: 0
         }
 
     routineArr.push(routineObject);
@@ -42,21 +36,27 @@ let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
     let savedRoutine = JSON.parse(localStorage.getItem("routine"));
     if(savedRoutine !== null){
+        console.log(savedRoutine)
         savedRoutine.forEach(r => {
-            createRoutineBox(r);
+            createRoutineBox(r, savedRoutine);
         });
     }else{
         localStorage.setItem("routine",JSON.stringify([]))
     }
 }
 
-let createRoutineBox = (r) => {
+let createRoutineBox = (r, savedRoutine) => {
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
     let routineRightBox = document.createElement("div");
     routineRightBox.classList = "routineRightBox";
     let routineLeftBox = document.createElement("div");
     routineLeftBox.classList = "routineLeftBox";
+    let repetitionIncrease = document.createElement("p");
+    repetitionIncrease.innerText = r.currentRepetition;
+
+    let repetitionsDiv = document.createElement("div");
+    repetitionsDiv.classList = "repetitionsDiv";
 
     let routineName = document.createElement("p");
     routineName.innerText = r.routine;
@@ -73,23 +73,51 @@ let createRoutineBox = (r) => {
         priorityBox.classList = "priorityBox priorityLow";
     }
 
+
+    let imgMinus = document.createElement("img");
+    imgMinus.classList = "imgMinus";
+    let imgReset = document.createElement("img");
+    imgReset.classList = "imgReset";
+
     let minusPlusRepeatBox = document.createElement("div");
     minusPlusRepeatBox.classList = "minusPlusRepeatBox";
-    let img = document.createElement("img");
-    img.src = "icon/minus-solid.svg";
-    img.style.height = "20px";
-    img.style.width = "20px";
-    let img2 = document.createElement("img");
-    img2.src = "icon/plus-solid.svg";
-    img2.style.height = "20px";
-    img2.style.width = "20px";
-    let img3 = document.createElement("img");
-    img3.src = "icon/rotate-right-solid.svg";
-    img3.style.height = "20px";
-    img3.style.width = "20px";
-    
+    imgMinus.src = "icon/minus-solid.svg";
+    imgMinus.style.height = "20px";
+    imgMinus.style.width = "20px";
+    imgMinus.style.cursor = "pointer";
+    imgMinus.style.paddingRight = "0.7rem";
+    imgMinus.addEventListener("click", () => {
+        decrease(r,repetitionIncrease);
+    });
+
+    let imgPlus = document.createElement("img");
+    imgPlus.classList = "imgPlus";
+    imgPlus.src = "icon/plus-solid.svg";
+    imgPlus.style.cursor = "pointer";
+    imgPlus.style.height = "20px";
+    imgPlus.style.width = "20px";
+    imgPlus.style.cursor = "pointer";
+    imgPlus.style.paddingRight = "0.7rem";
+    imgPlus.addEventListener("click", () => {
+        increase(r,repetitionIncrease);
+    });
+
+    imgReset.src = "icon/rotate-right-solid.svg";
+    imgReset.style.height = "20px";
+    imgReset.style.width = "20px";
+    imgReset.style.cursor = "pointer";
+    imgReset.addEventListener("click", () => {
+        reset(r,repetitionIncrease);
+    });
+
     let deleteBox = document.createElement("div");
     deleteBox.classList = "deleteBox";
+
+    let imgDelete = document.createElement("img");
+    imgDelete.src = "icon/trash-can-solid.svg";
+    imgDelete.style.height = "20px";
+    imgDelete.style.width = "20px";
+    imgDelete.style.cursor = "pointer";
 
     deleteBox.addEventListener("click", () => {
         let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
@@ -99,19 +127,15 @@ let createRoutineBox = (r) => {
         routineBox.remove();
     });
 
-    let img4 = document.createElement("img");
-    img4.src = "icon/trash-can-solid.svg";
-    img4.style.height = "20px";
-    img4.style.width = "20px";
-    
     routineListContainer.append(routineBox);
     routineBox.append(routineLeftBox,routineRightBox);
-    routineLeftBox.append(routineName,routineRepetition);
+    routineLeftBox.append(routineName, repetitionsDiv);
+    repetitionsDiv.append(repetitionIncrease, "/", routineRepetition);
     routineRightBox.append(priorityBox,minusPlusRepeatBox,deleteBox);
-    minusPlusRepeatBox.append(img,img2,img3);
-    deleteBox.append(img4);
-}
+    minusPlusRepeatBox.append(imgMinus,imgPlus,imgReset);
+    deleteBox.append(imgDelete);
 
+}
 
 let filter = () => {
     if(routineFilter.value === "high"){
@@ -147,6 +171,37 @@ let filter = () => {
             createRoutineBox(r);
         })
     }
+}
+
+let increase = (r,repetitionIncrease) => {
+    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let updatedRoutine = savedRoutines.find(item => item.id === r.id);
+    if(updatedRoutine.currentRepetition < updatedRoutine.repetition){
+        updatedRoutine.currentRepetition += 1; 
+        repetitionIncrease.innerText = updatedRoutine.currentRepetition;
+        localStorage.setItem("routine", JSON.stringify(savedRoutines));
+    }else{
+        alert("Du har uppfyllt ditt mål!");
+    }
+    
+}
+let decrease = (r,repetitionIncrease) => {
+    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let updatedRoutine = savedRoutines.find(item => item.id === r.id);
+    if(updatedRoutine.currentRepetition > 0){
+        updatedRoutine.currentRepetition -= 1; 
+        repetitionIncrease.innerText = updatedRoutine.currentRepetition;
+        localStorage.setItem("routine", JSON.stringify(savedRoutines));
+    }else{
+        alert("Du kan inte gå lägre!");
+    }
+}
+let reset = (r,repetitionIncrease) => {
+    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let updatedRoutine = savedRoutines.find(item => item.id === r.id);
+    updatedRoutine.currentRepetition = 0; 
+    repetitionIncrease.innerText = updatedRoutine.currentRepetition;
+    localStorage.setItem("routine", JSON.stringify(savedRoutines));
 }
 
 routineFilter.addEventListener("change",filter);
