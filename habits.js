@@ -132,35 +132,26 @@ let createRoutineBox = (r, savedRoutine) => {
 
 }
 let filter = () => {
-    if(routineFilter.value === "high"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Hög");
+    document.querySelector(".routineListContainer").innerHTML = "";
+    let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
 
+    if(routineFilter.value === "high"){
+        let filteredHigh = savedRoutine.filter(item => item.priority === "Hög");
         filteredHigh.forEach(r => {
             createRoutineBox(r);
         })
 
     }else if(routineFilter.value === "middle"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
         let filteredHigh = savedRoutine.filter(item => item.priority === "Mellan");
-
         filteredHigh.forEach(r => {
             createRoutineBox(r);
         })
     } else if(routineFilter.value === "low"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
         let filteredHigh = savedRoutine.filter(item => item.priority === "Låg");
-
         filteredHigh.forEach(r => {
             createRoutineBox(r);
         })
     } else if (routineFilter.value === "all"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-
         savedRoutine.forEach(r => {
             createRoutineBox(r);
         })
@@ -215,6 +206,18 @@ let sort = () => {
             return priorityOrder[b.priority] - priorityOrder[a.priority];
         });
         sortedArr.forEach(r => {
+            createRoutineBox(r);
+        })
+    }else if(routineSort.value === "most-repetitions"){
+        savedRoutine.sort((a, b) => b.repetition - a.repetition);
+    
+        savedRoutine.forEach(r => {
+            createRoutineBox(r);
+        })
+    }else if(routineSort.value === "least-repetitions"){
+        savedRoutine.sort((a, b) => a.repetition - b.repetition);
+    
+        savedRoutine.forEach(r => {
             createRoutineBox(r);
         })
     }
