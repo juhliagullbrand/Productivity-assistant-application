@@ -5,8 +5,7 @@ let repetitionInput = document.querySelector("#repetition");
 let routineContainer = document.querySelector(".routine-container");
 let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
-
-
+let routineSort = document.querySelector("#routineSort");
 
 let addRoutine = () => {
     let routine = routineNameInput.value;
@@ -29,14 +28,11 @@ let addRoutine = () => {
     createRoutineList();
     }
 }
-
 button.addEventListener("click", addRoutine);
-
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
     let savedRoutine = JSON.parse(localStorage.getItem("routine"));
     if(savedRoutine !== null){
-        console.log(savedRoutine)
         savedRoutine.forEach(r => {
             createRoutineBox(r, savedRoutine);
         });
@@ -44,7 +40,6 @@ let createRoutineList = () => {
         localStorage.setItem("routine",JSON.stringify([]))
     }
 }
-
 let createRoutineBox = (r, savedRoutine) => {
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
@@ -136,7 +131,6 @@ let createRoutineBox = (r, savedRoutine) => {
     deleteBox.append(imgDelete);
 
 }
-
 let filter = () => {
     if(routineFilter.value === "high"){
         document.querySelector(".routineListContainer").innerHTML = "";
@@ -172,7 +166,6 @@ let filter = () => {
         })
     }
 }
-
 let increase = (r,repetitionIncrease) => {
     let savedRoutines = JSON.parse(localStorage.getItem("routine"));
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
@@ -204,6 +197,22 @@ let reset = (r,repetitionIncrease) => {
     localStorage.setItem("routine", JSON.stringify(savedRoutines));
 }
 
+let sort = () => {
+    if(routineSort.value === "highest-prio"){
+        document.querySelector(".routineListContainer").innerHTML = "";
+        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+
+        let sortedArr = savedRoutine.sort((a, b) => {
+            let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+        localStorage.setItem("routine", JSON.stringify(sortedArr));
+        sortedArr.forEach(r => {
+            createRoutineBox(r);
+        })
+}
+}
+routineSort.addEventListener("change",sort);
 routineFilter.addEventListener("change",filter);
 
 createRoutineList();
