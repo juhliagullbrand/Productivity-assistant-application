@@ -94,7 +94,7 @@ div.input-container-todo{
     width: 25px;
     margin-right: 1%;
 }
-.btn-todo, .save-btn-todo{
+.btn-todo, .save-btn-todo, .save-btn-event{
     height: 60px;
     width: 100px;
     border: none;
@@ -141,7 +141,7 @@ div.selectResultContainer-todo{
     border: none;
     cursor: pointer;
 }
-.new-input-field-todo{
+.new-input-field-todo, .new-input-event{
   height: 35px;
   border-radius: 10px;
   margin-right: 10px;
@@ -263,7 +263,7 @@ div.selectResultContainer-todo{
   border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
  
 }
 
@@ -274,7 +274,7 @@ div.selectResultContainer-todo{
  margin: 1rem;
 }
 
-#eventStart, #eventStart{
+#eventStart, #eventEnd{
   background-color: var(--primary-background-color);
   border-radius: 20px;
  padding: 1rem;
