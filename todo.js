@@ -154,11 +154,11 @@ const filterTasks = () => {
     let taskCompleted = task.dataset.completed === "true";  
 
     let isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(taskCategory);
-
-    let isStatusMatch = 
-        (!showCompleted && !showNotCompleted) ||  
-        (showCompleted && taskCompleted) ||       
-        (showNotCompleted && !taskCompleted); 
+ 
+    let noFilterSelected = !showCompleted && !showNotCompleted;
+    let completedMatch = showCompleted && taskCompleted;
+    let notCompletedMatch = showNotCompleted && !taskCompleted;
+    let isStatusMatch = noFilterSelected || completedMatch || notCompletedMatch;
 
     task.style.display = (isCategoryMatch && isStatusMatch) ? "flex" : "none";
 });
