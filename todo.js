@@ -1,3 +1,4 @@
+
 const inputTitle = document.querySelector("#input-title-todo");
 const inputDescription = document.querySelector("#input-description-todo");
 const categoryDropdown = document.querySelector("#category-todo");
@@ -5,15 +6,16 @@ const inputDeadline = document.querySelector("#deadline-todo");
 const inputTimeEstimate = document.querySelector("#time-estimate-todo");
 const btn = document.querySelector(".btn-todo");
 const container = document.querySelector(".box-todo");
-const filterBtn = document.querySelector("#filter-btn-todo");
-const filterContainer= document.querySelector(".filter-container-todo");
+const filterContainer = document.querySelector(".filter-container-todo");
 
 btn.addEventListener("click", () => {
-
   filterContainer.classList.remove("hide");
 
   const resultDivFlex = document.createElement("div");
   resultDivFlex.classList.add("resultDivFlex-todo");
+
+  resultDivFlex.dataset.category = categoryDropdown.value;
+  resultDivFlex.dataset.completed = "false";
 
   const resultContainer = document.createElement("div");
   resultContainer.classList.add("resultContainer-todo");
@@ -27,10 +29,10 @@ btn.addEventListener("click", () => {
 
   const selectResultContainer = document.createElement("div");
   selectResultContainer.classList.add("selectResultContainer-todo");
-  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`
+  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`;
 
   container.append(resultDivFlex);
-  resultDivFlex.append(resultContainer, selectResultContainer); 
+  resultDivFlex.append(resultContainer, selectResultContainer);
   resultContainer.append(resultTextDiv, resultIconDiv);
 
   clearInputs();
@@ -38,18 +40,15 @@ btn.addEventListener("click", () => {
   createEditButton(resultTextDiv, resultIconDiv);
   createDeleteButton(resultDivFlex, resultIconDiv);
   createUncheckedBtn(resultTextDiv, resultIconDiv);
-
 });
 
 const clearInputs = () => {
-
   inputTitle.value = "";
   inputDescription.value = "";
   categoryDropdown.value = "";
   inputDeadline.value = "";
   inputTimeEstimate.value = "";
-
-}
+};
 
 const createEditButton = (taskDiv, iconContainer) => {
   const editBtn = document.createElement("button");
@@ -73,12 +72,12 @@ const editInput = (taskDiv) => {
 
   let inputField = document.createElement("input");
   inputField.type = "text";
-  inputField.classList.add("new-input-field-todo")
+  inputField.classList.add("new-input-field-todo");
   inputField.value = currentDescription;
 
   let saveBtn = document.createElement("button");
   saveBtn.innerText = "Spara";
-  saveBtn.classList.add("save-btn-todo")
+  saveBtn.classList.add("save-btn-todo");
 
   taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>`;
   taskDiv.append(inputField, saveBtn);
@@ -109,7 +108,7 @@ const createUncheckedBtn = (taskDiv, iconContainer) => {
   uncheckedBtn.classList.add("unchecked-btn-todo");
 
   let iconUncheked = document.createElement("img");
-  iconUncheked.src = "/icon/unchecked.png"; 
+  iconUncheked.src = "/icon/unchecked.png";
   iconUncheked.style.width = "30px";
 
   uncheckedBtn.append(iconUncheked);
@@ -117,7 +116,10 @@ const createUncheckedBtn = (taskDiv, iconContainer) => {
 
   uncheckedBtn.addEventListener("click", () => {
     uncheckedBtn.remove();
+    const resultDivFlex = taskDiv.closest(".resultDivFlex-todo");
+    resultDivFlex.dataset.completed = "true";
     createCheckedBtn(taskDiv, iconContainer);
+    filterTasks();
   });
 };
 
@@ -126,7 +128,7 @@ const createCheckedBtn = (taskDiv, iconContainer) => {
   checkedBtn.classList.add("checked-btn-todo");
 
   let iconCheked = document.createElement("img");
-  iconCheked.src = "/icon/checked.png"; 
+  iconCheked.src = "/icon/checked.png";
   iconCheked.style.width = "30px";
 
   checkedBtn.append(iconCheked);
@@ -134,7 +136,35 @@ const createCheckedBtn = (taskDiv, iconContainer) => {
 
   checkedBtn.addEventListener("click", () => {
     checkedBtn.remove();
+    const resultDivFlex = taskDiv.closest(".resultDivFlex-todo");
+    resultDivFlex.dataset.completed = "false";
     createUncheckedBtn(taskDiv, iconContainer);
+    filterTasks();
   });
-
 };
+
+const filterTasks = () => {
+  let selectedCategories = Array.from(document.querySelectorAll('input[name="filter-category-checkbox-todo"]:checked')).map(checkbox => checkbox.value);
+
+  let showCompleted = document.querySelector("#filter-status-done").checked;
+  let showNotCompleted = document.querySelector("#filter-status").checked;
+
+  document.querySelectorAll(".resultDivFlex-todo").forEach(task => {
+    let taskCategory = task.dataset.category;  
+    let taskCompleted = task.dataset.completed === "true";  
+
+    let isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(taskCategory);
+ 
+    let noFilterSelected = !showCompleted && !showNotCompleted;
+    let completedMatch = showCompleted && taskCompleted;
+    let notCompletedMatch = showNotCompleted && !taskCompleted;
+    let isStatusMatch = noFilterSelected || completedMatch || notCompletedMatch;
+
+    task.style.display = (isCategoryMatch && isStatusMatch) ? "flex" : "none";
+});
+}
+
+document.querySelectorAll('input[name="filter-category-checkbox-todo"], #filter-status-done, #filter-status')
+  .forEach(checkbox => {
+    checkbox.addEventListener("change", filterTasks);
+  });
