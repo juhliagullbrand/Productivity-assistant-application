@@ -27,8 +27,18 @@ let addRoutine = () => {
     localStorage.setItem("routine",JSON.stringify(routineArr));
     createRoutineList();
     }
+
+resetInputField();
 }
+
 button.addEventListener("click", addRoutine);
+
+let resetInputField = () => {
+    routineNameInput.value = "";
+    priorityInput.value = "";
+    repetitionInput.value = "";
+}
+
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
     let savedRoutine = JSON.parse(localStorage.getItem("routine"));
@@ -192,7 +202,6 @@ let filterSort = () => {
         createRoutineBox(r);
     })
 }
-
 
 routineSort.addEventListener("change",filterSort);
 routineFilter.addEventListener("change",filterSort);
