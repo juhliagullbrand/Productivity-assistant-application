@@ -306,3 +306,8 @@ div.selectResultContainer-todo{
   padding: 2%;
   cursor: pointer;
 }
+
+.past-event{
+  text-decoration: line-through;
+  opacity: 0.6;
+}
