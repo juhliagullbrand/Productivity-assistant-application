@@ -9,8 +9,8 @@ let routineSort = document.querySelector("#routineSort");
 
 let addRoutine = () => {
     let routine = routineNameInput.value;
-    let priority = priorityInput.options[priorityInput.selectedIndex].text;
-    let repetition = repetitionInput.options[repetitionInput.selectedIndex].text;
+    let priority = priorityInput.options[priorityInput.selectedIndex].text === "Prioritet" ? null : priorityInput.options[priorityInput.selectedIndex].text;
+    let repetition = repetitionInput.options[repetitionInput.selectedIndex].text === "Repetition" ? null : repetitionInput.options[repetitionInput.selectedIndex].text;
 
     let routineArr = JSON.parse(localStorage.getItem("routine"));
 
@@ -26,18 +26,12 @@ let addRoutine = () => {
     routineArr.push(routineObject);
     localStorage.setItem("routine",JSON.stringify(routineArr));
     createRoutineList();
+    } else if (!routine || !priority || !repetition){
+        alert ("*Obligatoriskt fält!*")
     }
-
-resetInputField();
 }
 
 button.addEventListener("click", addRoutine);
-
-let resetInputField = () => {
-    routineNameInput.value = "";
-    priorityInput.value = "";
-    repetitionInput.value = "";
-}
 
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
@@ -202,6 +196,7 @@ let filterSort = () => {
         createRoutineBox(r);
     })
 }
+
 
 routineSort.addEventListener("change",filterSort);
 routineFilter.addEventListener("change",filterSort);
