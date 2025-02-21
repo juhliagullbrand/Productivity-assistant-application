@@ -123,7 +123,7 @@ const eventEditInput = (eventTextDiv, event) => {
 
     const inputEnd = document.createElement("input"); 
     inputEnd.type = "datetime-local"; 
-    inputEnd.value = new Date(event.start).toISOString().slice(0, 16);
+    inputEnd.value = new Date(event.end).toISOString().slice(0, 16);
     inputEnd.classList.add("new-input-event");
 
     const saveBtn = document.createElement("button");
@@ -159,5 +159,31 @@ const eventDeleteButton = (eventActions, eventId) => {
         renderEvents();
     });
 };
+
+const filter = (filterType) =>{
+    let filteredEvents;
+    if(filterType === "upcoming"){
+        filteredEvents = events.filter(event => new Date(event.start) > new Date());
+
+        // const savedFilter = JSON.parse(localStorage.getItem("event")) || [];
+      
+    }else if(filterType === "pastEvents"){
+        filteredEvents = events.filter(event => new Date(event.end) < new Date());
+    }else {
+        filteredEvents = events;
+    }
+    renderFilteredEvents(filteredEvents);
+}; 
+
+const renderFilteredEvents   = (filteredEvents) =>{
+    displayEvent.innerHTML="";
+    filteredEvents.forEach(event =>{
+        createEventBox(event);
+    })
+}
+
+document.querySelector("#filterEvents").addEventListener("change", (e) =>{
+    filter(e.target.value);
+});
 
 renderEvents();
