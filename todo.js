@@ -1,3 +1,4 @@
+
 const inputTitle = document.querySelector("#input-title-todo");
 const inputDescription = document.querySelector("#input-description-todo");
 const categoryDropdown = document.querySelector("#category-todo");
@@ -27,29 +28,28 @@ const validateInputs = () => {
   return true;
 };
 
-const createTodo = (task = null) => {
+
+const createTodo = () => {
   filterContainer.classList.remove("hide");
 
   const resultDivFlex = document.createElement("div");
   resultDivFlex.classList.add("resultDivFlex-todo");
-  resultDivFlex.dataset.category = task ? task.category : categoryDropdown.value;
-  resultDivFlex.dataset.completed = task ? task.completed : "false";
+  resultDivFlex.dataset.category = categoryDropdown.value;
+  resultDivFlex.dataset.completed = "false";
 
   const resultContainer = document.createElement("div");
   resultContainer.classList.add("resultContainer-todo");
 
   const resultTextDiv = document.createElement("div");
   resultTextDiv.classList.add("resultTextDiv-todo");
-  resultTextDiv.innerHTML = `<strong>${task ? task.title : inputTitle.value}</strong><br>${task ? task.description : inputDescription.value}`;
+  resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong><br>${inputDescription.value}`;
 
   const resultIconDiv = document.createElement("div");
   resultIconDiv.classList.add("resultIconDiv-todo");
 
   const selectResultContainer = document.createElement("div");
   selectResultContainer.classList.add("selectResultContainer-todo");
-  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${task ? task.category : categoryDropdown.value} 
-  <strong>Deadline:</strong> ${task ? task.deadline : inputDeadline.value} 
-  <strong>Estimerad tidsåtgång: </strong>${task ? task.timeEstimate : inputTimeEstimate.value}`;
+  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`;
 
   container.append(resultDivFlex);
   resultDivFlex.append(resultContainer, selectResultContainer);
@@ -57,26 +57,20 @@ const createTodo = (task = null) => {
 
   createEditButton(resultTextDiv, resultIconDiv);
   createDeleteButton(resultDivFlex, resultIconDiv);
+  createUncheckedBtn(resultTextDiv, resultIconDiv);
 
-  if (task && task.completed === "true") {
-    createCheckedBtn(resultTextDiv, resultIconDiv);
-  } else {
-    createUncheckedBtn(resultTextDiv, resultIconDiv);
-  }
-
-  if (!task) {
-    let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
-    saveTasks.push({
-      title: inputTitle.value,
-      description: inputDescription.value,
-      category: categoryDropdown.value,
-      deadline: inputDeadline.value,
-      timeEstimate: inputTimeEstimate.value,
-      completed: "false"
-    });
-    localStorage.setItem("todos", JSON.stringify(saveTasks));
-  }
+  let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
+  saveTasks.push({
+    title: inputTitle.value,
+    description: inputDescription.value,
+    category: categoryDropdown.value,
+    deadline: inputDeadline.value,
+    timeEstimate: inputTimeEstimate.value,
+    completed: "false"
+  });
+  localStorage.setItem("todos", JSON.stringify(saveTasks));
 };
+
 
 const clearInputs = () => {
   inputTitle.value = "";
@@ -136,9 +130,6 @@ const createDeleteButton = (taskContainer, iconContainer) => {
 
   deleteBtn.addEventListener("click", () => {
     taskContainer.remove();
-    let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
-    saveTasks = saveTasks.filter(task => task.title !== taskContainer.querySelector("strong").innerText);
-    localStorage.setItem("todos", JSON.stringify(saveTasks));
   });
 };
 
@@ -158,7 +149,7 @@ const createUncheckedBtn = (taskDiv, iconContainer) => {
     const resultDivFlex = taskDiv.closest(".resultDivFlex-todo");
     resultDivFlex.dataset.completed = "true";
     createCheckedBtn(taskDiv, iconContainer);
-    updateLocalStorage();
+    filterTasks();
   });
 };
 
@@ -178,28 +169,62 @@ const createCheckedBtn = (taskDiv, iconContainer) => {
     const resultDivFlex = taskDiv.closest(".resultDivFlex-todo");
     resultDivFlex.dataset.completed = "false";
     createUncheckedBtn(taskDiv, iconContainer);
-    updateLocalStorage();
+    filterTasks();
   });
 };
 
-const updateLocalStorage = () => {
-  let saveTasks = [];
+const filterTasks = () => {
+  let selectedCategories = Array.from(document.querySelectorAll('input[name="filter-category-checkbox-todo"]:checked')).map(checkbox => checkbox.value);
+
+  let showCompleted = document.querySelector("#filter-status-done").checked;
+  let showNotCompleted = document.querySelector("#filter-status").checked;
+
   document.querySelectorAll(".resultDivFlex-todo").forEach(task => {
-    saveTasks.push({
-      title: task.querySelector("strong").innerText,
-      description: task.querySelector(".resultTextDiv-todo").innerHTML.split("<br>")[1],
-      category: task.dataset.category,
-      deadline: task.querySelector(".selectResultContainer-todo").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1],
-      timeEstimate: task.querySelector(".selectResultContainer-todo").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)[1],
-      completed: task.dataset.completed
-    });
+    let taskCategory = task.dataset.category;  
+    let taskCompleted = task.dataset.completed === "true";  
+
+    let isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(taskCategory);
+ 
+    let noFilterSelected = !showCompleted && !showNotCompleted;
+    let completedMatch = showCompleted && taskCompleted;
+    let notCompletedMatch = showNotCompleted && !taskCompleted;
+    let isStatusMatch = noFilterSelected || completedMatch || notCompletedMatch;
+
+    task.style.display = (isCategoryMatch && isStatusMatch) ? "flex" : "none";
+});
+}
+
+document.querySelectorAll('input[name="filter-category-checkbox-todo"], #filter-status-done, #filter-status')
+  .forEach(checkbox => {
+    checkbox.addEventListener("change", filterTasks);
   });
-  localStorage.setItem("todos", JSON.stringify(saveTasks));
-};
 
-const loadTodos = () => {
-  let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
-  saveTasks.forEach(task => createTodo(task));
-};
 
-window.addEventListener("load", loadTodos);
+  const sortTasks = () => {
+    let tasks = Array.from(document.querySelectorAll(".resultDivFlex-todo"));
+    let sortOption = document.querySelector("#sort-dropdown-todo").value;
+  
+    tasks.sort((a, b) => {
+      let aDeadline = new Date(a.querySelector(".selectResultContainer-todo").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
+      let bDeadline = new Date(b.querySelector(".selectResultContainer-todo").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
+      let aTimeEstimate = parseFloat(a.querySelector(".selectResultContainer-todo").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
+      let bTimeEstimate = parseFloat(b.querySelector(".selectResultContainer-todo").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
+      let aCompleted = a.dataset.completed === "true";
+      let bCompleted = b.dataset.completed === "true";
+
+      if (sortOption === "deadline-increasing") return aDeadline - bDeadline;
+      if (sortOption === "deadline-decreasing") return bDeadline - aDeadline;
+      if (sortOption === "time-estimate-increasing") return aTimeEstimate - bTimeEstimate;
+      if (sortOption === "time-estimate-decreasing") return bTimeEstimate - aTimeEstimate;
+      if (sortOption === "finished") return bCompleted - aCompleted;
+      if (sortOption === "non-finished") return aCompleted - bCompleted;
+      
+      return 0;
+    });
+  
+    tasks.forEach(task => container.append(task));
+  };
+  
+  document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
+  
+  
