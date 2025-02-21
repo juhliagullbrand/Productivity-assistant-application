@@ -5,8 +5,7 @@ let repetitionInput = document.querySelector("#repetition");
 let routineContainer = document.querySelector(".routine-container");
 let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
-
-
+let routineSort = document.querySelector("#routineSort");
 
 let addRoutine = () => {
     let routine = routineNameInput.value;
@@ -29,14 +28,11 @@ let addRoutine = () => {
     createRoutineList();
     }
 }
-
 button.addEventListener("click", addRoutine);
-
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
     let savedRoutine = JSON.parse(localStorage.getItem("routine"));
     if(savedRoutine !== null){
-        console.log(savedRoutine)
         savedRoutine.forEach(r => {
             createRoutineBox(r, savedRoutine);
         });
@@ -44,7 +40,6 @@ let createRoutineList = () => {
         localStorage.setItem("routine",JSON.stringify([]))
     }
 }
-
 let createRoutineBox = (r, savedRoutine) => {
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
@@ -137,42 +132,6 @@ let createRoutineBox = (r, savedRoutine) => {
 
 }
 
-let filter = () => {
-    if(routineFilter.value === "high"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Hög");
-
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-
-    }else if(routineFilter.value === "middle"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Mellan");
-
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-    } else if(routineFilter.value === "low"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-        let filteredHigh = savedRoutine.filter(item => item.priority === "Låg");
-
-        filteredHigh.forEach(r => {
-            createRoutineBox(r);
-        })
-    } else if (routineFilter.value === "all"){
-        document.querySelector(".routineListContainer").innerHTML = "";
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-
-        savedRoutine.forEach(r => {
-            createRoutineBox(r);
-        })
-    }
-}
-
 let increase = (r,repetitionIncrease) => {
     let savedRoutines = JSON.parse(localStorage.getItem("routine"));
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
@@ -203,7 +162,39 @@ let reset = (r,repetitionIncrease) => {
     repetitionIncrease.innerText = updatedRoutine.currentRepetition;
     localStorage.setItem("routine", JSON.stringify(savedRoutines));
 }
+let filterSort = () => {
+    let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
 
-routineFilter.addEventListener("change",filter);
+    if(routineFilter.value === "high"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Hög");
+    }else if(routineFilter.value === "middle"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Mellan");
+    }else if(routineFilter.value === "low"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
+    } else if (routineFilter.value === "all"){
+        savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+    }
+    
+    if(routineSort.value === "highest-prio"){
+        let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+        savedRoutine.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+    }else if(routineSort.value === "lowest-prio"){
+        let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
+        savedRoutine.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+    }else if(routineSort.value === "most-repetitions"){
+        savedRoutine.sort((a, b) => b.repetition - a.repetition);
+    }else if(routineSort.value === "least-repetitions"){
+        savedRoutine.sort((a, b) => a.repetition - b.repetition);
+    }
+
+    document.querySelector(".routineListContainer").innerHTML = "";
+    savedRoutine.forEach(r => {
+        createRoutineBox(r);
+    })
+}
+
+
+routineSort.addEventListener("change",filterSort);
+routineFilter.addEventListener("change",filterSort);
 
 createRoutineList();
