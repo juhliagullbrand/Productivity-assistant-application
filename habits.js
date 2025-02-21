@@ -120,10 +120,9 @@ let createRoutineBox = (r, savedRoutine) => {
 
     deleteBox.addEventListener("click", () => {
         let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
-        let updatedRoutine = savedRoutine.filter(item => item.routine !== r.routine);
+        let updatedRoutine = savedRoutine.filter(item => item.id !== r.id);
         localStorage.setItem("routine", JSON.stringify(updatedRoutine));
-        
-        routineBox.remove();
+        createRoutineList();
     });
 
     routineListContainer.append(routineBox);
