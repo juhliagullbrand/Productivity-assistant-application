@@ -22,12 +22,18 @@ const createEventBox = (event) => {
 
     const eventTextDiv = document.createElement("div");
     eventTextDiv.classList.add("eventTextDiv"); 
-    eventTextDiv.innerHTML = `
-        <div id="eventTitle"><strong>${event.title}</strong></div>
-        <div id="eventStart"><strong>Start:</strong> ${new Date(event.start).toLocaleString()}</div>
-        <div id="eventEnd"><strong>Slut:</strong> ${new Date(event.end).toLocaleString()}</div>
-    `;
 
+    const isPast = new Date (event.end) < new Date();
+        if(isPast){
+            eventTextDiv.classList.add("past-event");
+        }
+
+    eventTextDiv.innerHTML = `
+    <div id="eventTitle"><strong>${event.title}</strong></div>
+    <div id="eventStart"><strong>Start:</strong> ${new Date(event.start).toLocaleString()}</div>
+    <div id="eventEnd"><strong>Slut:</strong> ${new Date(event.end).toLocaleString()}</div>
+    `;
+    
     const eventActions = document.createElement("div");
     eventActions.classList.add("eventActions");
 
@@ -105,22 +111,19 @@ const eventEditButton = (eventActions, event) => {
 const eventEditInput = (eventTextDiv, event) => {
     eventTextDiv.innerHTML = ""; 
 
-    //input for title
     const inputField = document.createElement("input");
     inputField.type = "text";
     inputField.value = event.title;
     inputField.classList.add("new-input-event");
 
-    //input for start-date
     const inputStart = document.createElement("input"); 
     inputStart.type = "datetime-local";
     inputStart.value = new Date(event.start).toISOString().slice(0, 16); 
     inputStart.classList.add("new-input-event");
 
-    //input for end-date
     const inputEnd = document.createElement("input"); 
     inputEnd.type = "datetime-local"; 
-    inputEnd.value = new Date(event.start).toISOString().slice(0, 16);
+    inputEnd.value = new Date(event.end).toISOString().slice(0, 16);
     inputEnd.classList.add("new-input-event");
 
     const saveBtn = document.createElement("button");
@@ -128,7 +131,6 @@ const eventEditInput = (eventTextDiv, event) => {
     saveBtn.classList.add("save-btn-event");
 
 
-    
     saveBtn.addEventListener("click", () => {
         event.title = inputField.value;
         event.start = inputStart.value; 
@@ -157,5 +159,31 @@ const eventDeleteButton = (eventActions, eventId) => {
         renderEvents();
     });
 };
+
+const filter = (filterType) =>{
+    let filteredEvents;
+    if(filterType === "upcoming"){
+        filteredEvents = events.filter(event => new Date(event.start) > new Date());
+
+        // const savedFilter = JSON.parse(localStorage.getItem("event")) || [];
+      
+    }else if(filterType === "pastEvents"){
+        filteredEvents = events.filter(event => new Date(event.end) < new Date());
+    }else {
+        filteredEvents = events;
+    }
+    renderFilteredEvents(filteredEvents);
+}; 
+
+const renderFilteredEvents   = (filteredEvents) =>{
+    displayEvent.innerHTML="";
+    filteredEvents.forEach(event =>{
+        createEventBox(event);
+    })
+}
+
+document.querySelector("#filterEvents").addEventListener("change", (e) =>{
+    filter(e.target.value);
+});
 
 renderEvents();
