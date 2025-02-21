@@ -9,6 +9,14 @@ const container = document.querySelector(".box-todo");
 const filterContainer = document.querySelector(".filter-container-todo");
 
 btn.addEventListener("click", () => {
+  createTodo();
+  clearInputs();
+  createEditButton(resultTextDiv, resultIconDiv);
+  createDeleteButton(resultDivFlex, resultIconDiv);
+  createUncheckedBtn(resultTextDiv, resultIconDiv);
+});
+
+const createTodo = () => {
   filterContainer.classList.remove("hide");
 
   const resultDivFlex = document.createElement("div");
@@ -35,12 +43,17 @@ btn.addEventListener("click", () => {
   resultDivFlex.append(resultContainer, selectResultContainer);
   resultContainer.append(resultTextDiv, resultIconDiv);
 
-  clearInputs();
-
-  createEditButton(resultTextDiv, resultIconDiv);
-  createDeleteButton(resultDivFlex, resultIconDiv);
-  createUncheckedBtn(resultTextDiv, resultIconDiv);
-});
+  let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
+  saveTasks.push({
+    title: inputTitle.value,
+    description: inputDescription.value,
+    category: categoryDropdown.value,
+    deadline: inputDeadline.value,
+    timeEstimate: inputTimeEstimate.value,
+    completed: "false"
+  });
+localStorage.setItem("todos", JSON.stringify(saveTasks));
+};
 
 const clearInputs = () => {
   inputTitle.value = "";
