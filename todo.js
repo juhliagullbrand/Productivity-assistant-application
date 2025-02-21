@@ -170,43 +170,31 @@ document.querySelectorAll('input[name="filter-category-checkbox-todo"], #filter-
   });
 
 
-const sortTasks = () => {
-  let sortDropdown = document.querySelector("#sort-dropdown-todo").value;
-  let taskArray = Array.from(document.querySelectorAll(".resultDivFlex-todo"));
-
-  taskArray.sort((a, b) => {
-    let a_Deadline = new Date(a.querySelector(".selectResultContainer-todo").innerHTML.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
-    let b_Deadline = new Date(b.querySelector(".selectResultContainer-todo").innerHTML.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
-
-    let a_TimeEstimate = parseInt(a.querySelector(".selectResultContainer-todo").innerHTML.match(/Estimerad tidsåtgång:\s*(\d+)/)[1]);
-    let b_TimeEstimate = parseInt(b.querySelector(".selectResultContainer-todo").innerHTML.match(/Estimerad tidsåtgång:\s*(\d+)/)[1]);
-
-    let a_IsCompleted = a.dataset.completed === "true";
-    let b_IsCompleted = b.dataset.completed === "true";
-
-    // Sorteringslogik baserat på användarens val
-    switch (sortDropdown) {
-      case "deadline-increasing":  // Deadline - stigande ordning (äldst först)
-        return a_Deadline - b_Deadline;
-      case "deadline-decreasing": // Deadline - fallande ordning (nyast först)
-        return b_Deadline - a_Deadline;
-      case "time-increasing":      // Tidsestimat - stigande ordning (kortast tid först)
-        return a_TimeEstimate - b_TimeEstimate;
-      case "time-decreasing":     // Tidsestimat - fallande ordning (längst tid först)
-        return b_TimeEstimate - a_TimeEstimate;
-      case "status-asc":    // Status - Ej slutförda först
-        return a_IsCompleted - b_IsCompleted;
-      case "status-desc":   // Status - Slutförda först
-        return b_IsCompleted - a_IsCompleted;
-      default:
-        return 0;
-    };
+  const sortTasks = () => {
+    let tasks = Array.from(document.querySelectorAll(".resultDivFlex-todo"));
+    let sortOption = document.querySelector("#sort-dropdown-todo").value;
   
-  });
+    tasks.sort((a, b) => {
+      let aDeadline = new Date(a.querySelector(".selectResultContainer-todo").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
+      let bDeadline = new Date(b.querySelector(".selectResultContainer-todo").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
+      let aTimeEstimate = parseFloat(a.querySelector(".selectResultContainer-todo").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
+      let bTimeEstimate = parseFloat(b.querySelector(".selectResultContainer-todo").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
+      let aCompleted = a.dataset.completed === "true";
+      let bCompleted = b.dataset.completed === "true";
 
-  let taskContainer = document.querySelector(".box-todo");
-  taskArray.forEach(task => taskContainer.append(task));
-};
-
-// Lägg till en eventlistener för att lyssna på ändringar i dropdown-menyn
-document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
+      if (sortOption === "deadline-increasing") return aDeadline - bDeadline;
+      if (sortOption === "deadline-decreasing") return bDeadline - aDeadline;
+      if (sortOption === "time-estimate-increasing") return aTimeEstimate - bTimeEstimate;
+      if (sortOption === "time-estimate-decreasing") return bTimeEstimate - aTimeEstimate;
+      if (sortOption === "finished") return bCompleted - aCompleted;
+      if (sortOption === "non-finished") return aCompleted - bCompleted;
+      
+      return 0;
+    });
+  
+    tasks.forEach(task => container.append(task));
+  };
+  
+  document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
+  
+  
