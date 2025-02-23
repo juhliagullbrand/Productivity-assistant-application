@@ -109,6 +109,17 @@ const editInput = (taskDiv) => {
 
   saveBtn.addEventListener("click", () => {
     taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>${inputField.value}`;
+
+    let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
+    saveTasks = saveTasks.map(task => {
+      if (task.title === currentTitle) {
+        task.description = inputField.value;
+      }
+      return task;
+    });
+    
+
+    localStorage.setItem("todos", JSON.stringify(saveTasks));
   });
 };
 
@@ -187,7 +198,7 @@ const updateTaskStatus = (taskDiv) => {
     return task;
   });
 
-  localStorage.setItem("todos", JSON.stringify(saveTasks));  // Save updated tasks to localStorage
+  localStorage.setItem("todos", JSON.stringify(saveTasks));
 };
 
 const filterTasks = () => {
