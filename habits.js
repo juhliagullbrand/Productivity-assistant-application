@@ -183,7 +183,7 @@ let filterSort = () => {
         savedRoutine.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
     }else if(routineSort.value === "lowest-prio"){
         let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
-        savedRoutine.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
+        savedRoutine.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);git
     }else if(routineSort.value === "most-repetitions"){
         savedRoutine.sort((a, b) => b.repetition - a.repetition);
     }else if(routineSort.value === "least-repetitions"){

@@ -159,9 +159,6 @@ div.selectResultContainer-todo{
   border: 1px solid grey;
   border-radius: 10px;
 }
-.hide{
-  visibility: hidden;
-}
 .filter-container-todo{
   display: flex;
   justify-content: space-between;
