@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="todo.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="h1-todo">Att göra & aktiviteter</h1>
+    <div class="flex-container">
+        <div class="box-todo">
+            <div class="input-container-todo">
+                <input type="text" name="" id="input-title-todo" placeholder="Titel">
+                <input type="text" name="" id="input-description-todo" placeholder="Beskrivning">
+            </div>
+            <div class="select-container-todo">
+                <select name="category" id="category-todo">
+                    <option value="" disabled selected>Välj en kategori</option>
+                    <option value="Hälsa">Hälsa</option>
+                    <option value="Hushåll">Hushåll</option>
+                    <option value="Jobb">Jobb</option>
+                    <option value="Nöje">Nöje</option>
+                </select>
+                <label for="deadline-todo" id="deadline-label-todo">Datum för deadline</label>
+                <input type="date" name="deadline" id="deadline-todo">
+
+                <label for="time-estimate-todo" id="time-estimate-label-todo">Tidsestimat (i timmar)</label>
+                <input type="number" id="time-estimate-todo" name="time-estimate" min="1" />
+
+                <button class="btn-todo">Lägg till</button>
+            </div>
+            <div class="filter-container-todo">
+              <fieldset class="fieldset-todo">
+                <legend>Filtrera</legend>
+                  <label for="filter-status-done"> Slutförda</label>
+                  <input type="checkbox" id="filter-status-done" name="filter-status" value="done">
+                  <label for="filter-status"> Ej slutförda</label>
+                  <input type="checkbox" id="filter-status" name="filter-status" value="not-done"> ||
+
+                  <label for="helth">Hälsa</label>
+                  <input type="checkbox" id="helth" name="filter-category-checkbox-todo" value="Hälsa">
+                  <label for="household">Hushåll</label>
+                  <input type="checkbox" id="household" name="filter-category-checkbox-todo" value="Hushåll">
+                  <label for="job">Jobb</label>
+                  <input type="checkbox" id="job" name="filter-category-checkbox-todo" value="Jobb">
+                  <label for="pleasure">Nöje</label>
+                  <input type="checkbox" id="pleasure" name="filter-category-checkbox-todo" value="Nöje">
+              </fieldset>
+              <div class="sort-container-todo">
+              <select name="category" id="sort-dropdown-todo">
+                <option value="" disabled selected>Sortera</option>
+                <option value="deadline-increasing">Deadline (stigande)</option>
+                <option value="deadline-decreasing">Deadline (fallande)</option>
+                <option value="time-estimate-increasing">Tidsestimat (stigande)</option>
+                <option value="time-estimate-decreasing">Tidsestimat (fallande)</option>
+                <option value="finished">Slutförd</option>
+                <option value="non-finished">Ej utförd</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
