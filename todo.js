@@ -30,15 +30,18 @@ const validateInputs = () => {
 const createTodo = () => {
   const resultDivFlex = document.createElement("div");
   resultDivFlex.classList.add("resultDivFlex-todo");
-  resultDivFlex.dataset.category = categoryDropdown.value;
-  resultDivFlex.dataset.completed = "false";
+  // resultDivFlex.dataset.category = categoryDropdown.value;
+  // resultDivFlex.dataset.completed = "false";
 
   const resultContainer = document.createElement("div");
   resultContainer.classList.add("resultContainer-todo");
 
   const resultTextDiv = document.createElement("div");
   resultTextDiv.classList.add("resultTextDiv-todo");
-  resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong><br>${inputDescription.value}`;
+  resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong>`;
+
+  const resultTextDescription = document.createElement("p");
+  resultTextDescription.innerHTML = `${inputDescription.value}`
 
   const resultIconDiv = document.createElement("div");
   resultIconDiv.classList.add("resultIconDiv-todo");
@@ -48,6 +51,7 @@ const createTodo = () => {
   selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`;
 
   container.append(resultDivFlex);
+  resultDivFlex.append(resultTextDescription)
   resultDivFlex.append(resultContainer, selectResultContainer);
   resultContainer.append(resultTextDiv, resultIconDiv);
 
