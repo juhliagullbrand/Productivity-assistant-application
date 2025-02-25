@@ -38,22 +38,35 @@ const createTodo = () => {
 
   const resultTextDiv = document.createElement("div");
   resultTextDiv.classList.add("resultTextDiv-todo");
-  resultTextDiv.innerHTML = `<strong>${inputTitle.value}</strong>`;
+
+  const resultTextTitle = document.createElement("p");
+  resultTextTitle.classList.add("result-titel-todo")
+  resultTextTitle.innerHTML = `<strong>${inputTitle.value}</strong>`;
 
   const resultTextDescription = document.createElement("p");
-  resultTextDescription.innerHTML = `${inputDescription.value}`
+  resultTextDescription.classList.add("result-description-todo");
+  resultTextDescription.innerHTML = `${inputDescription.value}`;
 
   const resultIconDiv = document.createElement("div");
   resultIconDiv.classList.add("resultIconDiv-todo");
 
   const selectResultContainer = document.createElement("div");
   selectResultContainer.classList.add("selectResultContainer-todo");
-  selectResultContainer.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value} <strong>Deadline:</strong> ${inputDeadline.value} <strong>Estimerad tidsåtgång: </strong>${inputTimeEstimate.value}`;
+
+  const resultCategory = document.createElement("p");
+  resultCategory.innerHTML = `<strong>Kategori:</strong> ${categoryDropdown.value}`;
+
+  const resultDeadline = document.createElement("p");
+  resultDeadline.innerHTML = `<strong>Deadline:</strong> ${inputDeadline.value}`;
+
+  const resultTimeEstimare = document.createElement("p");
+  resultTimeEstimare.innerHTML = `<strong>Estimerad tidsåtgång:</strong> ${inputTimeEstimate.value}h`;
 
   container.append(resultDivFlex);
-  resultDivFlex.append(resultTextDescription)
   resultDivFlex.append(resultContainer, selectResultContainer);
+  resultTextDiv.append(resultTextTitle, resultTextDescription)
   resultContainer.append(resultTextDiv, resultIconDiv);
+  selectResultContainer.append(resultCategory, resultDeadline, resultTimeEstimare)
 
   createEditButton(resultTextDiv, resultIconDiv);
   createDeleteButton(resultDivFlex, resultIconDiv);
@@ -91,41 +104,58 @@ const createEditButton = (taskDiv, iconContainer) => {
   iconContainer.append(editBtn);
 
   editBtn.addEventListener("click", () => {
-    editInput(taskDiv);
+    editInput(taskDiv, iconContainer);
   });
 };
 
-const editInput = (taskDiv) => {
-  let currentTitle = taskDiv.querySelector("strong").innerText;
-  let currentDescription = taskDiv.innerHTML.split("<br>")[1];
+const editInput = (taskDiv, resultIconDiv) => {
+  let currentTitle = taskDiv.querySelector(".result-titel-todo");
+  let currentDescription = taskDiv.querySelector(".result-description-todo");
 
-  let inputField = document.createElement("input");
-  inputField.type = "text";
-  inputField.classList.add("new-input-field-todo");
-  inputField.value = currentDescription;
+  let currentIcons = resultIconDiv.innerHTML;
+
+  // Skapa nya inputfält för att ändra titeln och beskrivningen
+  let newInputTitle = document.createElement("input");
+  newInputTitle.type = "text";
+  newInputTitle.value = currentTitle.innerText;
+  newInputTitle.classList.add("new-input-title-todo");
+
+  let newInputDescription = document.createElement("input");
+  newInputDescription.type = "text";
+  newInputDescription.value = currentDescription.innerText;
+  newInputDescription.classList.add("new-input-description-todo");
 
   let saveBtn = document.createElement("button");
   saveBtn.innerText = "Spara";
   saveBtn.classList.add("save-btn-todo");
 
-  taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>`;
-  taskDiv.append(inputField, saveBtn);
+  // Ersätt nuvarande text med inputfält för redigering
+  taskDiv.innerHTML = "";
+  taskDiv.append(newInputTitle, newInputDescription);
+  resultIconDiv.innerHTML = "";  
+  resultIconDiv.append(saveBtn); 
 
   saveBtn.addEventListener("click", () => {
-    taskDiv.innerHTML = `<strong>${currentTitle}</strong><br>${inputField.value}`;
+    // Uppdatera texten med de nya värdena
+    currentTitle.innerHTML = `<strong>${newInputTitle.value}</strong>`;
+    currentDescription.innerText = newInputDescription.value;
 
+    // Återställ knapparna
+    resultIconDiv.innerHTML = currentIcons;
+
+    // Uppdatera lokalen med nya uppgifter
     let saveTasks = JSON.parse(localStorage.getItem("todos")) || [];
     saveTasks = saveTasks.map(task => {
-      if (task.title === currentTitle) {
-        task.description = inputField.value;
+      if (task.title === currentTitle.innerText) {
+        task.title = newInputTitle.value;
+        task.description = newInputDescription.value;
       }
       return task;
     });
-    
-
     localStorage.setItem("todos", JSON.stringify(saveTasks));
   });
 };
+
 
 const createDeleteButton = (taskContainer, iconContainer) => {
   let deleteBtn = document.createElement("button");

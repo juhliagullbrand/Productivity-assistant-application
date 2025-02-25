@@ -21,7 +21,7 @@ body{
   --blue-background-color: #d1eaed;
   --big-title-font-size: 42px;
   --small-title-font-size: 32px;
-  --p-font-size: 20px;
+  --p-font-size: 1rem;
 }
 
 /* GLOBAL STYLING */
@@ -56,7 +56,9 @@ div.flex-container{
 .datepicker, 
 #inputTitleEvent,
 .password-input-login,
-.username-input-login{
+.username-input-login,
+.new-input-title-todo,
+.new-input-description-todo{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
