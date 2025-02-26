@@ -56,9 +56,7 @@ div.flex-container{
 .datepicker, 
 #inputTitleEvent,
 .password-input-login,
-.username-input-login,
-.new-input-title-todo,
-.new-input-description-todo{
+.username-input-login{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -78,72 +76,55 @@ div.flex-container{
 
 /* STYLE TODO */
 
-div.box-todo, .input-container{
-    background-color: var(--primary-background-color);
-    width: 1000px;
-    border-radius: 20px;
-    padding: 2%;
+.box-todo{
+  background-color: var(--primary-background-color);
+  width: 1000px;
+  border-radius: 20px;
+  padding: 2%;
 }
 #input-description-todo{
-    width: 720px;
-    margin-left: 2%;
+  width: 720px;
+  margin-left: 2%;
 }
-#deadline-label-todo, #time-estimate-label-todo{
-    margin-right: 1%;
+#deadline-label-todo, #time-estimate-label-todo, #deadline-todo{
+  margin-right: 1%;
 }
 #time-estimate-todo {
-    width: 25px;
-    margin-right: 1%;
+  width: 25px;
+  margin-right: 1%;
 }
 .btn-todo, .save-btn-todo, .save-btn-event{
-    height: 60px;
-    width: 100px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--button-background-color);
-    font-weight: 600;
-    cursor: pointer;
+  height: 60px;
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  font-weight: 600;
+  cursor: pointer;
 }
 .save-btn-todo{
   height: 40px;
   border-radius: 10px;
 }
-#deadline-todo{
-    height: 30px;
-    margin-top: 2%;
-    margin-right: 2%;
-}
 .select-container-todo{
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
-.resultDivFlex-todo, .todoContainer{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    margin-bottom: 2%;
-    padding: 2%;
-}
-.todoTextDiv{
-  flex-shrink: 0;
-}
-.resultContainer-todo{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    margin-bottom: 2%;
-    padding: 2%;
+.todoContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-container-color);
+  border-radius: 20px;
+  margin-bottom: 2%;
+  padding: 2%;
 }
 div.todoSelectDiv{
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
-.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event{
-    background: transparent;
-    border: none;
-    cursor: pointer;
+.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event, .unchecked-btn-todo, .checked-btn-todo{
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 .new-input-todo, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
   height: 35px;
@@ -169,13 +150,6 @@ div.todoSelectDiv{
   align-items: flex-end;
   margin-bottom: 2%;
 }
-.unchecked-btn-todo, .checked-btn-todo{
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-
 
 /* STYLE HABIT */
 
