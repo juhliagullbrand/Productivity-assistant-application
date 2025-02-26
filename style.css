@@ -126,7 +126,7 @@ div.todoSelectDiv{
   border: none;
   cursor: pointer;
 }
-.new-input-todo, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
+.new-input-title, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
   height: 35px;
   border-radius: 10px;
   margin-right: 10px;
@@ -149,6 +149,11 @@ div.todoSelectDiv{
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 2%;
+}
+.select-edit-form-todo{
+  display: flex;
+  gap: 40px;
+
 }
 
 /* STYLE HABIT */
