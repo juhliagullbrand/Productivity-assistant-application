@@ -57,7 +57,8 @@ div.flex-container{
 #inputTitleEvent,
 .password-input-login,
 .username-input-login, 
-#filterEvents {
+#filterEvents, 
+.startpageContainer{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -336,4 +337,29 @@ div.selectResultContainer-todo{
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
+}
+
+/* Startpage */
+
+#startpageBox{
+  display: flex;
+  margin: 1.5rem;
+}
+
+.startpageContainer{
+  margin: 1.5rem;
+}
+
+.linkBtn{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--primary-font-color);
+  background-color: var(--button-background-color);
+  border-radius: 20px;
+  border: none;
+  padding: 1.2rem;
+}
+
+#displayQuote{
+  text-align: center;
 }
