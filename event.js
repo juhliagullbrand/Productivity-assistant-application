@@ -30,8 +30,10 @@ const createEventBox = (event) => {
 
     eventTextDiv.innerHTML = `
     <div id="eventTitle"><strong>${event.title}</strong></div>
-    <div id="eventStart"><strong>Start:</strong> ${new Date(event.start).toLocaleString()}</div>
-    <div id="eventEnd"><strong>Slut:</strong> ${new Date(event.end).toLocaleString()}</div>
+    <div id="eventStart"><strong>Start:</strong> ${new Date(event.start).toLocaleString([], 
+        {year: 'numeric', month: '2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit' })}</div>
+    <div id="eventEnd"><strong>Slut:</strong> ${new Date(event.end).toLocaleString([], 
+        {year: 'numeric', month: '2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit' })}</div>
     `;
     
     const eventActions = document.createElement("div");
