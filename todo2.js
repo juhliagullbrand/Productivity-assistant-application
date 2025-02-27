@@ -34,7 +34,7 @@ const createTodoBox = (todo) => {
     todoSelectDiv.innerHTML = `
     <div id="todoCategory"><strong>Kategori:</strong> ${todo.category}</div>
     <div id="todoDeadline"><strong>Deadline:</strong> ${todo.deadline}</div>
-    <div id="todoTimeEstimate"><strong>Estimerad tidsåtgång:</strong> ${todo.timeEstimate}h</div>`;
+    <div id="todoTimeEstimate"><strong>Tidsestimat:</strong> ${todo.timeEstimate}h</div>`;
 
     const todoActions = document.createElement("div");
     todoActions.classList.add("todoActions");
@@ -307,18 +307,17 @@ const filterTasks = () => {
 };
 
 const sortTasks = () => {
-    let tasks = Array.from(document.querySelectorAll(".todoDivFlex")); // Uppdaterat till rätt klass
+    let tasks = Array.from(document.querySelectorAll(".todoDivFlex"));
     let sortOption = document.querySelector("#sort-dropdown-todo").value;
 
     tasks.sort((a, b) => {
         let aDeadline = new Date(a.querySelector("#todoDeadline").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
         let bDeadline = new Date(b.querySelector("#todoDeadline").textContent.match(/Deadline:\s*(\d{4}-\d{2}-\d{2})/)[1]);
-        let aTimeEstimate = parseFloat(a.querySelector("#todoTimeEstimate").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
-        let bTimeEstimate = parseFloat(b.querySelector("#todoTimeEstimate").textContent.match(/Estimerad tidsåtgång:\s*(\d+)/)?.[1] || 0);
+        let aTimeEstimate = parseFloat(a.querySelector("#todoTimeEstimate").textContent.match(/Tidsestimat:\s*(\d+)/)?.[1] || 0);
+        let bTimeEstimate = parseFloat(b.querySelector("#todoTimeEstimate").textContent.match(/Tidsestimat:\s*(\d+)/)?.[1] || 0);
         let aCompleted = a.dataset.completed === "true";
         let bCompleted = b.dataset.completed === "true";
 
-        // Sorteringslogik baserat på vald alternativ
         if (sortOption === "deadline-increasing") return aDeadline - bDeadline;
         if (sortOption === "deadline-decreasing") return bDeadline - aDeadline;
         if (sortOption === "time-estimate-increasing") return aTimeEstimate - bTimeEstimate;
@@ -326,18 +325,18 @@ const sortTasks = () => {
         if (sortOption === "finished") return bCompleted - aCompleted;
         if (sortOption === "non-finished") return aCompleted - bCompleted;
 
-        return 0; // Om inget matchar
+        return 0;
     });
 
-    // Uppdaterar ordningen av uppgifter i DOM:en
     tasks.forEach(task => container.append(task));
 };
 
-  
 document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
 
 window.addEventListener("DOMContentLoaded", () => {
     todos.forEach(todo => createTodoBox(todo));
+
+    sortTasks();
 
     document.querySelectorAll('input[name="filter-category-checkbox-todo"]').forEach(checkbox => {
         checkbox.addEventListener("change", filterTasks);
