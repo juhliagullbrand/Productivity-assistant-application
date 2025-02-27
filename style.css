@@ -21,7 +21,7 @@ body{
   --blue-background-color: #d1eaed;
   --big-title-font-size: 42px;
   --small-title-font-size: 32px;
-  --p-font-size: 20px;
+  --p-font-size: 1rem;
 }
 
 /* GLOBAL STYLING */
@@ -56,7 +56,9 @@ div.flex-container{
 .datepicker, 
 #inputTitleEvent,
 .password-input-login,
-.username-input-login{
+.username-input-login, 
+#filterEvents, 
+.startpageContainer{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
@@ -76,74 +78,57 @@ div.flex-container{
 
 /* STYLE TODO */
 
-div.box-todo, .input-container{
-    background-color: var(--primary-background-color);
-    width: 1000px;
-    border-radius: 20px;
-    padding: 2%;
-}
-div.input-container-todo{
-    display: flex;  
+.box-todo{
+  background-color: var(--primary-background-color);
+  width: 1000px;
+  border-radius: 20px;
+  padding: 2%;
 }
 #input-description-todo{
-    width: 720px;
-    margin-left: 2%;
+  width: 720px;
+  margin-left: 2%;
 }
-#deadline-label-todo, #time-estimate-label-todo{
-    margin-right: 1%;
+#deadline-label-todo, #time-estimate-label-todo, #deadline-todo{
+  margin-right: 1%;
 }
 #time-estimate-todo {
-    width: 25px;
-    margin-right: 1%;
+  width: 25px;
+  margin-right: 1%;
 }
 .btn-todo, .save-btn-todo, .save-btn-event{
-    height: 60px;
-    width: 100px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--button-background-color);
-    font-weight: 600;
-    cursor: pointer;
+  height: 60px;
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  font-weight: 600;
+  cursor: pointer;
 }
 .save-btn-todo{
   height: 40px;
   border-radius: 10px;
 }
-#deadline-todo{
-    height: 30px;
-    margin-top: 2%;
-    margin-right: 2%;
-}
 .select-container-todo{
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
-.resultDivFlex-todo{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    margin-bottom: 2%;
-    padding: 2%;
+.todoContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-container-color);
+  border-radius: 20px;
+  margin-bottom: 2%;
+  padding: 2%;
 }
-.resultContainer-todo{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    background-color: var(--primary-container-color);
-    border-radius: 20px;
-    margin-bottom: 2%;
-    padding: 2%;
+div.todoSelectDiv{
+  display: flex;
+  justify-content: space-evenly;
 }
-div.selectResultContainer-todo{
-    display: flex;
-    justify-content: space-evenly;
+.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event, .unchecked-btn-todo, .checked-btn-todo{
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
-.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event{
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-.new-input-field-todo, .new-input-event{
+.new-input-title, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
   height: 35px;
   border-radius: 10px;
   margin-right: 10px;
@@ -161,19 +146,17 @@ div.selectResultContainer-todo{
   border: 1px solid grey;
   border-radius: 10px;
 }
-.filter-container-todo{
+.filter-container-todo, .todoTextDiv{
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
 }
-.unchecked-btn-todo, .checked-btn-todo{
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+.select-edit-form-todo{
+  display: flex;
+  gap: 40px;
+
 }
-
-
 
 /* STYLE HABIT */
 
@@ -297,14 +280,14 @@ div.selectResultContainer-todo{
   margin-bottom: -1.5rem;
 }
 
-#filterEvents{
+/* #filterEvents{
   color: var(--primary-font-color);
-  background-color: var(--primary-background-color);
+  background-color: var(--primary-container-color);
   border-radius: 20px;
   border: none;
   padding: 2%;
   cursor: pointer;
-}
+} */
 
 .past-event{
   text-decoration: line-through;
@@ -335,4 +318,29 @@ div.selectResultContainer-todo{
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
+}
+
+/* Startpage */
+
+#startpageBox{
+  display: flex;
+  margin: 1.5rem;
+}
+
+.startpageContainer{
+  margin: 1.5rem;
+}
+
+.linkBtn{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--primary-font-color);
+  background-color: var(--button-background-color);
+  border-radius: 20px;
+  border: none;
+  padding: 1.2rem;
+}
+
+#displayQuote{
+  text-align: center;
 }
