@@ -76,6 +76,10 @@ div.flex-container{
   margin-right: 2%;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
+}
+
 /* STYLE TODO */
 
 .box-todo, .input-container{
@@ -308,6 +312,7 @@ div.todoSelectDiv{
   border-radius: 15px;
   margin-bottom: 4%;
 }
+
 .btn-login, .btn-create-account{
   width: 49%;
   height: 45px;
@@ -344,3 +349,4 @@ div.todoSelectDiv{
 #displayQuote{
   text-align: center;
 }
+

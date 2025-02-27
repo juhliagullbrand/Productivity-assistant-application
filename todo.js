@@ -1,3 +1,22 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = localStorage.getItem("currentUser");
+    const savedTodos = getUserData(currentUser) || [];
+
+    document.querySelector("#btn-todo").addEventListener("click", () => {
+        const todoText = document.querySelector("#todo-input").value;
+        if (!todoText) return;
+
+        let todos = getUserData(currentUser) || [];
+        todos.push(todoText);
+        saveUserData(currentUser, todos);
+    });
+});
+
+const getUserData = (username) => JSON.parse(localStorage.getItem(`todos_${username}`)) || [];
+const saveUserData = (username, data) => localStorage.setItem(`todos_${username}`, JSON.stringify(data));
+
+
+
 const inputTitle = document.querySelector("#input-title-todo");
 const inputDescription = document.querySelector("#input-description-todo");
 const categoryDropdown = document.querySelector("#category-todo");
@@ -6,7 +25,8 @@ const inputTimeEstimate = document.querySelector("#time-estimate-todo");
 const btn = document.querySelector(".btn-todo");
 const container = document.querySelector(".box-todo");
 
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+const currentUser = localStorage.getItem("currentUser");
+let todos = getUserData(currentUser); 
 
 const createTodoBox = (todo) => {
     const todoDivFlex = document.createElement("div");
@@ -72,7 +92,7 @@ btn.addEventListener("click", () => {
     };
 
     todos.push(newTodo);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    saveUserData(currentUser, todos); 
 
     createTodoBox(newTodo);
     clearInputs();
@@ -152,22 +172,18 @@ const todoEditInput = (todo, todoTextDiv, todoSelectDiv, todoActions, todoDivFle
     selectEditForm.classList.add("select-edit-form-todo");
     
     const categoryContainer = document.createElement("div");
-    categoryContainer.style.flex = "1";
-    const deadlineContainer = document.createElement("div");
-    deadlineContainer.style.flex = "1";
-    const timeEstimateContainer = document.createElement("div");
-    timeEstimateContainer.style.flex = "1";
-    
     const categoryLabel = document.createElement("div");
     categoryLabel.textContent = "Kategori: ";
     categoryContainer.append(categoryLabel);
     categoryContainer.append(categoryInput);
     
+    const deadlineContainer = document.createElement("div"); 
     const deadlineLabel = document.createElement("div");
     deadlineLabel.textContent = "Deadline: ";
     deadlineContainer.append(deadlineLabel);
     deadlineContainer.append(deadlineInput);
     
+    const timeEstimateContainer = document.createElement("div");
     const timeEstimateLabel = document.createElement("div");
     timeEstimateLabel.textContent = "Tidsestimat: ";
     timeEstimateContainer.append(timeEstimateLabel);
@@ -190,8 +206,8 @@ const todoEditInput = (todo, todoTextDiv, todoSelectDiv, todoActions, todoDivFle
         todo.timeEstimate = timeEstimateInput.value;
     
         todos = todos.map(t => (t.id === todo.id ? todo : t));
-        localStorage.setItem("todos", JSON.stringify(todos));
-    
+        saveUserData(currentUser, todos);
+        
         if (todoDivFlex) {
             todoDivFlex.dataset.category = todo.category;
         }
@@ -239,7 +255,7 @@ const todoDeleteBtn = (todoActions, todo, todoDivFlex) => {
     deleteBtn.addEventListener("click", () => {
         todoDivFlex.remove();
         todos = todos.filter(t => t.id !== todo.id);
-        localStorage.setItem("todos", JSON.stringify(todos));
+        saveUserData(currentUser, todos); 
     });
 };
 
@@ -258,7 +274,7 @@ const createUncheckedBtn = (todoActions, todoDivFlex, todo) => {
         uncheckedBtn.remove();
         todoDivFlex.dataset.completed = "true";
         todo.completed = true;
-        localStorage.setItem("todos", JSON.stringify(todos));
+        saveUserData(currentUser, todos); 
         createCheckedBtn(todoActions, todoDivFlex, todo);
     });
 };
@@ -278,7 +294,7 @@ const createCheckedBtn = (todoActions, todoDivFlex, todo) => {
         checkedBtn.remove();
         todoDivFlex.dataset.completed = "false";
         todo.completed = false;
-        localStorage.setItem("todos", JSON.stringify(todos));
+        saveUserData(currentUser, todos); 
         createUncheckedBtn(todoActions, todoDivFlex, todo);
     });
 };
