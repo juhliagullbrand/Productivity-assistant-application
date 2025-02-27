@@ -308,7 +308,7 @@ div.todoSelectDiv{
   border-radius: 15px;
   margin-bottom: 4%;
 }
-.btn-login{
+.btn-login, .btn-create-account{
   width: 49%;
   height: 45px;
   border-radius: 15px;
