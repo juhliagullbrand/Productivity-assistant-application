@@ -1,79 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const createAccountBtn = document.querySelector("#btn-create-account");
-    const loginBtn = document.querySelector("#btn-login");
-
-    if (createAccountBtn) createAccountBtn.addEventListener("click", createUserLogin);
-    if (loginBtn) loginBtn.addEventListener("click", loginUser);
-});
-
-// Skapar ett nytt konto
-const createUserLogin = () => {
-    const username = document.querySelector("#username-input-login").value.trim();
-    const password = document.querySelector("#password-input-login").value.trim();
+document.querySelector("#btn-create-account").addEventListener("click", () => {
+    const username = document.querySelector("#username-input-login").value;
+    const password = document.querySelector("#password-input-login").value;
 
     if (!username || !password) {
-        alert("Fyll i både användarnamn och lösenord!");
+        alert("Vänligen fyll i både användarnamn och lösenord.");
         return;
     }
 
-    const usersString = localStorage.getItem("users");
-    const users = usersString ? JSON.parse(usersString) : [];
+    const users = JSON.parse(localStorage.getItem("users")) || {};
 
-    if (users.some(user => user.username === username)) {
-        alert("Användarnamnet är redan taget!");
+    if (users[username]) {
+        alert("Användarnamnet är redan upptaget. Vänligen välj ett annat.");
         return;
     }
 
-    const newUser = { username, password };
-    users.push(newUser);
+    users[username] = password;
     localStorage.setItem("users", JSON.stringify(users));
+    alert("Konto skapat! Du kan nu logga in.");
+});
 
-    // Skapa en tom databas för den nya användaren
-    localStorage.setItem(`userData_${username}`, JSON.stringify({}));
-
-    alert("Konto skapat! Nu kan du logga in.");
-};
-
-// Loggar in användaren
-const loginUser = () => {
+document.querySelector("#btn-login").addEventListener("click", () => {
     const username = document.querySelector("#username-input-login").value.trim();
     const password = document.querySelector("#password-input-login").value.trim();
 
-    const usersString = localStorage.getItem("users");
-    const users = usersString ? JSON.parse(usersString) : [];
+    const users = JSON.parse(localStorage.getItem("users")) || {};
 
-    const user = users.find(user => user.username === username && user.password === password);
-
-    if (user) {
+    if (users[username] === password) {
         localStorage.setItem("currentUser", username);
-        
-        // Säkerställ att användarens data finns
-        if (!localStorage.getItem(`userData_${username}`)) {
-            localStorage.setItem(`userData_${username}`, JSON.stringify({}));
-        }
-
         window.location.href = "startpage.html";
     } else {
-        alert("Fel användarnamn eller lösenord");
+        alert("Fel användarnamn eller lösenord. Försök igen.");
     }
-};
+});
 
-// Sparar data för en viss sida
-const saveUserData = (page, data) => {
-    const username = localStorage.getItem("currentUser");
-    if (!username) return;
-
-    let userData = JSON.parse(localStorage.getItem(`userData_${username}`)) || {};
-    userData[page] = data;
-    localStorage.setItem(`userData_${username}`, JSON.stringify(userData));
-};
-
-// Hämtar sparad data för en viss sida
-const getUserData = (page) => {
-    const username = localStorage.getItem("currentUser");
-    if (!username) return null;
-
-    let userData = JSON.parse(localStorage.getItem(`userData_${username}`)) || {};
-    return userData[page] || null;
-};
-
+// window.addEventListener("DOMContentLoaded", () => {
+//     const currentUser = localStorage.getItem("currentUser");
+//     if (currentUser) {
+//         window.location.href = "startpage.html";
+//     }
+// });

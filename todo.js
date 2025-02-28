@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = localStorage.getItem("currentUser");
-    const savedTodos = getUserData(currentUser) || [];
 
     document.querySelector("#btn-todo").addEventListener("click", () => {
         const todoText = document.querySelector("#todo-input").value;
         if (!todoText) return;
 
-        let todos = getUserData(currentUser) || [];
+       
         todos.push(todoText);
         saveUserData(currentUser, todos);
     });
