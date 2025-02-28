@@ -181,8 +181,6 @@ const filter = (filterType) =>{
     let filteredEvents;
     if(filterType === "upcoming"){
         filteredEvents = events.filter(event => new Date(event.start) > new Date());
-
-        // const savedFilter = JSON.parse(localStorage.getItem("event")) || [];
       
     }else if(filterType === "pastEvents"){
         filteredEvents = events.filter(event => new Date(event.end) < new Date());
