@@ -11,15 +11,19 @@
     <title>Rutiner</title>
 </head>
 <body>
-    <h1>Rutiner</h1>
+    <div class="headerContainer">
+        <a href="/startpage.html"><img src="/icon/house-solid.svg" height="30" width="30" alt="home" id="startPageBtn"></a>
+        <h1>Rutiner</h1>
+        <a href="/startpage.html"><img src="/icon/right-from-bracket-solid.svg" height="30" width="30" alt="logout" id="logoutBtn"></a>
+    </div>
     <div class="flex-container">
         <div class="input-container">
             <input type="text" id="input-routine-title" placeholder="Rutin">
             <select name="priority" id="priority">
                 <option value="" disabled selected>Prioritet</option>
-                <option value="high">Hög</option>
-                <option value="middle">Mellan</option>
-                <option value="low">Låg</option>
+                <option value="Hög">Hög</option>
+                <option value="Mellan">Mellan</option>
+                <option value="Låg">Låg</option>
             </select>
             <select name="repetition" id="repetition">
                 <option value="" disabled selected>Repetition</option>
@@ -44,13 +48,18 @@
                         <option value="lowest-prio">Lägsta prioritet</option>
                         <option value="highest-prio">Högsta prioritet</option>
                     </select>
-                    <select name="filter" id="routineFilter">
-                        <option value="" disabled selected>Filtrera</option>
-                        <option value="all">Alla</option>
-                        <option value="high">Hög</option>
-                        <option value="middle">Mellan</option>
-                        <option value="low">Låg</option>
-                    </select>
+
+                    <fieldset class="fieldset-habits" id="routineFilter">
+                        <legend>Filtrera</legend>
+                        <label for="high">Hög</label>
+                        <input type="checkbox" name="filterCheckboxHabits" id="high" value="Hög">
+        
+                        <label for="middle">Mellan</label>
+                        <input type="checkbox" name="filterCheckboxHabits" id="middle" value="Mellan">
+
+                        <label for="low">Låg</label>
+                        <input type="checkbox" name="filterCheckboxHabits" id="low" value="Låg">
+                    </fieldset>
                 </div>
                 <div class="routineListContainer"></div>
             </div>

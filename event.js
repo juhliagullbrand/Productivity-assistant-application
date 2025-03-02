@@ -120,12 +120,12 @@ const eventEditInput = (eventTextDiv, event) => {
 
     const inputStart = document.createElement("input"); 
     inputStart.type = "datetime-local";
-    inputStart.value = new Date(event.start).toISOString().slice(0, 16); 
+    inputStart.value = event.start.substring(0, 16); 
     inputStart.classList.add("new-input-event");
 
     const inputEnd = document.createElement("input"); 
     inputEnd.type = "datetime-local"; 
-    inputEnd.value = new Date(event.end).toISOString().slice(0, 16);
+    inputEnd.value = event.end.substring(0, 16);
     inputEnd.classList.add("new-input-event");
 
     const saveBtn = document.createElement("button");
@@ -142,7 +142,7 @@ const eventEditInput = (eventTextDiv, event) => {
 
         renderEvents();
     });
-    eventTextDiv.append(inputField, inputEnd, inputStart, saveBtn);
+    eventTextDiv.append(inputField, inputStart, inputEnd, saveBtn);
 };
 
 const eventDeleteButton = (eventActions, eventId) => {

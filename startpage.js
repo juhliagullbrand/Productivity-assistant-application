@@ -1,4 +1,6 @@
 const displayQuote = document.querySelector("#displayQuote");
+const pQuote = document.querySelector("#quote");
+const pAuthor = document.querySelector("#author");
 
 const displayTodoUl = document.querySelector("#displayTodoUl");
 const displayHabitsUl = document.querySelector("#displayHabitsUl");
@@ -83,3 +85,22 @@ document.addEventListener("DOMContentLoaded", () =>{
 })
 
 displayTodo();
+let getData = async () => {
+    const url = "https://dummyjson.com/quotes/random";
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        return json
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+let renderPage = async () => {
+    let quotes = await getData();
+    pQuote.innerText = quotes.quote;
+    pAuthor.innerText = quotes.author;
+}
+
+renderPage();
