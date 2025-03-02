@@ -1,3 +1,4 @@
+//Skapa konto
 document.querySelector("#btn-create-account").addEventListener("click", () => {
     const username = document.querySelector("#username-input-login").value;
     const password = document.querySelector("#password-input-login").value;
@@ -19,9 +20,10 @@ document.querySelector("#btn-create-account").addEventListener("click", () => {
     alert("Konto skapat! Du kan nu logga in.");
 });
 
+//Logga in
 document.querySelector("#btn-login").addEventListener("click", () => {
-    const username = document.querySelector("#username-input-login").value.trim();
-    const password = document.querySelector("#password-input-login").value.trim();
+    const username = document.querySelector("#username-input-login").value;
+    const password = document.querySelector("#password-input-login").value;
 
     const users = JSON.parse(localStorage.getItem("users")) || {};
 
@@ -32,10 +34,3 @@ document.querySelector("#btn-login").addEventListener("click", () => {
         alert("Fel användarnamn eller lösenord. Försök igen.");
     }
 });
-
-// window.addEventListener("DOMContentLoaded", () => {
-//     const currentUser = localStorage.getItem("currentUser");
-//     if (currentUser) {
-//         window.location.href = "startpage.html";
-//     }
-// });
