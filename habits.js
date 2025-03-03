@@ -16,7 +16,7 @@ let routines = getUserData(currentUser);
 
 let addRoutine = () => {
     let routine = routineNameInput.value;
-    let priority = priorityInput.options[priorityInput.selectedIndex].text === "Prioritet" ? null : priorityInput.options[priorityInput.selectedIndex].text;
+    let priority = priorityInput.options[priorityInput.selectedIndex].text === "Prioritet" ? null : priorityInput.options[priorityInput.selectedIndex].value;
     let repetition = repetitionInput.options[repetitionInput.selectedIndex].text === "Repetition" ? null : repetitionInput.options[repetitionInput.selectedIndex].text;
 
     saveUserData(currentUser, routines);
@@ -36,10 +36,15 @@ let addRoutine = () => {
     } else if (!routine || !priority || !repetition){
         alert ("*Obligatoriskt fält!*")
     }
+    resetInputField();
 }
-
 button.addEventListener("click", addRoutine);
 
+let resetInputField = () => {
+    routineNameInput.value = "";
+    priorityInput.value = "";
+    repetitionInput.value = "";
+}
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
     saveUserData(currentUser, routines);
@@ -51,7 +56,11 @@ let createRoutineList = () => {
         saveUserData(currentUser, routines);
     }
 }
+<<<<<<< HEAD
 let createRoutineBox = (r, saveUserData) => {
+=======
+let createRoutineBox = (r) => {
+>>>>>>> origin/develop
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
     let routineRightBox = document.createElement("div");
@@ -78,7 +87,6 @@ let createRoutineBox = (r, saveUserData) => {
     }else if(r.priority === "Låg"){
         priorityBox.classList = "priorityBox priorityLow";
     }
-
 
     let imgMinus = document.createElement("img");
     imgMinus.classList = "imgMinus";
@@ -141,7 +149,6 @@ let createRoutineBox = (r, saveUserData) => {
     deleteBox.append(imgDelete);
 
 }
-
 let increase = (r,repetitionIncrease) => {
     let savedRoutines = getUserData(currentUser);
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
@@ -175,6 +182,7 @@ let reset = (r,repetitionIncrease) => {
 let filterSort = () => {
     let savedRoutine = getUserData(currentUser);
 
+<<<<<<< HEAD
     if(routineFilter.value === "high"){
         savedRoutine = savedRoutine.filter(item => item.priority === "Hög");
     }else if(routineFilter.value === "middle"){
@@ -183,6 +191,13 @@ let filterSort = () => {
         savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
     } else if (routineFilter.value === "all")
 
+=======
+    let checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
+    
+    if(checkedFilters.length > 0) {
+        savedRoutine = savedRoutine.filter(item => checkedFilters.includes(item.priority));
+    }
+>>>>>>> origin/develop
     
     if(routineSort.value === "highest-prio"){
         let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
@@ -195,15 +210,14 @@ let filterSort = () => {
     }else if(routineSort.value === "least-repetitions"){
         savedRoutine.sort((a, b) => a.repetition - b.repetition);
     }
-
+    console.log(savedRoutine);
     document.querySelector(".routineListContainer").innerHTML = "";
     savedRoutine.forEach(r => {
         createRoutineBox(r);
     })
 }
-
-
 routineSort.addEventListener("change",filterSort);
-routineFilter.addEventListener("change",filterSort);
-
 createRoutineList();
+document.querySelectorAll('input[name="filterCheckboxHabits"]').forEach(checkbox => {
+    checkbox.addEventListener("change", filterSort);
+});
