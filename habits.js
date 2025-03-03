@@ -47,7 +47,7 @@ let resetInputField = () => {
 }
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
-    saveUserData(currentUser, routines);
+    routines = getUserData(currentUser);
     if(routines !== null){
         routines.forEach(r => {
             createRoutineBox(r);
@@ -151,7 +151,7 @@ let increase = (r,repetitionIncrease) => {
     if(updatedRoutine.currentRepetition < updatedRoutine.repetition){
         updatedRoutine.currentRepetition += 1; 
         repetitionIncrease.innerText = updatedRoutine.currentRepetition;
-        saveUserData(currentUser, routines);
+        saveUserData(currentUser, savedRoutines);
     }else{
         alert("Du har uppfyllt ditt mål!");
     }
@@ -184,9 +184,8 @@ let filterSort = () => {
         savedRoutine = savedRoutine.filter(item => item.priority === "Mellan");
     }else if(routineFilter.value === "low"){
         savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
-    } else if (routineFilter.value === "all")
-
-    checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
+    } 
+    let checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
     
     if(checkedFilters.length > 0) {
         savedRoutine = savedRoutine.filter(item => checkedFilters.includes(item.priority));
@@ -203,7 +202,6 @@ let filterSort = () => {
     }else if(routineSort.value === "least-repetitions"){
         savedRoutine.sort((a, b) => a.repetition - b.repetition);
     }
-    console.log(savedRoutine);
     document.querySelector(".routineListContainer").innerHTML = "";
     savedRoutine.forEach(r => {
         createRoutineBox(r);
