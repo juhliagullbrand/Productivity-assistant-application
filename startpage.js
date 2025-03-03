@@ -36,7 +36,7 @@ const displayTodo = () => {
         return;
     }
 
-    const sortTodo = todos.filter(todo => todo.completed === true).slice(0, 3);
+    const sortTodo = todos.filter(todo => todo.completed === false).slice(0, 3);
 
     if (sortTodo.length === 0) {
         displayTodoUl.innerHTML = "<li>Du har inga pågående ärenden</li>";
@@ -45,7 +45,7 @@ const displayTodo = () => {
         sortTodo.forEach(todo => {
             const liStartpage = document.createElement("li");
             liStartpage.classList.add("liStartpage");
-            liStartpage.textContent = todo.description || "Inga ärenden";
+            liStartpage.textContent = todo.title || "Inga ärenden";
             displayTodoUl.appendChild(liStartpage);
         });
     }
@@ -53,7 +53,7 @@ const displayTodo = () => {
 
 const displayHabits = () => {
     const sortHabit = habits
-        .sort((a, b) => b.currentRepetition - a.currentRepetition)
+        .sort((a, b) => b.repetition - a.repetition)
         .slice(0, 3);
 
     if (sortHabit.length === 0) {
