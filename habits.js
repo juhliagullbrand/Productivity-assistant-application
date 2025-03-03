@@ -1,12 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#routineBtn").addEventListener("click", () => {
-        const routineText = document.querySelector("#routine-input").value;
-        if (!routineText) return;
-
-        routines.push(routineText);
-        saveUserData(currentUser, routines);
-    });
-});
 
 const getUserData = (username) => JSON.parse(localStorage.getItem(`routines_${username}`)) || [];
 const saveUserData = (username, data) => localStorage.setItem(`routines_${username}`, JSON.stringify(data));

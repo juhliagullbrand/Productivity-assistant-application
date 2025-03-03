@@ -1,19 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    document.querySelector("#btn-todo").addEventListener("click", () => {
-        const todoText = document.querySelector("#todo-input").value;
-        if (!todoText) return;
-
-       
-        todos.push(todoText);
-        saveUserData(currentUser, todos);
-    });
-});
-
 const getUserData = (username) => JSON.parse(localStorage.getItem(`todos_${username}`)) || [];
 const saveUserData = (username, data) => localStorage.setItem(`todos_${username}`, JSON.stringify(data));
-
-
 
 const inputTitle = document.querySelector("#input-title-todo");
 const inputDescription = document.querySelector("#input-description-todo");

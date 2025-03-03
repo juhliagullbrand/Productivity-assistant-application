@@ -1,13 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    document.querySelector("#eventBtn").addEventListener("click", () => {
-        const eventText = document.querySelector("#event-input").value;
-        if (!eventText) return;
-
-        events.push(eventText);
-        saveUserData(currentUser, events);
-    });
-});
 
 const getUserData = (username) => JSON.parse(localStorage.getItem(`events_${username}`)) || [];
 const saveUserData = (username, data) => localStorage.setItem(`events_${username}`, JSON.stringify(data));
