@@ -1,3 +1,7 @@
+
+const getUserData = (username) => JSON.parse(localStorage.getItem(`events_${username}`)) || [];
+const saveUserData = (username, data) => localStorage.setItem(`events_${username}`, JSON.stringify(data));
+
 const inputTitleEvent = document.querySelector("#inputTitleEvent"); 
 const startDateEvent = document.querySelector("#startDate-event");
 const endDateEvent = document.querySelector("#endDate-event"); 
@@ -5,7 +9,8 @@ const eventForm = document.querySelector("#eventForm");
 const displayEvent = document.querySelector("#displayEvent");
 const filterEvents = document.querySelector("#filterEvents");
 
-let events = JSON.parse(localStorage.getItem("events")) || [];
+const currentUser = localStorage.getItem("currentUser");
+let events = getUserData(currentUser); 
 
 if (events.length === 0) {
     displayEvent.classList.add("hidden");
@@ -56,7 +61,7 @@ const renderEvents = () => {
         createEventBox(event);
     });
 
-    localStorage.setItem("events", JSON.stringify(events)); 
+    saveUserData(currentUser, events);
     if (events.length === 0) {
         displayEvent.classList.add("hidden");
     } else {
@@ -138,7 +143,7 @@ const eventEditInput = (eventTextDiv, event) => {
         event.start = inputStart.value; 
         event.end = inputEnd.value; 
         
-        localStorage.setItem("events", JSON.stringify(events));
+        saveUserData(currentUser, events); 
 
         renderEvents();
     });
@@ -166,8 +171,6 @@ const filter = (filterType) =>{
     let filteredEvents;
     if(filterType === "upcoming"){
         filteredEvents = events.filter(event => new Date(event.start) > new Date());
-
-        // const savedFilter = JSON.parse(localStorage.getItem("event")) || [];
       
     }else if(filterType === "pastEvents"){
         filteredEvents = events.filter(event => new Date(event.end) < new Date());

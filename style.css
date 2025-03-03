@@ -76,6 +76,9 @@ div.flex-container{
   margin-right: 2%;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
+}
 .headerContainer{
 display: flex;
 justify-content: space-between;
@@ -85,7 +88,7 @@ margin: 0 4% 0 4%;
 
 /* STYLE TODO */
 
-.box-todo{
+.box-todo, .input-container{
   background-color: var(--primary-background-color);
   width: 1000px;
   border-radius: 20px;
@@ -322,7 +325,8 @@ div.todoSelectDiv{
   border-radius: 15px;
   margin-bottom: 4%;
 }
-.btn-login{
+
+.btn-login, .btn-create-account{
   width: 49%;
   height: 45px;
   border-radius: 15px;
@@ -358,3 +362,4 @@ div.todoSelectDiv{
 #displayQuote{
   text-align: center;
 }
+

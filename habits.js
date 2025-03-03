@@ -1,3 +1,7 @@
+
+const getUserData = (username) => JSON.parse(localStorage.getItem(`routines_${username}`)) || [];
+const saveUserData = (username, data) => localStorage.setItem(`routines_${username}`, JSON.stringify(data));
+
 let button = document.querySelector("#routineBtn");
 let routineNameInput = document.querySelector("#input-routine-title");
 let priorityInput = document.querySelector("#priority");
@@ -7,24 +11,27 @@ let routineListContainer = document.querySelector(".routineListContainer");
 let routineFilter = document.querySelector("#routineFilter");
 let routineSort = document.querySelector("#routineSort");
 
+const currentUser = localStorage.getItem("currentUser");
+let routines = getUserData(currentUser); 
+
 let addRoutine = () => {
     let routine = routineNameInput.value;
     let priority = priorityInput.options[priorityInput.selectedIndex].text === "Prioritet" ? null : priorityInput.options[priorityInput.selectedIndex].value;
     let repetition = repetitionInput.options[repetitionInput.selectedIndex].text === "Repetition" ? null : repetitionInput.options[repetitionInput.selectedIndex].text;
 
-    let routineArr = JSON.parse(localStorage.getItem("routine"));
+    saveUserData(currentUser, routines);
 
     if(routine && priority && repetition){
         let routineObject = {
-            id: routineArr.length ? routineArr.length + 1 : 0,
+            id: routines.length ? routines.length + 1 : 0,
             routine: routine,
             priority: priority,
             repetition: repetition,
             currentRepetition: 0
         }
 
-    routineArr.push(routineObject);
-    localStorage.setItem("routine",JSON.stringify(routineArr));
+    routines.push(routineObject);
+    saveUserData(currentUser, routines);
     createRoutineList();
     } else if (!routine || !priority || !repetition){
         alert ("*Obligatoriskt fält!*")
@@ -40,13 +47,13 @@ let resetInputField = () => {
 }
 let createRoutineList = () => {
     document.querySelector(".routineListContainer").innerHTML = "";
-    let savedRoutine = JSON.parse(localStorage.getItem("routine"));
-    if(savedRoutine !== null){
-        savedRoutine.forEach(r => {
-            createRoutineBox(r, savedRoutine);
+    saveUserData(currentUser, routines);
+    if(routines !== null){
+        routines.forEach(r => {
+            createRoutineBox(r);
         });
     }else{
-        localStorage.setItem("routine",JSON.stringify([]))
+        saveUserData(currentUser, routines);
     }
 }
 let createRoutineBox = (r) => {
@@ -123,9 +130,9 @@ let createRoutineBox = (r) => {
     imgDelete.style.cursor = "pointer";
 
     deleteBox.addEventListener("click", () => {
-        let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+        let savedRoutine = getUserData(currentUser);
         let updatedRoutine = savedRoutine.filter(item => item.id !== r.id);
-        localStorage.setItem("routine", JSON.stringify(updatedRoutine));
+        saveUserData(currentUser, updatedRoutine);
         createRoutineList();
     });
 
@@ -139,39 +146,47 @@ let createRoutineBox = (r) => {
 
 }
 let increase = (r,repetitionIncrease) => {
-    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let savedRoutines = getUserData(currentUser);
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
     if(updatedRoutine.currentRepetition < updatedRoutine.repetition){
         updatedRoutine.currentRepetition += 1; 
         repetitionIncrease.innerText = updatedRoutine.currentRepetition;
-        localStorage.setItem("routine", JSON.stringify(savedRoutines));
+        saveUserData(currentUser, routines);
     }else{
         alert("Du har uppfyllt ditt mål!");
     }
     
 }
 let decrease = (r,repetitionIncrease) => {
-    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let savedRoutines = getUserData(currentUser);
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
     if(updatedRoutine.currentRepetition > 0){
         updatedRoutine.currentRepetition -= 1; 
         repetitionIncrease.innerText = updatedRoutine.currentRepetition;
-        localStorage.setItem("routine", JSON.stringify(savedRoutines));
+        saveUserData(currentUser, savedRoutines);
     }else{
         alert("Du kan inte gå lägre!");
     }
 }
 let reset = (r,repetitionIncrease) => {
-    let savedRoutines = JSON.parse(localStorage.getItem("routine"));
+    let savedRoutines = getUserData(currentUser);
     let updatedRoutine = savedRoutines.find(item => item.id === r.id);
     updatedRoutine.currentRepetition = 0; 
     repetitionIncrease.innerText = updatedRoutine.currentRepetition;
-    localStorage.setItem("routine", JSON.stringify(savedRoutines));
+    saveUserData(currentUser, savedRoutines);
 }
 let filterSort = () => {
-    let savedRoutine = JSON.parse(localStorage.getItem("routine")) || [];
+    let savedRoutine = getUserData(currentUser);
 
-    let checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
+    if(routineFilter.value === "high"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Hög");
+    }else if(routineFilter.value === "middle"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Mellan");
+    }else if(routineFilter.value === "low"){
+        savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
+    } else if (routineFilter.value === "all")
+
+    checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
     
     if(checkedFilters.length > 0) {
         savedRoutine = savedRoutine.filter(item => checkedFilters.includes(item.priority));
