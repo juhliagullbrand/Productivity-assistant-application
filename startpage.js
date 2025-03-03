@@ -17,19 +17,16 @@ const displayEvent = () => {
     
     if(sortEvent.length === 0){
         displayEventUl.innerHTML="<li> Du har inga Kommande Händelser</li>"
-    }else{
+    } else {
             displayEventUl.innerHTML = ""; 
-            
             sortEvent.forEach(event => {
                 const liStartpage = document.createElement("li");
                 liStartpage.classList.add("liStartpage");
-
                 liStartpage.textContent = `${event.title}`;
+
                 displayEventUl.appendChild(liStartpage);
             });
-
         }
-
 };
 
 const displayTodo = () => {
@@ -50,8 +47,8 @@ const displayTodo = () => {
         sortTodo.forEach(todo => {
             const liStartpage = document.createElement("li");
             liStartpage.classList.add("liStartpage");
+            liStartpage.textContent = todo.description || "Inga ärenden";
 
-            liStartpage.textContent = todo.text || "Inga ärende";
             displayTodoUl.appendChild(liStartpage);
         });
     }
@@ -64,14 +61,14 @@ const displayHabits = () =>{
 
     if(sortHabit.length === 0){
         displayHabitsUl.innerHTML = "<li>Du har inga pågåend varnor ännu</li>";
-    }else{
+    } else {
         displayHabitsUl.innerHTML = "";
 
         sortHabit.forEach(habit =>{
             const liStartpage = document.createElement("li");
             liStartpage.classList.add("liStartpage");
-
             liStartpage.textContent = `${habit.routine} - ${habit.currentRepetition} repetitioner`;
+
             displayHabitsUl.appendChild(liStartpage);
         });
     }
@@ -81,10 +78,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     displayEvent();
     displayTodo();
     displayHabits();
-
 })
 
-displayTodo();
 let getData = async () => {
     const url = "https://dummyjson.com/quotes/random";
     try {
@@ -102,5 +97,4 @@ let renderPage = async () => {
     pQuote.innerText = quotes.quote;
     pAuthor.innerText = quotes.author;
 }
-
 renderPage();
