@@ -76,16 +76,14 @@ div.flex-container{
   margin-right: 2%;
 }
 
-<<<<<<< HEAD
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
-=======
+}
 .headerContainer{
 display: flex;
 justify-content: space-between;
 align-items: center;
 margin: 0 4% 0 4%;
->>>>>>> origin/develop
 }
 
 /* STYLE TODO */

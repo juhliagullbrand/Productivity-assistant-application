@@ -56,11 +56,7 @@ let createRoutineList = () => {
         saveUserData(currentUser, routines);
     }
 }
-<<<<<<< HEAD
-let createRoutineBox = (r, saveUserData) => {
-=======
 let createRoutineBox = (r) => {
->>>>>>> origin/develop
     let routineBox = document.createElement("div");
     routineBox.classList = "routine-box";
     let routineRightBox = document.createElement("div");
@@ -182,7 +178,6 @@ let reset = (r,repetitionIncrease) => {
 let filterSort = () => {
     let savedRoutine = getUserData(currentUser);
 
-<<<<<<< HEAD
     if(routineFilter.value === "high"){
         savedRoutine = savedRoutine.filter(item => item.priority === "Hög");
     }else if(routineFilter.value === "middle"){
@@ -191,13 +186,11 @@ let filterSort = () => {
         savedRoutine = savedRoutine.filter(item => item.priority === "Låg");
     } else if (routineFilter.value === "all")
 
-=======
-    let checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
+    checkedFilters = Array.from(document.querySelectorAll('input[name="filterCheckboxHabits"]:checked')).map(checkbox => checkbox.value);
     
     if(checkedFilters.length > 0) {
         savedRoutine = savedRoutine.filter(item => checkedFilters.includes(item.priority));
     }
->>>>>>> origin/develop
     
     if(routineSort.value === "highest-prio"){
         let priorityOrder = {"Hög": 1, "Mellan": 2, "Låg": 3};
