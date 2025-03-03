@@ -8,15 +8,9 @@ const displayEventUl = document.querySelector("#displayEventUl");
 
 const currentUser = localStorage.getItem("currentUser");
 
-let todos = [];
-let habits = [];
-let events = [];
-
-if (currentUser) {
-    todos = JSON.parse(localStorage.getItem(`todos_${currentUser}`)) || [];
-    habits = JSON.parse(localStorage.getItem(`routines_${currentUser}`)) || [];
-    events = JSON.parse(localStorage.getItem(`events_${currentUser}`)) || [];
-} 
+const todos = JSON.parse(localStorage.getItem(`todos_${currentUser}`)) || [];
+const habits = JSON.parse(localStorage.getItem(`routines_${currentUser}`)) || [];
+const events = JSON.parse(localStorage.getItem(`events_${currentUser}`)) || [];
 
 const displayEvent = () => {
     const sortEvent = events
