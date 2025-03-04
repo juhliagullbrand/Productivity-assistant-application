@@ -105,7 +105,7 @@ margin: 0 4% 0 4%;
   width: 25px;
   margin-right: 1%;
 }
-.btn-todo, .save-btn-todo, .save-btn-event{
+.btn-todo, .save-btn-todo, .save-btn-event, .eventBtn{
   height: 60px;
   width: 100px;
   border: none;
@@ -238,19 +238,16 @@ div.todoSelectDiv{
 /* STYLE EVENT */
 
 #inputTitleEvent{
-  width: 25rem;
+  width: 10rem;
   margin-right: 2%;
 }
-
-#eventBtn{
+#eventBtnPlace{
   display: grid;
   place-items: center;
   margin: 2% auto;
   width: 25rem;
   height: 60px;
   border: none;
-  border-radius: 20px;
-  background-color: var(--button-background-color);
 }
 
 #displayEvent{
@@ -274,15 +271,7 @@ div.todoSelectDiv{
  
 }
 
-#eventTitle{
-  background-color: var(--primary-background-color);
-  border-radius: 20px;
- padding: 1rem;
- margin: 1rem;
-}
-
-#eventStart, #eventEnd{
-  background-color: var(--primary-background-color);
+#eventStart, #eventEnd, #eventTitle{
   border-radius: 20px;
  padding: 1rem;
  margin: 1rem;
@@ -349,15 +338,32 @@ div.todoSelectDiv{
   margin: 1.5rem;
 }
 
-.linkBtn{
-  display: inline-block;
-  text-decoration: none;
-  color: var(--primary-font-color);
-  background-color: var(--button-background-color);
-  border-radius: 20px;
-  border: none;
-  padding: 1.2rem;
+a{
+  padding: 1rem;
 }
+
+#linkStyle{
+  display: inline-block;
+  margin-top: 1.5rem;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  font-weight: 600;
+  cursor: pointer;
+
+} 
+
+a#linkStyl.linkBtn{
+  display: inline-block;
+  max-width: auto ;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+
+} 
+
+li.liStartpage{
+  margin-top: 1rem;
+}
+
 
 #displayQuote{
   text-align: center;
