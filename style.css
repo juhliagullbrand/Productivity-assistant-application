@@ -176,8 +176,10 @@ div.todoSelectDiv{
 }
 .routineSortAndFilterContainer{
   display: flex;
- align-items: flex-end;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 2%;
+  width: 62rem;
 }
 .routine-box{
   display: flex;
@@ -187,7 +189,7 @@ div.todoSelectDiv{
   color: var(--primary-font-color);
   padding: 2%;
   height: 40px;
-  width: 100%;
+  width: 60rem;
   margin-bottom: 2%;
 }
 .priorityBox{
