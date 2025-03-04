@@ -4,6 +4,7 @@ const endDateEvent = document.querySelector("#endDate-event");
 const eventForm = document.querySelector("#eventForm"); 
 const displayEvent = document.querySelector("#displayEvent");
 const filterEvents = document.querySelector("#filterEvents");
+const filterEventBtn = document.querySelector(".filter-events")
 
 let events = JSON.parse(localStorage.getItem("events")) || [];
 
@@ -57,6 +58,7 @@ const renderEvents = () => {
     });
 
     localStorage.setItem("events", JSON.stringify(events)); 
+
     if (events.length === 0) {
         displayEvent.classList.add("hidden");
     } else {
@@ -64,6 +66,13 @@ const renderEvents = () => {
     }
 };
 
+const hiddenBtn = () =>{
+    if(events.length === 0){
+        filterEventBtn.classList.add("hidden");
+    }else{
+        filterEventBtn.classList.remove("hidden");
+    }
+};
 eventForm.addEventListener("submit", (e) => {
     e.preventDefault(); 
     displayEvent.classList.remove("hidden");
@@ -91,6 +100,7 @@ eventForm.addEventListener("submit", (e) => {
 
     events.push(newEvent);
     renderEvents();
+    hiddenBtn();
     eventForm.reset();
 });
 
@@ -134,10 +144,18 @@ const eventEditInput = (eventTextDiv, event) => {
 
 
     saveBtn.addEventListener("click", () => {
+        
+        const newStart = inputStart.value;
+        const newEnd = inputEnd.value;
+        
+        if (new Date(newStart) >= new Date(newEnd)) {
+            alert("Startdatum måste vara före slutdatum!");
+            return;
+        }
         event.title = inputField.value;
         event.start = inputStart.value; 
         event.end = inputEnd.value; 
-        
+
         localStorage.setItem("events", JSON.stringify(events));
 
         renderEvents();
