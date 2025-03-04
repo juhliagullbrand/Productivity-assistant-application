@@ -255,12 +255,14 @@ const createUncheckedBtn = (todoActions, todoDivFlex, todo) => {
     todoActions.append(uncheckedBtn);
 
     uncheckedBtn.addEventListener("click", () => {
-        uncheckedBtn.remove();
+        let checkedBtn =  createCheckedBtn(todoActions, todoDivFlex, todo);
+        uncheckedBtn.replaceWith(checkedBtn);
         todoDivFlex.dataset.completed = "true";
         todo.completed = true;
         saveUserData(currentUser, todos); 
-        createCheckedBtn(todoActions, todoDivFlex, todo);
     });
+
+    return uncheckedBtn;
 };
 
 const createCheckedBtn = (todoActions, todoDivFlex, todo) => {
@@ -275,12 +277,14 @@ const createCheckedBtn = (todoActions, todoDivFlex, todo) => {
     todoActions.append(checkedBtn);
 
     checkedBtn.addEventListener("click", () => {
-        checkedBtn.remove();
+        let uncheckedBtn = createUncheckedBtn(todoActions, todoDivFlex, todo);
+        checkedBtn.replaceWith(uncheckedBtn);
         todoDivFlex.dataset.completed = "false";
         todo.completed = false;
         saveUserData(currentUser, todos); 
-        createUncheckedBtn(todoActions, todoDivFlex, todo);
     });
+    
+    return checkedBtn;
 };
 
 const filterTasks = () => {
