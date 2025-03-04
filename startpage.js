@@ -5,12 +5,15 @@ const pAuthor = document.querySelector("#author");
 const displayTodoUl = document.querySelector("#displayTodoUl");
 const displayHabitsUl = document.querySelector("#displayHabitsUl");
 const displayEventUl = document.querySelector("#displayEventUl");
+const greetingH1 = document.querySelector("#greeting-startpage");
 
 const currentUser = localStorage.getItem("currentUser");
 
 const todos = JSON.parse(localStorage.getItem(`todos_${currentUser}`)) || [];
 const habits = JSON.parse(localStorage.getItem(`routines_${currentUser}`)) || [];
 const events = JSON.parse(localStorage.getItem(`events_${currentUser}`)) || [];
+
+greetingH1.textContent = `Välkommen ${currentUser}`;
 
 const displayEvent = () => {
     const sortEvent = events
