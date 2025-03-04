@@ -29,18 +29,18 @@
               <input type="datetime-local" name="deadline" id="endDate-event" class="datepicker" />
               <button type="submit" class="eventBtn" id="eventBtnPlace">Lägg till</button>
           </form>
+          <div class="filter-events">
+              <select id="filterEvents">
+                <option value="">Filtrera</option>
+                <option value="all">Alla Händelser</option>
+                <option value="upcoming" id="upcoming">Kommande händelser</option>
+                <option value="pastEvents" id="pastEvents">Tidigare händelser</option>
+              </select>
+          </div>
+          <div id="displayEvent"></div>
       </div>
   
-      <div class="filter-events hidden">
-          <select id="filterEvents">
-            <option value="">Filtrera</option>
-            <option value="all">Alla Händelser</option>
-            <option value="upcoming" id="upcoming">Kommande händelser</option>
-            <option value="pastEvents" id="pastEvents">Tidigare händelser</option>
-          </select>
-      </div>
   
-      <div id="displayEvent" class="hidden"></div>
   </div>
   </body>
 </html>
