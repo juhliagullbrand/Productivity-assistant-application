@@ -296,7 +296,7 @@ margin-right: 1rem;
 a{
   padding: 1rem;
 }
-#linkStyle{
+.linkStyle{
   display: inline-block;
   margin-top: 1.5rem;
   border-radius: 20px;
