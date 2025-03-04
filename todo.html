@@ -41,7 +41,7 @@
                 <button class="btn-todo" id="btn-todo">Lägg till</button>
             </div>
             <div class="filter-container-todo">
-              <fieldset class="fieldset-todo">
+              <fieldset class="fieldset-todo filter">
                 <legend>Filtrera</legend>
                   <label for="filter-status-done"> Slutförda</label>
                   <input type="checkbox" id="filter-status-done" name="filter-status" value="done">
@@ -58,7 +58,7 @@
                   <input type="checkbox" id="pleasure" name="filter-category-checkbox-todo" value="Nöje">
               </fieldset>
               <div class="sort-container-todo">
-              <select name="category" id="sort-dropdown-todo">
+              <select name="category" class="sort" id="sort-dropdown-todo">
                 <option value="" disabled selected>Sortera</option>
                 <option value="deadline-increasing">Deadline (stigande)</option>
                 <option value="deadline-decreasing">Deadline (fallande)</option>
