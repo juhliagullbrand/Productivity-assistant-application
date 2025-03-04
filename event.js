@@ -136,7 +136,7 @@ const eventEditInput = (eventTextDiv, event) => {
 
     const saveBtn = document.createElement("button");
     saveBtn.innerText = "Spara";
-    saveBtn.classList.add("save-btn-event");
+    saveBtn.classList.add("btn");
 
 
     saveBtn.addEventListener("click", () => {

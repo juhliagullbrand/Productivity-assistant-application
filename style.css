@@ -28,19 +28,23 @@ body{
 p{
   font-size: var(--p-font-size);
 }
+
 h2{
   font-size: var(--small-title-font-size);
 }
+
 h1{
   font-size: var(--big-title-font-size);
   margin: 3% 0;
   text-align: center;
 }
+
 .flex-container{
   display: flex;
   align-items: center;
   flex-direction: column;
 } 
+
 .input{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
@@ -48,17 +52,11 @@ h1{
   border: none;
   padding: 2%;
 }
-.category-todo,
-.priority-routine,
-.repetition-routine,
-.input-routine-title{
-  margin-top: 2%;
-  margin-right: 2%;
-}
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
 }
+
 .headerContainer{
 display: flex;
 justify-content: space-between;
@@ -91,35 +89,31 @@ margin: 0 4% 0 4%;
   cursor: pointer;
 }
 
-/* STYLE TODO */
-
-.box-todo, .input-container{
+.input-container{
   background-color: var(--primary-background-color);
   width: 1000px;
   border-radius: 20px;
   padding: 2%;
 }
-.description-todo{
-  width: 720px;
-  margin-left: 2%;
-}
-#deadline-label-todo, #time-estimate-label-todo, .deadline-todo, #startDate-label, #endDate-label, #startDate-event {
+
+.margin-right{
   margin-right: 1%;
+}
+
+.margin-top-right{
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+/* STYLE TODO */
+
+.description-todo{
+ 
 }
 .time-estimate-todo {
   width: 25px;
   margin-right: 1%;
 }
-.save-btn-event, .eventBtn{
-  height: 60px;
-  width: 100px;
-  border: none;
-  border-radius: 20px;
-  background-color: var(--button-background-color);
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .select-container-todo{
   margin-bottom: 10%;
 }
