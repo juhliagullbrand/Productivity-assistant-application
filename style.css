@@ -88,12 +88,24 @@ margin: 0 4% 0 4%;
   font-weight: 600;
   cursor: pointer;
 }
+.btn-style-background{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 .input-container{
   background-color: var(--primary-background-color);
   width: 1000px;
   border-radius: 20px;
   padding: 2%;
+}
+
+.new-input{
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  border: 1px solid lightgrey;
 }
 
 .margin-right{
@@ -108,11 +120,11 @@ margin: 0 4% 0 4%;
 /* STYLE TODO */
 
 .description-todo{
- 
+ width: 720px;
+ margin-left: 2%;
 }
 .time-estimate-todo {
   width: 25px;
-  margin-right: 1%;
 }
 .select-container-todo{
   margin-bottom: 10%;
@@ -129,17 +141,7 @@ div.todoSelectDiv{
   display: flex;
   justify-content: space-evenly;
 }
-.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event, .unchecked-btn-todo, .checked-btn-todo{
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-.new-input-title, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  border: 1px solid lightgrey;
-}
+
 .filter-container-todo, .todoTextDiv{
   display: flex;
   justify-content: space-between;

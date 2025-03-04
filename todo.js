@@ -92,7 +92,7 @@ const clearInputs = () => {
 
 const todoEditBtn = (todoActions, todo, todoTextDiv, todoSelectDiv, todoDivFlex) => {
     const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-btn-todo");
+    editBtn.classList.add("btn-style-background");
 
     const iconEdit = document.createElement("img");
     iconEdit.src = "/icon/edit.png";
@@ -117,27 +117,27 @@ const todoEditInput = (todo, todoTextDiv, todoSelectDiv, todoActions, todoDivFle
     const titleInput = document.createElement("input");
     titleInput.type = "text";
     titleInput.value = todo.title;
-    titleInput.classList.add("new-input-title");
+    titleInput.classList.add("new-input");
 
     const descriptionInput = document.createElement("input");
     descriptionInput.type = "text";
     descriptionInput.value = todo.description;
-    descriptionInput.classList.add("new-input-description");
+    descriptionInput.classList.add("new-input");
 
     const categoryInput = document.createElement("input");
     categoryInput.type = "text";
     categoryInput.value = todo.category;
-    categoryInput.classList.add("new-input-category");
+    categoryInput.classList.add("new-input");
 
     const deadlineInput = document.createElement("input");
     deadlineInput.type = "date";
     deadlineInput.value = todo.deadline;
-    deadlineInput.classList.add("new-input-deadline");
+    deadlineInput.classList.add("new-input");
 
     const timeEstimateInput = document.createElement("input");
     timeEstimateInput.type = "number";
     timeEstimateInput.value = todo.timeEstimate;
-    timeEstimateInput.classList.add("new-input-timeEstimate");
+    timeEstimateInput.classList.add("new-input");
 
     const saveBtn = document.createElement("button");
     saveBtn.innerText = "Spara";
@@ -227,7 +227,7 @@ const todoEditInput = (todo, todoTextDiv, todoSelectDiv, todoActions, todoDivFle
 
 const todoDeleteBtn = (todoActions, todo, todoDivFlex) => {
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("deleteBtn-event");
+    deleteBtn.classList.add("btn-style-background");
 
     const iconDelete = document.createElement("img");
     iconDelete.src = "/icon/delete.png";
@@ -245,7 +245,7 @@ const todoDeleteBtn = (todoActions, todo, todoDivFlex) => {
 
 const createUncheckedBtn = (todoActions, todoDivFlex, todo) => {
     let uncheckedBtn = document.createElement("button");
-    uncheckedBtn.classList.add("unchecked-btn-todo");
+    uncheckedBtn.classList.add("btn-style-background");
 
     let iconUnchecked = document.createElement("img");
     iconUnchecked.src = "/icon/unchecked.png";
@@ -267,7 +267,7 @@ const createUncheckedBtn = (todoActions, todoDivFlex, todo) => {
 
 const createCheckedBtn = (todoActions, todoDivFlex, todo) => {
     let checkedBtn = document.createElement("button");
-    checkedBtn.classList.add("checked-btn-todo");
+    checkedBtn.classList.add("btn-style-background");
 
     let iconChecked = document.createElement("img");
     iconChecked.src = "/icon/checked.png";
