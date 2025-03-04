@@ -103,6 +103,7 @@ margin: 0 4% 0 4%;
   width: 1000px;
   border-radius: 20px;
   padding: 2%;
+  margin-bottom: 2%;
 }
 #input-description-todo{
   width: 720px;
@@ -200,6 +201,12 @@ div.todoSelectDiv{
   height: 30px;
   width: 70px;
 }
+.deleteBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .priorityHigh{
   background-color: var(--pink-background-color);
 }
