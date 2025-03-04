@@ -57,13 +57,6 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
 }
 
-.headerContainer{
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 0 4% 0 4%;
-}
-
 .filter{
   display: flex;
   gap: 10px;
@@ -88,6 +81,7 @@ margin: 0 4% 0 4%;
   font-weight: 600;
   cursor: pointer;
 }
+
 .btn-style-background{
   background: transparent;
   border: none;
@@ -117,6 +111,13 @@ margin: 0 4% 0 4%;
   margin-right: 2%;
 }
 
+.headerContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 4% 0 4%;
+  }
+
 /* STYLE TODO */
 
 .description-todo{
@@ -137,11 +138,10 @@ margin: 0 4% 0 4%;
   margin-bottom: 2%;
   padding: 2%;
 }
-div.todoSelectDiv{
+.todoSelectDiv{
   display: flex;
   justify-content: space-evenly;
 }
-
 .filter-container-todo, .todoTextDiv{
   display: flex;
   justify-content: space-between;
@@ -151,7 +151,6 @@ div.todoSelectDiv{
 .select-edit-form-todo{
   display: flex;
   gap: 40px;
-
 }
 
 /* STYLE HABIT */
@@ -195,7 +194,6 @@ div.todoSelectDiv{
 .priorityMiddle{
   background-color: var(--orange-background-color);
 }
-
 .routineRightBox{
   display: flex;
   width: 30%;
@@ -206,15 +204,12 @@ div.todoSelectDiv{
   display: flex;
   flex-direction: column;
 }
-
 .repetitionsDiv{
   display: flex;
 }
-
 .minusPlusRepeatBox{
   display: flex;
 }
-
 .fieldset-habits{
   display: flex;
   gap: 10px;
@@ -224,11 +219,11 @@ div.todoSelectDiv{
 
 /* STYLE EVENT */
 
-#inputTitleEvent{
+.inputTitleEvent{
   width: 20rem;
   margin-right: 2%;
 }
-#eventBtnPlace{
+.eventBtn{
   display: grid;
   place-items: center;
   margin: 2% auto;
@@ -291,19 +286,16 @@ margin-right: 1rem;
 
 /* Startpage */
 
-#startpageBox{
+.startpageBox{
   display: flex;
   margin: 1.5rem;
 }
-
 .startpageContainer{
   margin: 1.5rem;
 }
-
 a{
   padding: 1rem;
 }
-
 #linkStyle{
   display: inline-block;
   margin-top: 1.5rem;
@@ -311,23 +303,17 @@ a{
   background-color: var(--button-background-color);
   font-weight: 600;
   cursor: pointer;
-
 } 
-
-a#linkStyl.linkBtn{
+.linkBtn{
   display: inline-block;
   max-width: auto ;
   border-radius: 20px;
   background-color: var(--button-background-color);
-
 } 
-
-li.liStartpage{
+.liStartpage{
   margin-top: 1rem;
 }
-
-
-#displayQuote{
+.displayQuote{
   text-align: center;
 }
 
