@@ -98,7 +98,7 @@ margin: 0 4% 0 4%;
   width: 720px;
   margin-left: 2%;
 }
-#deadline-label-todo, #time-estimate-label-todo, #deadline-todo{
+#deadline-label-todo, #time-estimate-label-todo, #deadline-todo, #startDate-label, #endDate-label, #startDate-event {
   margin-right: 1%;
 }
 #time-estimate-todo {
@@ -238,7 +238,7 @@ div.todoSelectDiv{
 /* STYLE EVENT */
 
 #inputTitleEvent{
-  width: 10rem;
+  width: 20rem;
   margin-right: 2%;
 }
 #eventBtnPlace{
@@ -246,8 +246,6 @@ div.todoSelectDiv{
   place-items: center;
   margin: 2% auto;
   width: 25rem;
-  height: 60px;
-  border: none;
 }
 
 #displayEvent{
@@ -286,14 +284,6 @@ div.todoSelectDiv{
   margin-bottom: -1.5rem;
 }
 
-/* #filterEvents{
-  color: var(--primary-font-color);
-  background-color: var(--primary-container-color);
-  border-radius: 20px;
-  border: none;
-  padding: 2%;
-  cursor: pointer;
-} */
 
 .past-event{
   text-decoration: line-through;
