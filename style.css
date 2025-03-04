@@ -38,16 +38,12 @@ h1{
   margin: 3% 0;
   text-align: center;
 }
-div.flex-container{
+.flex-container{
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-#input-title-todo,
-#input-description-todo,
-#category-todo,
-#deadline-todo,
-#time-estimate-todo,
+
 #input-routine-title,
 #priority,
 #repetition,
@@ -56,14 +52,15 @@ div.flex-container{
 .password-input-login,
 .username-input-login, 
 #filterEvents, 
-.startpageContainer{
+.startpageContainer,
+.input{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
   border: none;
   padding: 2%;
 }
-#category-todo,
+.category-todo,
 #priority,
 #repetition,
 #input-routine-title{
@@ -96,26 +93,7 @@ margin: 0 4% 0 4%;
   border-radius: 10px;
 }
 
-/* STYLE TODO */
-
-.box-todo, .input-container{
-  background-color: var(--primary-background-color);
-  width: 1000px;
-  border-radius: 20px;
-  padding: 2%;
-}
-#input-description-todo{
-  width: 720px;
-  margin-left: 2%;
-}
-#deadline-label-todo, #time-estimate-label-todo, #deadline-todo, #startDate-label, #endDate-label, #startDate-event {
-  margin-right: 1%;
-}
-#time-estimate-todo {
-  width: 25px;
-  margin-right: 1%;
-}
-.btn-todo, .save-btn-todo, .save-btn-event, .eventBtn{
+.btn{
   height: 60px;
   width: 100px;
   border: none;
@@ -124,10 +102,36 @@ margin: 0 4% 0 4%;
   font-weight: 600;
   cursor: pointer;
 }
-.save-btn-todo{
-  height: 40px;
-  border-radius: 10px;
+
+/* STYLE TODO */
+
+.box-todo, .input-container{
+  background-color: var(--primary-background-color);
+  width: 1000px;
+  border-radius: 20px;
+  padding: 2%;
 }
+.description-todo{
+  width: 720px;
+  margin-left: 2%;
+}
+#deadline-label-todo, #time-estimate-label-todo, .deadline-todo, #startDate-label, #endDate-label, #startDate-event {
+  margin-right: 1%;
+}
+.time-estimate-todo {
+  width: 25px;
+  margin-right: 1%;
+}
+.save-btn-event, .eventBtn{
+  height: 60px;
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-background-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .select-container-todo{
   margin-bottom: 10%;
 }

@@ -141,7 +141,7 @@ const todoEditInput = (todo, todoTextDiv, todoSelectDiv, todoActions, todoDivFle
 
     const saveBtn = document.createElement("button");
     saveBtn.innerText = "Spara";
-    saveBtn.classList.add("save-btn-todo");
+    saveBtn.classList.add("btn");
 
     const editForm = document.createElement("div");
     editForm.classList.add("edit-form");
