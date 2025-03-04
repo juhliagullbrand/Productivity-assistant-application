@@ -70,8 +70,7 @@ div.flex-container{
 #routineFilter,
 #priority,
 #repetition,
-#input-routine-title, 
-#filterEvents {
+#input-routine-title{
   margin-top: 2%;
   margin-right: 2%;
 }
@@ -248,42 +247,27 @@ div.todoSelectDiv{
   width: 25rem;
 }
 
-#displayEvent{
-  background-color: var(--primary-background-color);
-  width: 1000px;
-  height: auto;
-  border-radius: 20px;
-  padding: 2%;
-  margin-top: 2rem;
-}
-
-
 .eventTextDiv{
   background-color: var(--primary-container-color);
-  margin: 2rem;
+  margin: 2%;
   padding: 10px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
- 
 }
 
 #eventStart, #eventEnd, #eventTitle{
-  border-radius: 20px;
+ border-radius: 20px;
  padding: 1rem;
  margin: 1rem;
 }
-.hidden {
-  visibility: hidden;
-}
 
 .filter-events{
-  margin-right: 850px;
-  margin-top: 1.5rem;
-  margin-bottom: -1.5rem;
+display: flex;
+justify-content: flex-end;
+margin-right: 1rem;
 }
-
 
 .past-event{
   text-decoration: line-through;

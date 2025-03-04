@@ -71,16 +71,8 @@ const renderEvents = () => {
     }
 };
 
-const hiddenBtn = () =>{
-    if(events.length === 0){
-        filterEventBtn.classList.add("hidden");
-    }else{
-        filterEventBtn.classList.remove("hidden");
-    }
-};
 eventForm.addEventListener("submit", (e) => {
     e.preventDefault(); 
-    displayEvent.classList.remove("hidden");
 
     const title = inputTitleEvent.value.trim(); 
     const start = startDateEvent.value; 
@@ -105,7 +97,6 @@ eventForm.addEventListener("submit", (e) => {
 
     events.push(newEvent);
     renderEvents();
-    hiddenBtn();
     eventForm.reset();
 });
 
