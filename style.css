@@ -28,11 +28,9 @@ body{
 p{
   font-size: var(--p-font-size);
 }
-
 h2{
   font-size: var(--small-title-font-size);
 }
-
 h1{
   font-size: var(--big-title-font-size);
   margin: 3% 0;
@@ -42,17 +40,7 @@ h1{
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-#input-routine-title,
-#priority,
-#repetition,
-.datepicker, 
-#inputTitleEvent,
-.password-input-login,
-.username-input-login, 
-#filterEvents, 
-.startpageContainer,
+} 
 .input{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
@@ -61,9 +49,9 @@ h1{
   padding: 2%;
 }
 .category-todo,
-#priority,
-#repetition,
-#input-routine-title{
+.priority-routine,
+.repetition-routine,
+.input-routine-title{
   margin-top: 2%;
   margin-right: 2%;
 }
