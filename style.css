@@ -51,8 +51,6 @@ div.flex-container{
 #input-routine-title,
 #priority,
 #repetition,
-#routineSort,
-#routineFilter,
 .datepicker, 
 #inputTitleEvent,
 .password-input-login,
@@ -66,8 +64,6 @@ div.flex-container{
   padding: 2%;
 }
 #category-todo,
-#routineSort,
-#routineFilter,
 #priority,
 #repetition,
 #input-routine-title{
@@ -83,6 +79,21 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 margin: 0 4% 0 4%;
+}
+
+.filter{
+  display: flex;
+  gap: 10px;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+.sort{
+  height: 54px;
+  width: auto;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 /* STYLE TODO */
@@ -143,18 +154,6 @@ div.todoSelectDiv{
   margin-right: 10px;
   border: 1px solid lightgrey;
 }
-#sort-dropdown-todo{
-  height: 30px;
-  width: 100px;
-  padding: 5px;
-  border-radius: 10px;
-}
-.fieldset-todo{
-  display: flex;
-  gap: 10px;
-  border: 1px solid grey;
-  border-radius: 10px;
-}
 .filter-container-todo, .todoTextDiv{
   display: flex;
   justify-content: space-between;
@@ -177,6 +176,7 @@ div.todoSelectDiv{
 }
 .routineSortAndFilterContainer{
   display: flex;
+ align-items: flex-end;
   margin-bottom: 2%;
 }
 .routine-box{
