@@ -41,14 +41,6 @@
             <button class="btn" id="routineBtn">+ Lägg till</button>
             <div class="routine-container">
                 <div class="routineSortAndFilterContainer">
-                    <select name="sort" id="routineSort" class="sort">
-                        <option value="" disabled selected>Sortera</option>
-                        <option value="least-repetitions">Minst repetioner</option>
-                        <option value="most-repetitions">Flest repetioner</option>
-                        <option value="lowest-prio">Lägsta prioritet</option>
-                        <option value="highest-prio">Högsta prioritet</option>
-                    </select>
-
                     <fieldset class="filter" id="routineFilter">
                         <legend>Filtrera</legend>
                         <label for="high">Hög</label>
@@ -60,6 +52,14 @@
                         <label for="low">Låg</label>
                         <input type="checkbox" name="filterCheckboxHabits" id="low" value="Låg">
                     </fieldset>
+                    
+                    <select name="sort" id="routineSort" class="sort">
+                        <option value="" disabled selected>Sortera</option>
+                        <option value="least-repetitions">Minst repetioner</option>
+                        <option value="most-repetitions">Flest repetioner</option>
+                        <option value="lowest-prio">Lägsta prioritet</option>
+                        <option value="highest-prio">Högsta prioritet</option>
+                    </select>
                 </div>
                 <div class="routineListContainer"></div>
             </div>

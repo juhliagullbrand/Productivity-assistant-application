@@ -124,9 +124,8 @@ let createRoutineBox = (r) => {
     deleteBox.classList = "deleteBox";
 
     let imgDelete = document.createElement("img");
-    imgDelete.src = "icon/trash-can-solid.svg";
-    imgDelete.style.height = "20px";
-    imgDelete.style.width = "20px";
+    imgDelete.src = "icon/delete.png";
+    imgDelete.style.width = "30px";
     imgDelete.style.cursor = "pointer";
 
     deleteBox.addEventListener("click", () => {
