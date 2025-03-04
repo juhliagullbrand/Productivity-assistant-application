@@ -88,8 +88,8 @@ const getData = async () => {
 
 const renderPage = async () => {
     let quotes = await getData();
-    pQuote.innerText = quotes.quote;
-    pAuthor.innerText = quotes.author;
-};
-
+    pQuote.innerText = '" ' + quotes.quote + ' "';
+    pQuote.style.fontStyle = "italic";
+    pAuthor.innerText = "- " + quotes.author;
+}
 renderPage();
