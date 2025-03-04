@@ -283,6 +283,10 @@ margin-right: 1rem;
   opacity: 0.6;
 }
 
+.deleteBtn-event:hover img{
+  content: url('./icon/delete_red.png');
+}
+
 /* STYLE LOGIN */
 
 .login{
