@@ -72,31 +72,7 @@ input:-webkit-autofill {
   border-radius: 10px;
 }
 
-<<<<<<< HEAD
 .btn{
-=======
-/* STYLE TODO */
-
-.box-todo, .input-container{
-  background-color: var(--primary-background-color);
-  width: 1000px;
-  border-radius: 20px;
-  padding: 2%;
-  margin-bottom: 2%;
-}
-#input-description-todo{
-  width: 720px;
-  margin-left: 2%;
-}
-#deadline-label-todo, #time-estimate-label-todo, #deadline-todo, #startDate-label, #endDate-label, #startDate-event {
-  margin-right: 1%;
-}
-#time-estimate-todo {
-  width: 25px;
-  margin-right: 1%;
-}
-.btn-todo, .save-btn-todo, .save-btn-event, .eventBtn{
->>>>>>> origin/develop
   height: 60px;
   width: 100px;
   border: none;
