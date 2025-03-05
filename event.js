@@ -161,7 +161,7 @@ const eventEditInput = (eventTextDiv, event) => {
 
 const eventDeleteButton = (eventActions, eventId) => {
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("btn-style-background"); 
+    deleteBtn.classList.add("btn-style-background", "deleteBtn"); 
 
     const iconDelete = document.createElement("img");
     iconDelete.src = "/icon/delete.png";

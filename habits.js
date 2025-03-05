@@ -121,7 +121,7 @@ let createRoutineBox = (r) => {
     });
 
     let deleteBox = document.createElement("div");
-    deleteBox.classList = "deleteBox";
+    deleteBox.classList = ("deleteBox", "deleteBtn");
 
     let imgDelete = document.createElement("img");
     imgDelete.src = "icon/delete.png";

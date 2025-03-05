@@ -92,6 +92,10 @@ input:-webkit-autofill {
   cursor: pointer;
 }
 
+.deleteBtn:hover img{
+  content: url('./icon/delete_red.png');
+}
+
 .input-container{
   background-color: var(--primary-background-color);
   width: 1000px;
@@ -267,10 +271,6 @@ margin-right: 1rem;
 .past-event{
   text-decoration: line-through;
   opacity: 0.6;
-}
-
-.deleteBtn-event:hover img{
-  content: url('./icon/delete_red.png');
 }
 
 /* STYLE LOGIN */
