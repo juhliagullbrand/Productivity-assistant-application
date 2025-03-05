@@ -337,7 +337,6 @@ const sortTasks = () => {
 
 document.querySelector("#sort-dropdown-todo").addEventListener("change", sortTasks);
 
-window.addEventListener("DOMContentLoaded", () => {
     todos.forEach(todo => createTodoBox(todo));
 
     sortTasks();
@@ -348,4 +347,3 @@ window.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#filter-status-done").addEventListener("change", filterTasks);
     document.querySelector("#filter-status").addEventListener("change", filterTasks);
-});
