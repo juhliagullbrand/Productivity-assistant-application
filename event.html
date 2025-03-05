@@ -22,15 +22,15 @@
     <div class="flex-container">
       <div class="input-container">
           <form id="eventForm">
-              <input type="text" id="inputTitleEvent" placeholder="Titel" required />
-              <label for="startDate-event" id="startDate-label">Start</label>
-              <input type="datetime-local" name="deadline" id="startDate-event" class="datepicker" />
-              <label for="endDate-event" id="endDate-label">Slut</label>
-              <input type="datetime-local" name="deadline" id="endDate-event" class="datepicker" />
-              <button type="submit" class="eventBtn" id="eventBtnPlace">Lägg till</button>
+              <input type="text" class="input inputTitleEvent" id="inputTitleEvent" placeholder="Titel" required />
+              <label for="startDate-event" class="margin-right" id="startDate-label">Start</label>
+              <input type="datetime-local" name="deadline" class="margin-right input datepicker" id="startDate-event"/>
+              <label for="endDate-event" class="margin-right" id="endDate-label">Slut</label>
+              <input type="datetime-local" name="deadline" class="input margin-right datepicker" id="endDate-event"/>
+              <button type="submit" class="btn eventBtn" id="eventBtnPlace">Lägg till</button>
           </form>
           <div class="filter-events">
-              <select id="filterEvents">
+              <select class="sort" id="filterEvents">
                 <option value="">Filtrera</option>
                 <option value="all">Alla Händelser</option>
                 <option value="upcoming" id="upcoming">Kommande händelser</option>

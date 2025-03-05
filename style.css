@@ -38,47 +38,23 @@ h1{
   margin: 3% 0;
   text-align: center;
 }
-div.flex-container{
+
+.flex-container{
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-#input-title-todo,
-#input-description-todo,
-#category-todo,
-#deadline-todo,
-#time-estimate-todo,
-#input-routine-title,
-#priority,
-#repetition,
-.datepicker, 
-#inputTitleEvent,
-.password-input-login,
-.username-input-login, 
-#filterEvents, 
-.startpageContainer{
+} 
+
+.input{
   color: var(--primary-font-color);
   background-color: var(--primary-container-color);
   border-radius: 20px;
   border: none;
   padding: 2%;
 }
-#category-todo,
-#priority,
-#repetition,
-#input-routine-title{
-  margin-top: 2%;
-  margin-right: 2%;
-}
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--primary-container-color) inset !important;
-}
-.headerContainer{
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 0 4% 0 4%;
 }
 
 .filter{
@@ -96,26 +72,7 @@ margin: 0 4% 0 4%;
   border-radius: 10px;
 }
 
-/* STYLE TODO */
-
-.box-todo, .input-container{
-  background-color: var(--primary-background-color);
-  width: 1000px;
-  border-radius: 20px;
-  padding: 2%;
-}
-#input-description-todo{
-  width: 720px;
-  margin-left: 2%;
-}
-#deadline-label-todo, #time-estimate-label-todo, #deadline-todo, #startDate-label, #endDate-label, #startDate-event {
-  margin-right: 1%;
-}
-#time-estimate-todo {
-  width: 25px;
-  margin-right: 1%;
-}
-.btn-todo, .save-btn-todo, .save-btn-event, .eventBtn, .linkBtn{
+.btn{
   height: 60px;
   width: 100px;
   border: none;
@@ -124,9 +81,55 @@ margin: 0 4% 0 4%;
   font-weight: 600;
   cursor: pointer;
 }
-.save-btn-todo{
-  height: 40px;
+
+.btn:hover{
+  text-decoration: underline;
+}
+
+.btn-style-background{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.input-container{
+  background-color: var(--primary-background-color);
+  width: 1000px;
+  border-radius: 20px;
+  padding: 2%;
+}
+
+.new-input{
+  height: 35px;
   border-radius: 10px;
+  margin-right: 10px;
+  border: 1px solid lightgrey;
+}
+
+.margin-right{
+  margin-right: 1%;
+}
+
+.margin-top-right{
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.headerContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 4% 0 4%;
+  }
+
+/* STYLE TODO */
+
+.description-todo{
+ width: 720px;
+ margin-left: 2%;
+}
+.time-estimate-todo {
+  width: 25px;
 }
 .select-container-todo{
   margin-bottom: 10%;
@@ -139,20 +142,9 @@ margin: 0 4% 0 4%;
   margin-bottom: 2%;
   padding: 2%;
 }
-div.todoSelectDiv{
+.todoSelectDiv{
   display: flex;
   justify-content: space-evenly;
-}
-.delete-btn-todo, .edit-btn-todo, .deleteBtn-event, .edit-btn-event, .unchecked-btn-todo, .checked-btn-todo{
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-.new-input-title, .new-input-description, .new-input-category, .new-input-deadline, .new-input-timeEstimate, .new-input-event{
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  border: 1px solid lightgrey;
 }
 .filter-container-todo, .todoTextDiv{
   display: flex;
@@ -163,7 +155,6 @@ div.todoSelectDiv{
 .select-edit-form-todo{
   display: flex;
   gap: 40px;
-
 }
 
 /* STYLE HABIT */
@@ -176,8 +167,10 @@ div.todoSelectDiv{
 }
 .routineSortAndFilterContainer{
   display: flex;
- align-items: flex-end;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 2%;
+  width: 62rem;
 }
 .routine-box{
   display: flex;
@@ -187,7 +180,7 @@ div.todoSelectDiv{
   color: var(--primary-font-color);
   padding: 2%;
   height: 40px;
-  width: 100%;
+  width: 60rem;
   margin-bottom: 2%;
 }
 .priorityBox{
@@ -198,6 +191,12 @@ div.todoSelectDiv{
   height: 30px;
   width: 70px;
 }
+.deleteBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .priorityHigh{
   background-color: var(--pink-background-color);
 }
@@ -207,7 +206,6 @@ div.todoSelectDiv{
 .priorityMiddle{
   background-color: var(--orange-background-color);
 }
-
 .routineRightBox{
   display: flex;
   width: 30%;
@@ -218,15 +216,12 @@ div.todoSelectDiv{
   display: flex;
   flex-direction: column;
 }
-
 .repetitionsDiv{
   display: flex;
 }
-
 .minusPlusRepeatBox{
   display: flex;
 }
-
 .fieldset-habits{
   display: flex;
   gap: 10px;
@@ -236,11 +231,11 @@ div.todoSelectDiv{
 
 /* STYLE EVENT */
 
-#inputTitleEvent{
+.inputTitleEvent{
   width: 20rem;
   margin-right: 2%;
 }
-#eventBtnPlace{
+.eventBtn{
   display: grid;
   place-items: center;
   margin: 2% auto;
@@ -303,11 +298,10 @@ margin-right: 1rem;
 
 /* Startpage */
 
-#startpageBox{
+.startpageBox{
   display: flex;
   margin: 2%;
 }
-
 .startpageContainer{
   margin: 2%;
   display: flex;
@@ -315,23 +309,15 @@ margin-right: 1rem;
   justify-content: space-around; 
 } 
 
-.linkBtn {
-  margin-top: 2%;
-}
-#linkBtnStyle{
+.linkStyle{
   min-width: 150px;
+  margin-top: 10%;
 }
 
-#linkBtnStyle:hover{
-  text-decoration: underline;
+.liStartpage{
+  margin-top: 6%;
 }
-
-li.liStartpage{
-  margin-top: 1rem;
-}
-
-
-#displayQuote{
+.displayQuote{
   text-align: center;
 }
 
