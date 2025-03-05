@@ -102,7 +102,7 @@ eventForm.addEventListener("submit", (e) => {
 
 const eventEditButton = (eventActions, event) => {
     const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-btn-event");
+    editBtn.classList.add("btn-style-background");
 
     const iconEdit = document.createElement("img");
     iconEdit.src = "/icon/edit.png";
@@ -122,21 +122,21 @@ const eventEditInput = (eventTextDiv, event) => {
     const inputField = document.createElement("input");
     inputField.type = "text";
     inputField.value = event.title;
-    inputField.classList.add("new-input-event");
+    inputField.classList.add("new-input");
 
     const inputStart = document.createElement("input"); 
     inputStart.type = "datetime-local";
     inputStart.value = event.start.substring(0, 16); 
-    inputStart.classList.add("new-input-event");
+    inputStart.classList.add("new-input");
 
     const inputEnd = document.createElement("input"); 
     inputEnd.type = "datetime-local"; 
     inputEnd.value = event.end.substring(0, 16);
-    inputEnd.classList.add("new-input-event");
+    inputEnd.classList.add("new-input");
 
     const saveBtn = document.createElement("button");
     saveBtn.innerText = "Spara";
-    saveBtn.classList.add("save-btn-event");
+    saveBtn.classList.add("btn");
 
 
     saveBtn.addEventListener("click", () => {
@@ -161,7 +161,7 @@ const eventEditInput = (eventTextDiv, event) => {
 
 const eventDeleteButton = (eventActions, eventId) => {
     const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("deleteBtn-event"); 
+    deleteBtn.classList.add("btn-style-background"); 
 
     const iconDelete = document.createElement("img");
     iconDelete.src = "/icon/delete.png";

@@ -17,28 +17,28 @@
       <a href="/startpage.html"><img src="/icon/house-solid.svg" height="30" width="30" alt="home" id="startPageBtn"></a>
       <h1>Att göra & aktiviteter</h1>
       <a href="/index.html"><img src="/icon/right-from-bracket-solid.svg" height="30" width="30" alt="logout" id="logoutBtn"></a>
-  </div>
+    </div>
     <div class="flex-container">
-        <div class="box-todo">
-            <div class="input-container-todo">
-                <input type="text" name="" id="input-title-todo" placeholder="Titel">
-                <input type="text" name="" id="input-description-todo" placeholder="Beskrivning">
+        <div class="input-container box-todo">
+            <div class="container-todo">
+                <input type="text" class="input title-todo" id="input-title-todo" placeholder="Titel">
+                <input type="text" class="input description-todo" id="input-description-todo" placeholder="Beskrivning">
             </div>
             <div class="select-container-todo">
-                <select name="category" id="category-todo">
+                <select name="category" class="input margin-top-right category-todo" id="category-todo">
                     <option value="" disabled selected>Välj en kategori</option>
                     <option value="Hälsa">Hälsa</option>
                     <option value="Hushåll">Hushåll</option>
                     <option value="Jobb">Jobb</option>
                     <option value="Nöje">Nöje</option>
                 </select>
-                <label for="deadline-todo" id="deadline-label-todo">Datum för deadline</label>
-                <input type="date" name="deadline" id="deadline-todo">
+                <label for="deadline-todo" class="margin-right" id="deadline-label-todo">Datum för deadline</label>
+                <input type="date" name="deadline" class="input margin-right deadline-todo" id="deadline-todo">
 
-                <label for="time-estimate-todo" id="time-estimate-label-todo">Tidsestimat (i timmar)</label>
-                <input type="number" id="time-estimate-todo" name="time-estimate" min="1" />
+                <label for="time-estimate-todo" class="margin-right" id="time-estimate-label-todo">Tidsestimat (i timmar)</label>
+                <input type="number" class="input margin-right time-estimate-todo" id="time-estimate-todo" name="time-estimate" min="1" />
 
-                <button class="btn-todo" id="btn-todo">Lägg till</button>
+                <button class="btn btn-todo" id="btn-todo">Lägg till</button>
             </div>
             <div class="filter-container-todo">
               <fieldset class="fieldset-todo filter">
