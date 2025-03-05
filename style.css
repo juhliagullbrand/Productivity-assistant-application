@@ -101,6 +101,7 @@ input:-webkit-autofill {
   width: 1000px;
   border-radius: 20px;
   padding: 2%;
+  margin-bottom: 2%;
 }
 
 .new-input{
