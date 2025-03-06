@@ -17,6 +17,7 @@ greetingH1.textContent = `Välkommen ${currentUser}`;
 
 const displayEvent = () => {
     const sortEvent = events
+        .filter(e => !(new Date(e.end) < new Date))
         .sort((a, b) => new Date(a.start) - new Date(b.start))
         .slice(0, 3);
 
